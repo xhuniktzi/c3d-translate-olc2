@@ -17,19 +17,19 @@ class Generator:
         self.temporal_variables: list[str] = []
 
     def get_temporal_variables(self) -> str:
-        return "".join(self.temporal_variables)
+        return ",".join(self.temporal_variables)
 
     def generate_header(self) -> str:
         code_header: str = """
-            #include <stdio.h>
-            #include <math.h>
+#include <stdio.h>
+#include <math.h>
 
-            double heap[78000];
-            double stack[78000];
+double heap[78000];
+double stack[78000];
 
-            double p = 0;
-            double h = 0;
-            """
+double p = 0;
+double h = 0;
+"""
 
         if len(self.temporal_variables) > 0:
             code_header += f"double {self.get_temporal_variables()};\n"
@@ -76,6 +76,7 @@ class Generator:
 
     def register_C_printf(self, print_control: str, expr: str) -> None:
         self.code.append(f'printf("{print_control}", {expr});\n')
+        self.code.append('printf("\\n");\n')
 
     def register_next_heap(self) -> None:
         self.code.append("h = h + 1;\n")

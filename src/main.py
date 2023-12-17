@@ -7,15 +7,20 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar = """
-    DECLARE @numero AS INT;
-    SET @numero = 10;
 
+    DECLARE @a AS DECIMAL;
+    DECLARE @b AS INT;
+    SET @a = 5*4-3+10-11/3*21/13;
+    SET @b = 13-4*43/2+1;
+    
+    SELECT @a;
+    SELECT @b;
 
         """
 
     otrotext: str = """
 
-        SELECT @numero;
+
     IF (@a > @b) BEGIN
         SET @resultado = @a;
     END

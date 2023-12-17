@@ -6,5 +6,3 @@ class C3DValue:
         self.value: str = value
         self.flag_temp: bool = flag_temp
         self.datatype: DataTypes = datatype
-        self.true_label: str = ""
-        self.false_label: str = ""

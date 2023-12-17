@@ -7,3 +7,4 @@ class DataTypes(Enum):
     IDVARIABLE = 2
     ENTERO = 3
     NULL = 4
+    BOOLEAN = 5

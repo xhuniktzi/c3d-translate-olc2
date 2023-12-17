@@ -1,4 +1,5 @@
 from compiler.abstract.c3d_value import C3DValue
+from compiler.abstract.environment import Environment
 from compiler.abstract.expression import Expression
 from compiler.expr.finals.enum_datatypes import DataTypes
 
@@ -9,11 +10,11 @@ class Div(Expression):
         self.left: Expression = left
         self.right: Expression = right
 
-    def translate_to_c3d(self) -> C3DValue:
+    def translate_to_c3d(self, env: Environment) -> C3DValue:
         temp_var: str = self.generator.mk_temp()
 
-        left_eval: C3DValue = self.left.translate_to_c3d()
-        right_eval: C3DValue = self.right.translate_to_c3d()
+        left_eval: C3DValue = self.left.translate_to_c3d(env)
+        right_eval: C3DValue = self.right.translate_to_c3d(env)
 
         if left_eval.datatype == DataTypes.ENTERO:
             if (
@@ -21,7 +22,7 @@ class Div(Expression):
                 or right_eval.datatype == DataTypes.DECIMAL
             ):
                 self.generator.register_c3d_expression(
-                    f"{temp_var} = {left_eval.value} / {right_eval.value}"
+                    temp_var, left_eval.value, "/", right_eval.value
                 )
                 return C3DValue(temp_var, True, DataTypes.ENTERO)
 
@@ -31,6 +32,6 @@ class Div(Expression):
                 or right_eval.datatype == DataTypes.DECIMAL
             ):
                 self.generator.register_c3d_expression(
-                    f"{temp_var} = {left_eval.value} / {right_eval.value}"
+                    temp_var, left_eval.value, "/", right_eval.value
                 )
                 return C3DValue(temp_var, True, DataTypes.DECIMAL)

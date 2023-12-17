@@ -13,15 +13,14 @@ class Assign(Statement):
         self.value: Expression = value
 
     def translate_to_c3d(self, env: Environment):
-        pass
-        # variable_eval: C3DValue = self.value.translate_to_c3d()
-        # symbol: C3DSymbol = env.get_variable(self.identifier)
+        variable_eval: C3DValue = self.value.translate_to_c3d(env)
+        symbol: C3DSymbol = env.get_variable(self.identifier)
 
-        # if symbol is None:
-        #     return
+        if symbol is None:
+            return
 
         # if symbol.datatype != variable_eval.datatype:
         #     print(f"Cannot assign {variable_eval.datatype} to {symbol.datatype}")
         #     return
 
-        # self.generator.register_write_stack(symbol.position, variable_eval.value)
+        self.generator.register_write_stack(symbol.position, variable_eval.value)
