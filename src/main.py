@@ -7,7 +7,6 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar = """
-
     DECLARE @a AS DECIMAL;
     DECLARE @b AS INT;
     SET @a = 5*4-3+10-11/3*21/13;
@@ -15,6 +14,8 @@ def main():
     
     SELECT @a;
     SELECT @b;
+
+    SELECT "Hola mundo";
 
         """
 

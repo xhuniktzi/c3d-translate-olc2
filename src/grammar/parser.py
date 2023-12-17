@@ -149,6 +149,11 @@ def p_valoresfinales_idvariable(p):
     p[0] = TermValue(p[1], DataTypes.IDVARIABLE)
 
 
+def p_valoresfinales_booleano(p):
+    """valoresfinales : BOOL"""
+    p[0] = TermValue(p[1], DataTypes.BOOLEAN)
+
+
 def p_expresion_null(p):
     """valoresfinales : NULL"""
     p[0] = TermValue(None, DataTypes.NULL)

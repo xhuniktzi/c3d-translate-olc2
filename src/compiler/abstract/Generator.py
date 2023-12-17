@@ -74,8 +74,13 @@ double h = 0;
     def register_if_goto(self, expr0: str, op: str, expr1: str, label: str) -> None:
         self.code.append(f"if ({expr0} {op} {expr1}) goto {label};\n")
 
+    def register_goto(self, label: str) -> None:
+        self.code.append(f"goto {label};\n")
+
     def register_C_printf(self, print_control: str, expr: str) -> None:
         self.code.append(f'printf("{print_control}", {expr});\n')
+
+    def register_C_newline(self) -> None:
         self.code.append('printf("\\n");\n')
 
     def register_next_heap(self) -> None:

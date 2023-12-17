@@ -17,10 +17,26 @@ class TermValue(Expression):
             return C3DValue(f"{self.value}", False, self.datatype)
         elif self.datatype == DataTypes.IDVARIABLE:
             return C3DValue(f"{self.value}", False, self.datatype)
+        elif self.datatype == DataTypes.CADENA:
+            temp_var: str = self.generator.mk_temp()
+            self.generator.register_c3d_expression(
+                temp_var, "h", "", ""
+            )  # temp_var = h; save the position of the heap
+            for char in self.value:
+                self.generator.register_write_heap("h", f"{ord(char)}")
+                self.generator.register_next_heap()
 
-        # if self.datatype != DataTypes.CADENA:
-        #     return C3DValue(self.value, False, self.datatype)
+            self.generator.register_write_heap("h", "-1")  # end of string
+            self.generator.register_next_heap()
+
+            return C3DValue(temp_var, True, self.datatype)
+
         # elif self.datatype == DataTypes.CADENA:
         #     temp_var: str = self.generator.mk_temp()
-        #     self.generator.register_c3d(temp_var, f'"{self.value}"')
+        #     self.generator.register_c3d_expression(temp_var, "h", "", "")
+
+        #     for char in self.value:
+        #         self.generator.register_write_heap("h", f"{ord(char)}")
+        #         self.generator.register_next_heap()
+
         #     return C3DValue(temp_var, True, self.datatype)

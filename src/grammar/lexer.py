@@ -18,6 +18,7 @@ reserved = {
     "int": "TIPODATO",
     "decimal": "TIPODATO",
     "nvarchar": "TIPODATO",
+    "bit": "TIPODATO",  # bit is a boolean
     "exec": "EXEC",
 }
 
@@ -44,6 +45,7 @@ tokens = (
     "PARENTESISCIERRA",
     "DECIMAL",
     "ENTERO",
+    "BOOL",
     "IDENTIFICADORGLOBAL",
 )
 
@@ -53,7 +55,7 @@ tokens = tokens + tuple(reserved.values())
 t_IDVARIABLE = r"@[a-zA-Z_][a-zA-Z0-9_]*"
 t_PUNTOYCOMA = r";"
 t_COMA = r","
-t_CADENA = r"\".*?\""
+# t_CADENA = r"\".*?\""
 
 
 t_IGUAL = r"="
@@ -98,6 +100,24 @@ def t_ENTERO(t):
     except ValueError:
         print("Error en el Entero Esperado %d", t.value)
         t.value = 0
+    return t
+
+
+## BOOL
+def t_BOOL(t):
+    r"true|false"
+    try:
+        t.value = bool(t.value)
+    except ValueError:
+        print("Error en el Bool Esperado %d", t.value)
+        t.value = False
+    return t
+
+
+## CADENA
+def t_CADENA(t):
+    r"\".*?\" "
+    t.value = t.value[1:-1]  # remuevo las comillas
     return t
 
 
