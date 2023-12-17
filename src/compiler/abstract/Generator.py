@@ -87,13 +87,13 @@ class Generator:
         self.code.append("p = p - 1;\n")
 
     def register_read_heap(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"{expr0} = heap[{expr1}];\n")
+        self.code.append(f"{expr0} = heap[(int){expr1}];\n")
 
     def register_write_heap(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"heap[{expr0}] = {expr1};\n")
+        self.code.append(f"heap[(int){expr0}] = {expr1};\n")
 
     def register_read_stack(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"{expr0} = stack[{expr1}];\n")
+        self.code.append(f"{expr0} = stack[(int){expr1}];\n")
 
     def register_write_stack(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"stack[{expr0}] = {expr1};\n")
+        self.code.append(f"stack[(int){expr0}] = {expr1};\n")

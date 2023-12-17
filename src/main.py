@@ -80,12 +80,12 @@ def main():
             break
         print(tok)
 
+    generator: Generator = Generator()
     ast: list[Statement] = parser.parse(textoAnalizar)
     global_env: Environment = Environment(None)
     for statement in ast:
         statement.translate_to_c3d(global_env)
 
-    generator: Generator = Generator()
     print(generator.generate_code())
 
 
