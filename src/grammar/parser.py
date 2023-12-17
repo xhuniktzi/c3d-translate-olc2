@@ -55,7 +55,7 @@ def p_statement(p):
     # | condicion
     # | ciclo
     # | procedure
-    # | llamada
+    # | llamada_procedure
     # """
     p[0] = p[1]
 

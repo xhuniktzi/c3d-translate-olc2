@@ -11,11 +11,13 @@ def main():
     DECLARE @b AS INT;
     SET @a = 5*4-3+10-11/3*21/13;
     SET @b = 13-4*43/2+1;
+    DECLARE @c AS NVARCHAR;
     
     SELECT @a;
     SELECT @b;
 
     SELECT "Hola mundo";
+    SELECT @c;
 
         """
 
