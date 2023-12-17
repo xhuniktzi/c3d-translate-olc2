@@ -1,3 +1,4 @@
+from compiler.abstract.c3d_value import C3DValue
 from compiler.abstract.statement import Statement
 
 
