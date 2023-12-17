@@ -4,10 +4,13 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar = """
-
     DECLARE @numero AS INT;
-    SET @contador = 10;
+    SET @numero = 10;
+    SELECT @numero;
 
+        """
+
+    otrotext: str = """
     IF (@a > @b) BEGIN
         SET @resultado = @a;
     END
@@ -63,9 +66,7 @@ def main():
         END
         SET @i = @i + 1;
     END
-
-    
-        """
+    """
 
     lexer.input(textoAnalizar)
     while True:
