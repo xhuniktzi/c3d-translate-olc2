@@ -16,7 +16,6 @@ reserved = {
     "end": "END",
     "null": "NULL",
     "int": "TIPODATO",
-    "bit": "TIPODATO",
     "decimal": "TIPODATO",
     "nvarchar": "TIPODATO",
     "exec": "EXEC",

@@ -10,4 +10,5 @@ class TermValue(Expression):
         self.datatype: DataTypes = datatype
 
     def translate_to_c3d(self) -> C3DValue:
-        pass
+        if self.datatype != DataTypes.CADENA:
+            return C3DValue(self.value, False, self.datatype)

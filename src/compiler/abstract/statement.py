@@ -1,5 +1,6 @@
 import abc
 from compiler.abstract.Generator import Generator
+from compiler.abstract.environment import Environment
 
 
 class Statement(abc.ABC):
@@ -7,5 +8,5 @@ class Statement(abc.ABC):
         self.generator = Generator()
 
     @abc.abstractmethod
-    def translate_to_c3d(self):
+    def translate_to_c3d(self, env: Environment):
         pass

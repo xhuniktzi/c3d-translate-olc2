@@ -1,3 +1,6 @@
+from compiler.abstract.Generator import Generator
+from compiler.abstract.environment import Environment
+from compiler.abstract.statement import Statement
 from grammar.lexer import lexer
 from grammar.parser import parser
 
@@ -6,11 +9,13 @@ def main():
     textoAnalizar = """
     DECLARE @numero AS INT;
     SET @numero = 10;
-    SELECT @numero;
+
 
         """
 
     otrotext: str = """
+
+        SELECT @numero;
     IF (@a > @b) BEGIN
         SET @resultado = @a;
     END
@@ -75,8 +80,13 @@ def main():
             break
         print(tok)
 
-    ast = parser.parse(textoAnalizar)
-    print(ast)
+    ast: list[Statement] = parser.parse(textoAnalizar)
+    global_env: Environment = Environment(None)
+    for statement in ast:
+        statement.translate_to_c3d(global_env)
+
+    generator: Generator = Generator()
+    print(generator.generate_code())
 
 
 if __name__ == "__main__":

@@ -1,20 +1,20 @@
-from typing import List
-
-
 class Generator:
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
+            print("Creating Generator")
             cls._instance = super(Generator, cls).__new__(cls)
+        else:
+            print("Generator already created")
 
         return cls._instance
 
     def __init__(self) -> None:
         self.temp: int = 0
         self.label: int = 0
-        self.code: List[str] = []
-        self.temporal_variables: List[str] = []
+        self.code: list[str] = []
+        self.temporal_variables: list[str] = []
 
     def get_temporal_variables(self) -> str:
         return "".join(self.temporal_variables)

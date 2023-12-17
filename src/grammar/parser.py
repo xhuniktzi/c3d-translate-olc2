@@ -13,6 +13,7 @@ from compiler.expr.relationals.majorequals import MajorEquals
 from compiler.expr.relationals.minor import Minor
 from compiler.expr.relationals.minorequals import MinorEquals
 from compiler.expr.relationals.notequals import NotEquals
+from compiler.helpers.str_to_datatype import fnStrToDatatype
 from compiler.statements.assign import Assign
 from compiler.statements.declare import Declare
 from compiler.statements.select import Select
@@ -61,7 +62,7 @@ def p_statement(p):
 
 def p_declare(p):
     """declaracion : DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA"""
-    p[0] = Declare(p[2], p[4])
+    p[0] = Declare(p[2], fnStrToDatatype(p[4]))
 
 
 def p_asignacion(p):
@@ -128,6 +129,11 @@ def p_expresion_parentesis(p):
     p[0] = p[2]
 
 
+def p_valoresfinales_numero(p):
+    """valoresfinales : ENTERO"""
+    p[0] = TermValue(p[1], DataTypes.ENTERO)
+
+
 def p_valoresfinales_numeroflotante(p):
     """valoresfinales : DECIMAL"""
     p[0] = TermValue(p[1], DataTypes.DECIMAL)
@@ -141,11 +147,6 @@ def p_valoresfinales_cadena(p):
 def p_valoresfinales_idvariable(p):
     """valoresfinales : IDVARIABLE"""
     p[0] = TermValue(p[1], DataTypes.IDVARIABLE)
-
-
-def p_valoresfinales_numero(p):
-    """valoresfinales : ENTERO"""
-    p[0] = TermValue(p[1], DataTypes.ENTERO)
 
 
 def p_expresion_null(p):

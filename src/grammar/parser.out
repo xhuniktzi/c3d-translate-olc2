@@ -30,10 +30,10 @@ Rule 11    expresion -> logicas
 Rule 12    expresion -> valoresfinales
 Rule 13    expresion -> aritmeticas
 Rule 14    expresion -> PARENTESISABRE expresion PARENTESISCIERRA
-Rule 15    valoresfinales -> DECIMAL
-Rule 16    valoresfinales -> CADENA
-Rule 17    valoresfinales -> IDVARIABLE
-Rule 18    valoresfinales -> ENTERO
+Rule 15    valoresfinales -> ENTERO
+Rule 16    valoresfinales -> DECIMAL
+Rule 17    valoresfinales -> CADENA
+Rule 18    valoresfinales -> IDVARIABLE
 Rule 19    valoresfinales -> NULL
 Rule 20    relacionales -> expresion MAYOR expresion
 Rule 21    relacionales -> expresion MENOR expresion
@@ -54,19 +54,19 @@ Terminals, with rules where they appear
 AND                  : 26
 AS                   : 7
 BEGIN                : 
-CADENA               : 16
+CADENA               : 17
 COMA                 : 
 CREATE               : 
-DECIMAL              : 15
+DECIMAL              : 16
 DECLARE              : 7
 DIFERENTE            : 25
 DIVISION             : 32
 ELSE                 : 
 END                  : 
-ENTERO               : 18
+ENTERO               : 15
 EXEC                 : 
 IDENTIFICADORGLOBAL  : 
-IDVARIABLE           : 7 8 17
+IDVARIABLE           : 7 8 18
 IF                   : 
 IGUAL                : 8
 IGUALLOGICO          : 24
@@ -226,10 +226,10 @@ state 9
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -238,10 +238,10 @@ state 9
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -402,10 +402,10 @@ state 18
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -414,10 +414,10 @@ state 18
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -429,82 +429,82 @@ state 18
 
 state 19
 
-    (15) valoresfinales -> DECIMAL .
+    (15) valoresfinales -> ENTERO .
 
-    PUNTOYCOMA      reduce using rule 15 (valoresfinales -> DECIMAL .)
-    MAYOR           reduce using rule 15 (valoresfinales -> DECIMAL .)
-    MENOR           reduce using rule 15 (valoresfinales -> DECIMAL .)
-    MAYORIGUAL      reduce using rule 15 (valoresfinales -> DECIMAL .)
-    MENORIGUAL      reduce using rule 15 (valoresfinales -> DECIMAL .)
-    IGUALLOGICO     reduce using rule 15 (valoresfinales -> DECIMAL .)
-    DIFERENTE       reduce using rule 15 (valoresfinales -> DECIMAL .)
-    AND             reduce using rule 15 (valoresfinales -> DECIMAL .)
-    OR              reduce using rule 15 (valoresfinales -> DECIMAL .)
-    SUMA            reduce using rule 15 (valoresfinales -> DECIMAL .)
-    RESTA           reduce using rule 15 (valoresfinales -> DECIMAL .)
-    MULTIPLICACION  reduce using rule 15 (valoresfinales -> DECIMAL .)
-    DIVISION        reduce using rule 15 (valoresfinales -> DECIMAL .)
-    PARENTESISCIERRA reduce using rule 15 (valoresfinales -> DECIMAL .)
+    PUNTOYCOMA      reduce using rule 15 (valoresfinales -> ENTERO .)
+    MAYOR           reduce using rule 15 (valoresfinales -> ENTERO .)
+    MENOR           reduce using rule 15 (valoresfinales -> ENTERO .)
+    MAYORIGUAL      reduce using rule 15 (valoresfinales -> ENTERO .)
+    MENORIGUAL      reduce using rule 15 (valoresfinales -> ENTERO .)
+    IGUALLOGICO     reduce using rule 15 (valoresfinales -> ENTERO .)
+    DIFERENTE       reduce using rule 15 (valoresfinales -> ENTERO .)
+    AND             reduce using rule 15 (valoresfinales -> ENTERO .)
+    OR              reduce using rule 15 (valoresfinales -> ENTERO .)
+    SUMA            reduce using rule 15 (valoresfinales -> ENTERO .)
+    RESTA           reduce using rule 15 (valoresfinales -> ENTERO .)
+    MULTIPLICACION  reduce using rule 15 (valoresfinales -> ENTERO .)
+    DIVISION        reduce using rule 15 (valoresfinales -> ENTERO .)
+    PARENTESISCIERRA reduce using rule 15 (valoresfinales -> ENTERO .)
 
 
 state 20
 
-    (16) valoresfinales -> CADENA .
+    (16) valoresfinales -> DECIMAL .
 
-    PUNTOYCOMA      reduce using rule 16 (valoresfinales -> CADENA .)
-    MAYOR           reduce using rule 16 (valoresfinales -> CADENA .)
-    MENOR           reduce using rule 16 (valoresfinales -> CADENA .)
-    MAYORIGUAL      reduce using rule 16 (valoresfinales -> CADENA .)
-    MENORIGUAL      reduce using rule 16 (valoresfinales -> CADENA .)
-    IGUALLOGICO     reduce using rule 16 (valoresfinales -> CADENA .)
-    DIFERENTE       reduce using rule 16 (valoresfinales -> CADENA .)
-    AND             reduce using rule 16 (valoresfinales -> CADENA .)
-    OR              reduce using rule 16 (valoresfinales -> CADENA .)
-    SUMA            reduce using rule 16 (valoresfinales -> CADENA .)
-    RESTA           reduce using rule 16 (valoresfinales -> CADENA .)
-    MULTIPLICACION  reduce using rule 16 (valoresfinales -> CADENA .)
-    DIVISION        reduce using rule 16 (valoresfinales -> CADENA .)
-    PARENTESISCIERRA reduce using rule 16 (valoresfinales -> CADENA .)
+    PUNTOYCOMA      reduce using rule 16 (valoresfinales -> DECIMAL .)
+    MAYOR           reduce using rule 16 (valoresfinales -> DECIMAL .)
+    MENOR           reduce using rule 16 (valoresfinales -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 16 (valoresfinales -> DECIMAL .)
+    MENORIGUAL      reduce using rule 16 (valoresfinales -> DECIMAL .)
+    IGUALLOGICO     reduce using rule 16 (valoresfinales -> DECIMAL .)
+    DIFERENTE       reduce using rule 16 (valoresfinales -> DECIMAL .)
+    AND             reduce using rule 16 (valoresfinales -> DECIMAL .)
+    OR              reduce using rule 16 (valoresfinales -> DECIMAL .)
+    SUMA            reduce using rule 16 (valoresfinales -> DECIMAL .)
+    RESTA           reduce using rule 16 (valoresfinales -> DECIMAL .)
+    MULTIPLICACION  reduce using rule 16 (valoresfinales -> DECIMAL .)
+    DIVISION        reduce using rule 16 (valoresfinales -> DECIMAL .)
+    PARENTESISCIERRA reduce using rule 16 (valoresfinales -> DECIMAL .)
 
 
 state 21
 
-    (17) valoresfinales -> IDVARIABLE .
+    (17) valoresfinales -> CADENA .
 
-    PUNTOYCOMA      reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    MAYOR           reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    MENOR           reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    MAYORIGUAL      reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    MENORIGUAL      reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    IGUALLOGICO     reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    DIFERENTE       reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    AND             reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    OR              reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    SUMA            reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    RESTA           reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    MULTIPLICACION  reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    DIVISION        reduce using rule 17 (valoresfinales -> IDVARIABLE .)
-    PARENTESISCIERRA reduce using rule 17 (valoresfinales -> IDVARIABLE .)
+    PUNTOYCOMA      reduce using rule 17 (valoresfinales -> CADENA .)
+    MAYOR           reduce using rule 17 (valoresfinales -> CADENA .)
+    MENOR           reduce using rule 17 (valoresfinales -> CADENA .)
+    MAYORIGUAL      reduce using rule 17 (valoresfinales -> CADENA .)
+    MENORIGUAL      reduce using rule 17 (valoresfinales -> CADENA .)
+    IGUALLOGICO     reduce using rule 17 (valoresfinales -> CADENA .)
+    DIFERENTE       reduce using rule 17 (valoresfinales -> CADENA .)
+    AND             reduce using rule 17 (valoresfinales -> CADENA .)
+    OR              reduce using rule 17 (valoresfinales -> CADENA .)
+    SUMA            reduce using rule 17 (valoresfinales -> CADENA .)
+    RESTA           reduce using rule 17 (valoresfinales -> CADENA .)
+    MULTIPLICACION  reduce using rule 17 (valoresfinales -> CADENA .)
+    DIVISION        reduce using rule 17 (valoresfinales -> CADENA .)
+    PARENTESISCIERRA reduce using rule 17 (valoresfinales -> CADENA .)
 
 
 state 22
 
-    (18) valoresfinales -> ENTERO .
+    (18) valoresfinales -> IDVARIABLE .
 
-    PUNTOYCOMA      reduce using rule 18 (valoresfinales -> ENTERO .)
-    MAYOR           reduce using rule 18 (valoresfinales -> ENTERO .)
-    MENOR           reduce using rule 18 (valoresfinales -> ENTERO .)
-    MAYORIGUAL      reduce using rule 18 (valoresfinales -> ENTERO .)
-    MENORIGUAL      reduce using rule 18 (valoresfinales -> ENTERO .)
-    IGUALLOGICO     reduce using rule 18 (valoresfinales -> ENTERO .)
-    DIFERENTE       reduce using rule 18 (valoresfinales -> ENTERO .)
-    AND             reduce using rule 18 (valoresfinales -> ENTERO .)
-    OR              reduce using rule 18 (valoresfinales -> ENTERO .)
-    SUMA            reduce using rule 18 (valoresfinales -> ENTERO .)
-    RESTA           reduce using rule 18 (valoresfinales -> ENTERO .)
-    MULTIPLICACION  reduce using rule 18 (valoresfinales -> ENTERO .)
-    DIVISION        reduce using rule 18 (valoresfinales -> ENTERO .)
-    PARENTESISCIERRA reduce using rule 18 (valoresfinales -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    MAYOR           reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    MENOR           reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    MAYORIGUAL      reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    MENORIGUAL      reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    IGUALLOGICO     reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    DIFERENTE       reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    AND             reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    OR              reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    SUMA            reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    RESTA           reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    MULTIPLICACION  reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    DIVISION        reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    PARENTESISCIERRA reduce using rule 18 (valoresfinales -> IDVARIABLE .)
 
 
 state 23
@@ -543,10 +543,10 @@ state 24
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -555,10 +555,10 @@ state 24
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -591,10 +591,10 @@ state 26
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -603,10 +603,10 @@ state 26
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -642,10 +642,10 @@ state 28
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -654,10 +654,10 @@ state 28
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -683,10 +683,10 @@ state 29
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -695,10 +695,10 @@ state 29
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -724,10 +724,10 @@ state 30
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -736,10 +736,10 @@ state 30
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -765,10 +765,10 @@ state 31
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -777,10 +777,10 @@ state 31
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -806,10 +806,10 @@ state 32
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -818,10 +818,10 @@ state 32
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -847,10 +847,10 @@ state 33
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -859,10 +859,10 @@ state 33
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -888,10 +888,10 @@ state 34
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -900,10 +900,10 @@ state 34
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -929,10 +929,10 @@ state 35
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -941,10 +941,10 @@ state 35
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -970,10 +970,10 @@ state 36
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -982,10 +982,10 @@ state 36
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -1011,10 +1011,10 @@ state 37
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -1023,10 +1023,10 @@ state 37
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -1052,10 +1052,10 @@ state 38
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -1064,10 +1064,10 @@ state 38
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
@@ -1093,10 +1093,10 @@ state 39
     (25) relacionales -> . expresion DIFERENTE expresion
     (26) logicas -> . expresion AND expresion
     (27) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . DECIMAL
-    (16) valoresfinales -> . CADENA
-    (17) valoresfinales -> . IDVARIABLE
-    (18) valoresfinales -> . ENTERO
+    (15) valoresfinales -> . ENTERO
+    (16) valoresfinales -> . DECIMAL
+    (17) valoresfinales -> . CADENA
+    (18) valoresfinales -> . IDVARIABLE
     (19) valoresfinales -> . NULL
     (28) aritmeticas -> . RESTA expresion
     (29) aritmeticas -> . expresion SUMA expresion
@@ -1105,10 +1105,10 @@ state 39
     (32) aritmeticas -> . expresion DIVISION expresion
 
     PARENTESISABRE  shift and go to state 18
-    DECIMAL         shift and go to state 19
-    CADENA          shift and go to state 20
-    IDVARIABLE      shift and go to state 21
-    ENTERO          shift and go to state 22
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    CADENA          shift and go to state 21
+    IDVARIABLE      shift and go to state 22
     NULL            shift and go to state 23
     RESTA           shift and go to state 24
 
