@@ -7,11 +7,11 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar: str = """
+        DECLARE @a AS BIT;
+        DECLARE @b AS BIT;
 
-    DECLARE @a AS NVARCHAR;
-    SET @a = "Hola mundo";
-    SELECT @a;
-    SELECT "Hola mundo";
+        SET @a = true;
+        SET @b = false;
 """
 
     textoAnalizar_old: str = """

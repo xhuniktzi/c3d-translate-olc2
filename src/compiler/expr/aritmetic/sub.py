@@ -17,8 +17,8 @@ class Sub(Expression):
         left_eval: C3DValue = self.left.translate_to_c3d(env)
         right_eval: C3DValue = self.right.translate_to_c3d(env)
 
-        left_eval: C3DValue = self.left.translate_to_c3d(env)
-        right_eval: C3DValue = self.right.translate_to_c3d(env)
+        left_eval: C3DValue = self.handle_variable(left_eval, env)
+        right_eval: C3DValue = self.handle_variable(right_eval, env)
 
         if left_eval.datatype == DataTypes.ENTERO:
             if (
