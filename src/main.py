@@ -6,23 +6,39 @@ from grammar.parser import parser
 
 
 def main():
-    textoAnalizar = """
+    textoAnalizar: str = """
+
+    DECLARE @a AS NVARCHAR;
+    SET @a = "Hola mundo";
+    SELECT @a;
+    SELECT "Hola mundo";
+"""
+
+    textoAnalizar_old: str = """
     DECLARE @a AS DECIMAL;
     DECLARE @b AS INT;
     SET @a = 5*4-3+10-11/3*21/13;
     SET @b = 13-4*43/2+1;
     DECLARE @c AS NVARCHAR;
+    SET @c = "Hola mundo soy yo";
+    DECLARE @d AS NVARCHAR;
+    SET @d = "Hola mundo soy yo y quiero probar algo";
     
     SELECT @a;
     SELECT @b;
 
     SELECT "Hola mundo";
     SELECT @c;
+    SELECT @d;
+    SELECT "Debo probar todos los casos";
     
     SELECT 123.456;
     SELECT 123;
 
     SELECT @a + @b;
+    SELECT 70 + @b;
+    SELECT @b + 70;
+
         """
 
     otrotext: str = """

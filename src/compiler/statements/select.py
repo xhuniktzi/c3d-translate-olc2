@@ -27,10 +27,13 @@ class Select(Statement):
             continue_label: str = self.generator.mk_label()
 
             self.generator.register_label(init_label)
-            self.generator.register_if_goto(
-                f"heap[(int){temp_variable}]", "==", "-1", continue_label
-            )
-            self.generator.register_C_printf("%c", f"(int)heap[(int){temp_variable}]")
+
+            heap_variable: str = self.generator.mk_temp()
+            self.generator.register_read_heap(heap_variable, temp_variable)
+
+            self.generator.register_if_goto(heap_variable, "==", "-1", continue_label)
+
+            self.generator.register_C_printf("%c", f"(int){heap_variable}")
             self.generator.register_c3d_expression(
                 temp_variable, temp_variable, "+", "1"
             )
@@ -72,12 +75,15 @@ class Select(Statement):
                 continue_label: str = self.generator.mk_label()
 
                 self.generator.register_label(init_label)
+
+                heap_variable: str = self.generator.mk_temp()
+                self.generator.register_read_heap(heap_variable, temp_variable)
+
                 self.generator.register_if_goto(
-                    f"heap[(int){temp_variable}]", "==", "-1", continue_label
+                    heap_variable, "==", "-1", continue_label
                 )
-                self.generator.register_C_printf(
-                    "%c", f"(int)heap[(int){temp_variable}]"
-                )
+
+                self.generator.register_C_printf("%c", f"(int){heap_variable}")
                 self.generator.register_c3d_expression(
                     temp_variable, temp_variable, "+", "1"
                 )

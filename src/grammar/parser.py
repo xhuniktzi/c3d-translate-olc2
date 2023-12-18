@@ -201,7 +201,7 @@ def p_logicas_or(p):
 
 def p_aritmeticas_numeronegativo(p):
     """aritmeticas : RESTA expresion %prec NUMERONEGATIVO"""
-    p[0] = Negative(0, p[2])
+    p[0] = Negative(p[2])
 
 
 def p_aritmeticas_suma(p):

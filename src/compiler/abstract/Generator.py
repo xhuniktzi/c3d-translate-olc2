@@ -24,8 +24,8 @@ class Generator:
 #include <stdio.h>
 #include <math.h>
 
-double heap[78000];
-double stack[78000];
+double heap[524288];
+double stack[524288];
 
 double p = 0;
 double h = 0;
