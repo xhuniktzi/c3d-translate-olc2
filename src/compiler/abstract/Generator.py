@@ -103,3 +103,15 @@ double h = 0;
 
     def register_write_stack(self, expr0: str, expr1: str) -> None:
         self.code.append(f"stack[(int){expr0}] = {expr1};\n")
+
+    def into_scope(self, offset: int) -> None:
+        self.code.append(f"p = p + {offset};\n")
+
+    def out_scope(self, offset: int) -> None:
+        self.code.append(f"p = p - {offset};\n")
+
+    def access_stack(self, expr0: str, expr1: str) -> None:
+        self.code.append(f"{expr0} = p + {expr1};\n")
+
+    def simple_assign(self, expr0: str, expr1: str) -> None:
+        self.code.append(f"{expr0} = {expr1};\n")

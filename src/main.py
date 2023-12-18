@@ -18,7 +18,11 @@ def main():
 
     SELECT "Hola mundo";
     SELECT @c;
+    
+    SELECT 123.456;
+    SELECT 123;
 
+    SELECT @a + @b;
         """
 
     otrotext: str = """
@@ -90,7 +94,7 @@ def main():
 
     generator: Generator = Generator()
     ast: list[Statement] = parser.parse(textoAnalizar)
-    global_env: Environment = Environment(None)
+    global_env: Environment = Environment()
     for statement in ast:
         statement.translate_to_c3d(global_env)
 

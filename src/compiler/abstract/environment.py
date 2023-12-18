@@ -5,13 +5,13 @@ from compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Environment:
-    def __init__(self, parent: Environment) -> None:
-        self.parent: Environment = parent
+    def __init__(self) -> None:
+        # self.parent: Environment = parent
         self.variables: dict[str, C3DSymbol] = {}
         self.size: int = 0
 
-        if parent is not None:
-            self.size = parent.size
+        # if parent is not None:
+        #     self.size = parent.size
 
     def add_variable(self, identifier: str, datatype: DataTypes) -> None:
         if self.variables.get(identifier) is not None:
@@ -25,11 +25,14 @@ class Environment:
         return variable
 
     def get_variable(self, identifier: str) -> C3DSymbol:
-        local_env: Environment = self
-        while local_env is not None:
-            if local_env.variables.get(identifier) is not None:
-                return local_env.variables[identifier]
-            local_env = local_env.parent
+        # local_env: Environment = self
+        # while local_env is not None:
+        # if local_env.variables.get(identifier) is not None:
+        #     return local_env.variables[identifier]
+        #     # local_env = local_env.parent
+
+        if self.variables.get(identifier) is not None:
+            return self.variables[identifier]
 
         print(f"Variable {identifier} does not exist in this scope")
         return None

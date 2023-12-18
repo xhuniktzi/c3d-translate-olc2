@@ -22,5 +22,6 @@ class Assign(Statement):
         # if symbol.datatype != variable_eval.datatype:
         #     print(f"Cannot assign {variable_eval.datatype} to {symbol.datatype}")
         #     return
-
-        self.generator.register_write_stack(symbol.position, variable_eval.value)
+        temp_var: str = self.generator.mk_temp()
+        self.generator.access_stack(temp_var, symbol.position)
+        self.generator.register_write_stack(temp_var, variable_eval.value)

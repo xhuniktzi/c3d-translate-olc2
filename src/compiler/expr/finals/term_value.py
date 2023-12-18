@@ -19,8 +19,8 @@ class TermValue(Expression):
             return C3DValue(f"{self.value}", False, self.datatype)
         elif self.datatype == DataTypes.CADENA:
             temp_var: str = self.generator.mk_temp()
-            self.generator.register_c3d_expression(
-                temp_var, "h", "", ""
+            self.generator.simple_assign(
+                temp_var, "h"
             )  # temp_var = h; save the position of the heap
             for char in self.value:
                 self.generator.register_write_heap("h", f"{ord(char)}")

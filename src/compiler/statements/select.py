@@ -16,11 +16,13 @@ class Select(Statement):
         if variable_eval.datatype == DataTypes.ENTERO:
             self.generator.register_C_printf("%d", f"(int){variable_eval.value}")
             self.generator.register_C_newline()
+
+        elif variable_eval.datatype == DataTypes.DECIMAL:
+            self.generator.register_C_printf("%f", f"(double){variable_eval.value}")
+            self.generator.register_C_newline()
         elif variable_eval.datatype == DataTypes.CADENA:
             temp_variable: str = self.generator.mk_temp()
-            self.generator.register_c3d_expression(
-                temp_variable, variable_eval.value, "", ""
-            )
+            self.generator.simple_assign(temp_variable, variable_eval.value)
             init_label: str = self.generator.mk_label()
             continue_label: str = self.generator.mk_label()
 
@@ -41,18 +43,30 @@ class Select(Statement):
             if symbol is None:
                 return
 
-            temp_variable: str = self.generator.mk_temp()
             if symbol.datatype == DataTypes.ENTERO:
-                self.generator.register_read_stack(temp_variable, symbol.position)
+                temp_variable: str = self.generator.mk_temp()
+                stack_variable: str = self.generator.mk_temp()
+
+                self.generator.access_stack(stack_variable, symbol.position)
+                self.generator.register_read_stack(temp_variable, stack_variable)
+
                 self.generator.register_C_printf("%d", f"(int){temp_variable}")
                 self.generator.register_C_newline()
             elif symbol.datatype == DataTypes.DECIMAL:
-                self.generator.register_read_stack(temp_variable, symbol.position)
+                temp_variable: str = self.generator.mk_temp()
+                stack_variable: str = self.generator.mk_temp()
+
+                self.generator.access_stack(stack_variable, symbol.position)
+                self.generator.register_read_stack(temp_variable, stack_variable)
+
                 self.generator.register_C_printf("%f", f"(double){temp_variable}")
                 self.generator.register_C_newline()
             elif symbol.datatype == DataTypes.CADENA:
                 temp_variable: str = self.generator.mk_temp()
-                self.generator.register_read_stack(temp_variable, symbol.position)
+                stack_variable: str = self.generator.mk_temp()
+
+                self.generator.access_stack(stack_variable, symbol.position)
+                self.generator.register_read_stack(temp_variable, stack_variable)
 
                 init_label: str = self.generator.mk_label()
                 continue_label: str = self.generator.mk_label()
@@ -70,10 +84,3 @@ class Select(Statement):
                 self.generator.register_goto(init_label)
                 self.generator.register_label(continue_label)
                 self.generator.register_C_newline()
-
-            # elif symbol.datatype == DataTypes.CADENA:
-            #     self.generator.register_read_stack(temp_variable, symbol.position)
-            #     self.generator.register_C_printf("%s", temp_variable)
-            # elif symbol.datatype == DataTypes.NULL:
-            #     self.generator.register_C_printf("%s", "NULL")
-            #     self.generator.register_C_newline()
