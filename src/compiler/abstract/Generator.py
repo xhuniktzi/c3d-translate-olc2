@@ -115,3 +115,6 @@ double h = 0;
 
     def simple_assign(self, expr0: str, expr1: str) -> None:
         self.code.append(f"{expr0} = {expr1};\n")
+
+    def simple_if(self, expr0: str, label: str) -> None:
+        self.code.append(f"if ({expr0}) goto {label};\n")

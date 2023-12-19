@@ -7,14 +7,17 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar: str = """
-        DECLARE @a AS BIT;
-        DECLARE @b AS BIT;
+    DECLARE @false_value AS BIT;
+    DECLARE @true_value AS BIT;
 
-        SET @a = 0 == 0;
-        SET @b = 1 == 0;
+    SET @false_value = 0 == 1;
+    SET @true_value = 1 == 1;
 
-        SELECT @a;
-        SELECT @b;
+    SELECT @false_value;
+    SELECT @true_value;
+
+    SELECT @false_value && @true_value && @false_value;
+
 """
 
     textoAnalizar_old: str = """
