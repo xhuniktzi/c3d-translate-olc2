@@ -10,8 +10,11 @@ def main():
         DECLARE @a AS BIT;
         DECLARE @b AS BIT;
 
-        SET @a = true;
-        SET @b = false;
+        SET @a = 0 == 0;
+        SET @b = 1 == 0;
+
+        SELECT @a;
+        SELECT @b;
 """
 
     textoAnalizar_old: str = """

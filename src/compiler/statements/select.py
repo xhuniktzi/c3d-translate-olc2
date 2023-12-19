@@ -90,3 +90,26 @@ class Select(Statement):
                 self.generator.register_goto(init_label)
                 self.generator.register_label(continue_label)
                 self.generator.register_C_newline()
+            elif symbol.datatype == DataTypes.BOOLEAN:
+                temp_variable: str = self.generator.mk_temp()
+                stack_variable: str = self.generator.mk_temp()
+
+                self.generator.access_stack(stack_variable, symbol.position)
+                self.generator.register_read_stack(temp_variable, stack_variable)
+
+                true_label: str = self.generator.mk_label()
+                false_label: str = self.generator.mk_label()
+                exit_label: str = self.generator.mk_label()
+
+                self.generator.register_if_goto(temp_variable, "==", "1", true_label)
+                self.generator.register_goto(false_label)
+
+                self.generator.register_label(true_label)
+                self.generator.register_C_printf("%c", "84")
+                self.generator.register_goto(exit_label)
+
+                self.generator.register_label(false_label)
+                self.generator.register_C_printf("%c", "70")
+
+                self.generator.register_label(exit_label)
+                self.generator.register_C_newline()

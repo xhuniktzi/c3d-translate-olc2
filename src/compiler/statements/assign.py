@@ -19,9 +19,23 @@ class Assign(Statement):
         if symbol is None:
             return
 
-        # if symbol.datatype != variable_eval.datatype:
-        #     print(f"Cannot assign {variable_eval.datatype} to {symbol.datatype}")
-        #     return
-        temp_var: str = self.generator.mk_temp()
-        self.generator.access_stack(temp_var, symbol.position)
-        self.generator.register_write_stack(temp_var, variable_eval.value)
+        if symbol.datatype == DataTypes.BOOLEAN:
+            self.generator.register_label(variable_eval.false_label)
+
+            stack_varible: str = self.generator.mk_temp()
+
+            self.generator.access_stack(stack_varible, symbol.position)
+            self.generator.register_write_stack(stack_varible, 1)
+
+            exit_label: str = self.generator.mk_label()
+            self.generator.register_goto(exit_label)
+
+            self.generator.register_label(variable_eval.true_label)
+            self.generator.access_stack(stack_varible, symbol.position)
+            self.generator.register_write_stack(stack_varible, 0)
+
+            self.generator.register_label(exit_label)
+        else:
+            temp_var: str = self.generator.mk_temp()
+            self.generator.access_stack(temp_var, symbol.position)
+            self.generator.register_write_stack(temp_var, variable_eval.value)

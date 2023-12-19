@@ -1,6 +1,7 @@
 from compiler.abstract.c3d_value import C3DValue
 from compiler.abstract.environment import Environment
 from compiler.abstract.expression import Expression
+from compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Equals(Expression):
@@ -10,4 +11,18 @@ class Equals(Expression):
         self.right: Expression = right
 
     def translate_to_c3d(self, env: Environment) -> C3DValue:
-        pass
+        true_label = self.generator.mk_label()
+        false_label = self.generator.mk_label()
+
+        left_eval: C3DValue = self.left.translate_to_c3d(env)
+        right_eval: C3DValue = self.right.translate_to_c3d(env)
+
+        self.generator.register_if_goto(
+            left_eval.value,
+            "==",
+            right_eval.value,
+            true_label,
+        )
+        self.generator.register_goto(false_label)
+
+        return C3DValue(None, False, DataTypes.BOOLEAN, true_label, false_label)
