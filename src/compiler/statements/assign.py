@@ -13,29 +13,4 @@ class Assign(Statement):
         self.value: Expression = value
 
     def translate_to_c3d(self, env: Environment):
-        variable_eval: C3DValue = self.value.translate_to_c3d(env)
-        symbol: C3DSymbol = env.get_variable(self.identifier)
-
-        if symbol is None:
-            return
-
-        if symbol.datatype == DataTypes.BOOLEAN:
-            self.generator.register_label(variable_eval.false_label)
-
-            stack_varible: str = self.generator.mk_temp()
-
-            self.generator.access_stack(stack_varible, symbol.position)
-            self.generator.register_write_stack(stack_varible, 1)
-
-            exit_label: str = self.generator.mk_label()
-            self.generator.register_goto(exit_label)
-
-            self.generator.register_label(variable_eval.true_label)
-            self.generator.access_stack(stack_varible, symbol.position)
-            self.generator.register_write_stack(stack_varible, 0)
-
-            self.generator.register_label(exit_label)
-        else:
-            temp_var: str = self.generator.mk_temp()
-            self.generator.access_stack(temp_var, symbol.position)
-            self.generator.register_write_stack(temp_var, variable_eval.value)
+        pass
