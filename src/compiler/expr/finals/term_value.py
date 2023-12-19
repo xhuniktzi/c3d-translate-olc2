@@ -31,12 +31,5 @@ class TermValue(Expression):
 
             return C3DValue(temp_var, True, self.datatype)
 
-        # elif self.datatype == DataTypes.CADENA:
-        #     temp_var: str = self.generator.mk_temp()
-        #     self.generator.register_c3d_expression(temp_var, "h", "", "")
-
-        #     for char in self.value:
-        #         self.generator.register_write_heap("h", f"{ord(char)}")
-        #         self.generator.register_next_heap()
-
-        #     return C3DValue(temp_var, True, self.datatype)
+        elif self.datatype == DataTypes.BOOLEAN:
+            pass
