@@ -2,7 +2,6 @@ from compiler.abstract.c3d_symbol import C3DSymbol
 from compiler.abstract.c3d_value import C3DValue
 from compiler.abstract.environment import Environment
 from compiler.abstract.expression import Expression
-from compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Equals(Expression):

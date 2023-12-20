@@ -11,5 +11,3 @@ def fnStrToDatatype(str_datatype: str) -> DataTypes:
         return DataTypes.CADENA
     elif str_datatype == "null":
         return DataTypes.NULL
-    elif str_datatype == "bit":
-        return DataTypes.BOOLEAN
