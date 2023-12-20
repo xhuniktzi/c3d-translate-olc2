@@ -7,21 +7,14 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar: str = """
-        DECLARE @a AS BIT;
-        DECLARE @b AS BIT;
-
-        SET @a = true;
-        SET @b = false;
-"""
-
-    textoAnalizar_old: str = """
     DECLARE @a AS DECIMAL;
     DECLARE @b AS INT;
+    DECLARE @c AS NVARCHAR;
+    DECLARE @d AS NVARCHAR;
+
     SET @a = 5*4-3+10-11/3*21/13;
     SET @b = 13-4*43/2+1;
-    DECLARE @c AS NVARCHAR;
     SET @c = "Hola mundo soy yo";
-    DECLARE @d AS NVARCHAR;
     SET @d = "Hola mundo soy yo y quiero probar algo";
     
     SELECT @a;
@@ -38,68 +31,12 @@ def main():
     SELECT @a + @b;
     SELECT 70 + @b;
     SELECT @b + 70;
+"""
+
+    textoAnalizar_old: str = """
+
 
         """
-
-    otrotext: str = """
-
-
-    IF (@a > @b) BEGIN
-        SET @resultado = @a;
-    END
-
-    IF (@x == @y) BEGIN
-        SET @mensaje = "Iguales";
-    END ELSE BEGIN
-        SET @mensaje = "Diferentes";
-    END
-
-    WHILE (@contador < 10) BEGIN
-        SET @contador = @contador + 1;
-    END
-
-    EXEC ProcedimientoSumar(@param1 = 5, @param2 = 10);
-
-    CREATE PROCEDURE CalcularMaximo (@a INT, @b INT) BEGIN
-        IF (@a > @b) BEGIN
-            SELECT @a;
-        END ELSE BEGIN
-            SELECT @b;
-        END
-    END
-
-        IF (((@a + @b) / 2 > 10 && @c != NULL) || @d == 0) BEGIN
-        SET @resultado = "Complejo";
-    END
-
-      CREATE PROCEDURE test (@a INT, @b INT, @c INT) BEGIN
-        DECLARE @d AS INT;
-        SET @d = 1;
-        
-        IF (@a > @b) BEGIN 
-            SET @c = @a;
-            END
-        ELSE BEGIN
-            SET @c = @b;
-        END
-        WHILE (@d < 10) BEGIN
-            SET @d = @d + 1;
-        END
-        SELECT @c;
-        END
-
-    
-    DECLARE @i AS INT;
-    SET @i = 0;
-    WHILE (@i < 5) BEGIN
-        IF (@i == 3) BEGIN
-            SET @mensaje = "Tres";
-        END ELSE BEGIN
-            SET @mensaje = "Otro número";
-        END
-        SET @i = @i + 1;
-    END
-    """
 
     lexer.input(textoAnalizar)
     while True:
