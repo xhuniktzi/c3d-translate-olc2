@@ -9,7 +9,7 @@ def main():
     textoAnalizar: str = """
     DECLARE @a AS BIT;
     
-    SET @a = 30 == 10 || 20 == 10;
+    SET @a = false || false && true;
     SELECT @a;
 
     """

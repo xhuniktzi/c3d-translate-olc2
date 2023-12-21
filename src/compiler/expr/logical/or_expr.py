@@ -23,8 +23,6 @@ class OrExpr(Expression):
 
         self.generator.register_if_goto(left_eval.value, "==", "1", true_label)
         self.generator.register_if_goto(right_eval.value, "==", "1", true_label)
-        # self.generator.simple_if(left_eval.value, true_label)
-        # self.generator.simple_if(right_eval.value, true_label)
         self.generator.register_goto(false_label)
 
         temp_var: str = self.generator.mk_temp()

@@ -107,7 +107,10 @@ def t_ENTERO(t):
 def t_BOOL(t):
     r"true|false"
     try:
-        t.value = bool(t.value)
+        if t.value == "true":
+            t.value = True
+        else:
+            t.value = False
     except ValueError:
         print("Error en el Bool Esperado %d", t.value)
         t.value = False

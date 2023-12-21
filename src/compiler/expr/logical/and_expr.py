@@ -23,13 +23,26 @@ class AndExpr(Expression):
         left_eval = self.handle_variable(left_eval, env)
         right_eval = self.handle_variable(right_eval, env)
 
-        self.generator.simple_if(left_eval.value, left_true_label)
+        # self.generator.simple_if(left_eval.value, left_true_label)
+        self.generator.register_if_goto(left_eval.value, "==", "1", left_true_label)
         self.generator.register_goto(false_label)
         self.generator.register_label(left_true_label)
-        self.generator.simple_if(right_eval.value, true_label)
+        # self.generator.simple_if(right_eval.value, true_label)
+        self.generator.register_if_goto(right_eval.value, "==", "1", true_label)
         self.generator.register_goto(false_label)
 
-        return C3DValue(None, False, DataTypes.BOOLEAN, true_label, false_label)
+        temp_var: str = self.generator.mk_temp()
+        self.generator.register_label(true_label)
+        self.generator.simple_assign(temp_var, "1")
+
+        exit_label: str = self.generator.mk_label()
+        self.generator.register_goto(exit_label)
+
+        self.generator.register_label(false_label)
+        self.generator.simple_assign(temp_var, "0")
+        self.generator.register_label(exit_label)
+
+        return C3DValue(temp_var, False, DataTypes.BOOLEAN, true_label, false_label)
 
     def handle_variable(self, eval_var: C3DValue, env: Environment) -> C3DValue:
         if eval_var.datatype != DataTypes.IDVARIABLE:
