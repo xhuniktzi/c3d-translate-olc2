@@ -2,14 +2,10 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    BEGIN
     COMA
     CREATE
-    ELSE
-    END
     EXEC
     IDENTIFICADORGLOBAL
-    IF
     PROCEDURE
     WHILE
 
@@ -22,88 +18,92 @@ Rule 3     statements -> statement
 Rule 4     statement -> declaracion
 Rule 5     statement -> asignacion
 Rule 6     statement -> select
-Rule 7     declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
-Rule 8     asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA
-Rule 9     select -> SELECT expresion PUNTOYCOMA
-Rule 10    expresion -> relacionales
-Rule 11    expresion -> logicas
-Rule 12    expresion -> valoresfinales
-Rule 13    expresion -> aritmeticas
-Rule 14    expresion -> PARENTESISABRE expresion PARENTESISCIERRA
-Rule 15    valoresfinales -> ENTERO
-Rule 16    valoresfinales -> DECIMAL
-Rule 17    valoresfinales -> CADENA
-Rule 18    valoresfinales -> IDVARIABLE
-Rule 19    valoresfinales -> BOOL
-Rule 20    valoresfinales -> NULL
-Rule 21    relacionales -> expresion MAYOR expresion
-Rule 22    relacionales -> expresion MENOR expresion
-Rule 23    relacionales -> expresion MAYORIGUAL expresion
-Rule 24    relacionales -> expresion MENORIGUAL expresion
-Rule 25    relacionales -> expresion IGUALLOGICO expresion
-Rule 26    relacionales -> expresion DIFERENTE expresion
-Rule 27    logicas -> expresion AND expresion
-Rule 28    logicas -> expresion OR expresion
-Rule 29    aritmeticas -> RESTA expresion
-Rule 30    aritmeticas -> expresion SUMA expresion
-Rule 31    aritmeticas -> expresion RESTA expresion
-Rule 32    aritmeticas -> expresion MULTIPLICACION expresion
-Rule 33    aritmeticas -> expresion DIVISION expresion
+Rule 7     statement -> condicion
+Rule 8     declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
+Rule 9     asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA
+Rule 10    select -> SELECT expresion PUNTOYCOMA
+Rule 11    condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+Rule 12    condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+Rule 13    expresion -> relacionales
+Rule 14    expresion -> logicas
+Rule 15    expresion -> valoresfinales
+Rule 16    expresion -> aritmeticas
+Rule 17    expresion -> PARENTESISABRE expresion PARENTESISCIERRA
+Rule 18    valoresfinales -> ENTERO
+Rule 19    valoresfinales -> DECIMAL
+Rule 20    valoresfinales -> CADENA
+Rule 21    valoresfinales -> IDVARIABLE
+Rule 22    valoresfinales -> BOOL
+Rule 23    valoresfinales -> NULL
+Rule 24    relacionales -> expresion MAYOR expresion
+Rule 25    relacionales -> expresion MENOR expresion
+Rule 26    relacionales -> expresion MAYORIGUAL expresion
+Rule 27    relacionales -> expresion MENORIGUAL expresion
+Rule 28    relacionales -> expresion IGUALLOGICO expresion
+Rule 29    relacionales -> expresion DIFERENTE expresion
+Rule 30    logicas -> expresion AND expresion
+Rule 31    logicas -> expresion OR expresion
+Rule 32    aritmeticas -> RESTA expresion
+Rule 33    aritmeticas -> expresion SUMA expresion
+Rule 34    aritmeticas -> expresion RESTA expresion
+Rule 35    aritmeticas -> expresion MULTIPLICACION expresion
+Rule 36    aritmeticas -> expresion DIVISION expresion
 
 Terminals, with rules where they appear
 
-AND                  : 27
-AS                   : 7
-BEGIN                : 
-BOOL                 : 19
-CADENA               : 17
+AND                  : 30
+AS                   : 8
+BEGIN                : 11 12 12
+BOOL                 : 22
+CADENA               : 20
 COMA                 : 
 CREATE               : 
-DECIMAL              : 16
-DECLARE              : 7
-DIFERENTE            : 26
-DIVISION             : 33
-ELSE                 : 
-END                  : 
-ENTERO               : 15
+DECIMAL              : 19
+DECLARE              : 8
+DIFERENTE            : 29
+DIVISION             : 36
+ELSE                 : 12
+END                  : 11 12 12
+ENTERO               : 18
 EXEC                 : 
 IDENTIFICADORGLOBAL  : 
-IDVARIABLE           : 7 8 18
-IF                   : 
-IGUAL                : 8
-IGUALLOGICO          : 25
-MAYOR                : 21
-MAYORIGUAL           : 23
-MENOR                : 22
-MENORIGUAL           : 24
-MULTIPLICACION       : 32
-NULL                 : 20
-OR                   : 28
-PARENTESISABRE       : 14
-PARENTESISCIERRA     : 14
+IDVARIABLE           : 8 9 21
+IF                   : 11 12
+IGUAL                : 9
+IGUALLOGICO          : 28
+MAYOR                : 24
+MAYORIGUAL           : 26
+MENOR                : 25
+MENORIGUAL           : 27
+MULTIPLICACION       : 35
+NULL                 : 23
+OR                   : 31
+PARENTESISABRE       : 11 12 17
+PARENTESISCIERRA     : 11 12 17
 PROCEDURE            : 
-PUNTOYCOMA           : 7 8 9
-RESTA                : 29 31
-SELECT               : 9
-SET                  : 8
-SUMA                 : 30
-TIPODATO             : 7
+PUNTOYCOMA           : 8 9 10
+RESTA                : 32 34
+SELECT               : 10
+SET                  : 9
+SUMA                 : 33
+TIPODATO             : 8
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-aritmeticas          : 13
+aritmeticas          : 16
 asignacion           : 5
+condicion            : 7
 declaracion          : 4
-expresion            : 8 9 14 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 30 30 31 31 32 32 33 33
-logicas              : 11
+expresion            : 9 10 11 12 17 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 33 33 34 34 35 35 36 36
+logicas              : 14
 program              : 0
-relacionales         : 10
+relacionales         : 13
 select               : 6
 statement            : 2 3
-statements           : 1 2
-valoresfinales       : 12
+statements           : 1 2 11 12 12
+valoresfinales       : 15
 
 Parsing method: LALR
 
@@ -116,13 +116,17 @@ state 0
     (4) statement -> . declaracion
     (5) statement -> . asignacion
     (6) statement -> . select
-    (7) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
-    (8) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
-    (9) select -> . SELECT expresion PUNTOYCOMA
+    (7) statement -> . condicion
+    (8) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
+    (9) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
+    (10) select -> . SELECT expresion PUNTOYCOMA
+    (11) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
 
-    DECLARE         shift and go to state 7
-    SET             shift and go to state 8
-    SELECT          shift and go to state 9
+    DECLARE         shift and go to state 8
+    SET             shift and go to state 9
+    SELECT          shift and go to state 10
+    IF              shift and go to state 11
 
     program                        shift and go to state 1
     statements                     shift and go to state 2
@@ -130,6 +134,7 @@ state 0
     declaracion                    shift and go to state 4
     asignacion                     shift and go to state 5
     select                         shift and go to state 6
+    condicion                      shift and go to state 7
 
 state 1
 
@@ -144,19 +149,24 @@ state 2
     (4) statement -> . declaracion
     (5) statement -> . asignacion
     (6) statement -> . select
-    (7) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
-    (8) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
-    (9) select -> . SELECT expresion PUNTOYCOMA
+    (7) statement -> . condicion
+    (8) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
+    (9) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
+    (10) select -> . SELECT expresion PUNTOYCOMA
+    (11) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
 
     $end            reduce using rule 1 (program -> statements .)
-    DECLARE         shift and go to state 7
-    SET             shift and go to state 8
-    SELECT          shift and go to state 9
+    DECLARE         shift and go to state 8
+    SET             shift and go to state 9
+    SELECT          shift and go to state 10
+    IF              shift and go to state 11
 
-    statement                      shift and go to state 10
+    statement                      shift and go to state 12
     declaracion                    shift and go to state 4
     asignacion                     shift and go to state 5
     select                         shift and go to state 6
+    condicion                      shift and go to state 7
 
 state 3
 
@@ -165,7 +175,9 @@ state 3
     DECLARE         reduce using rule 3 (statements -> statement .)
     SET             reduce using rule 3 (statements -> statement .)
     SELECT          reduce using rule 3 (statements -> statement .)
+    IF              reduce using rule 3 (statements -> statement .)
     $end            reduce using rule 3 (statements -> statement .)
+    END             reduce using rule 3 (statements -> statement .)
 
 
 state 4
@@ -175,7 +187,9 @@ state 4
     DECLARE         reduce using rule 4 (statement -> declaracion .)
     SET             reduce using rule 4 (statement -> declaracion .)
     SELECT          reduce using rule 4 (statement -> declaracion .)
+    IF              reduce using rule 4 (statement -> declaracion .)
     $end            reduce using rule 4 (statement -> declaracion .)
+    END             reduce using rule 4 (statement -> declaracion .)
 
 
 state 5
@@ -185,7 +199,9 @@ state 5
     DECLARE         reduce using rule 5 (statement -> asignacion .)
     SET             reduce using rule 5 (statement -> asignacion .)
     SELECT          reduce using rule 5 (statement -> asignacion .)
+    IF              reduce using rule 5 (statement -> asignacion .)
     $end            reduce using rule 5 (statement -> asignacion .)
+    END             reduce using rule 5 (statement -> asignacion .)
 
 
 state 6
@@ -195,1673 +211,1928 @@ state 6
     DECLARE         reduce using rule 6 (statement -> select .)
     SET             reduce using rule 6 (statement -> select .)
     SELECT          reduce using rule 6 (statement -> select .)
+    IF              reduce using rule 6 (statement -> select .)
     $end            reduce using rule 6 (statement -> select .)
+    END             reduce using rule 6 (statement -> select .)
 
 
 state 7
 
-    (7) declaracion -> DECLARE . IDVARIABLE AS TIPODATO PUNTOYCOMA
+    (7) statement -> condicion .
 
-    IDVARIABLE      shift and go to state 11
+    DECLARE         reduce using rule 7 (statement -> condicion .)
+    SET             reduce using rule 7 (statement -> condicion .)
+    SELECT          reduce using rule 7 (statement -> condicion .)
+    IF              reduce using rule 7 (statement -> condicion .)
+    $end            reduce using rule 7 (statement -> condicion .)
+    END             reduce using rule 7 (statement -> condicion .)
 
 
 state 8
 
-    (8) asignacion -> SET . IDVARIABLE IGUAL expresion PUNTOYCOMA
+    (8) declaracion -> DECLARE . IDVARIABLE AS TIPODATO PUNTOYCOMA
 
-    IDVARIABLE      shift and go to state 12
+    IDVARIABLE      shift and go to state 13
 
 
 state 9
 
-    (9) select -> SELECT . expresion PUNTOYCOMA
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (9) asignacion -> SET . IDVARIABLE IGUAL expresion PUNTOYCOMA
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    IDVARIABLE      shift and go to state 14
 
-    expresion                      shift and go to state 13
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
 
 state 10
+
+    (10) select -> SELECT . expresion PUNTOYCOMA
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
+
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
+
+    expresion                      shift and go to state 15
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
+
+state 11
+
+    (11) condicion -> IF . PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> IF . PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+
+    PARENTESISABRE  shift and go to state 28
+
+
+state 12
 
     (2) statements -> statements statement .
 
     DECLARE         reduce using rule 2 (statements -> statements statement .)
     SET             reduce using rule 2 (statements -> statements statement .)
     SELECT          reduce using rule 2 (statements -> statements statement .)
+    IF              reduce using rule 2 (statements -> statements statement .)
     $end            reduce using rule 2 (statements -> statements statement .)
-
-
-state 11
-
-    (7) declaracion -> DECLARE IDVARIABLE . AS TIPODATO PUNTOYCOMA
-
-    AS              shift and go to state 26
-
-
-state 12
-
-    (8) asignacion -> SET IDVARIABLE . IGUAL expresion PUNTOYCOMA
-
-    IGUAL           shift and go to state 27
+    END             reduce using rule 2 (statements -> statements statement .)
 
 
 state 13
 
-    (9) select -> SELECT expresion . PUNTOYCOMA
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (8) declaracion -> DECLARE IDVARIABLE . AS TIPODATO PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 28
-    MAYOR           shift and go to state 29
-    MENOR           shift and go to state 30
-    MAYORIGUAL      shift and go to state 31
-    MENORIGUAL      shift and go to state 32
-    IGUALLOGICO     shift and go to state 33
-    DIFERENTE       shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    AS              shift and go to state 29
 
 
 state 14
 
-    (10) expresion -> relacionales .
+    (9) asignacion -> SET IDVARIABLE . IGUAL expresion PUNTOYCOMA
 
-    PUNTOYCOMA      reduce using rule 10 (expresion -> relacionales .)
-    MAYOR           reduce using rule 10 (expresion -> relacionales .)
-    MENOR           reduce using rule 10 (expresion -> relacionales .)
-    MAYORIGUAL      reduce using rule 10 (expresion -> relacionales .)
-    MENORIGUAL      reduce using rule 10 (expresion -> relacionales .)
-    IGUALLOGICO     reduce using rule 10 (expresion -> relacionales .)
-    DIFERENTE       reduce using rule 10 (expresion -> relacionales .)
-    AND             reduce using rule 10 (expresion -> relacionales .)
-    OR              reduce using rule 10 (expresion -> relacionales .)
-    SUMA            reduce using rule 10 (expresion -> relacionales .)
-    RESTA           reduce using rule 10 (expresion -> relacionales .)
-    MULTIPLICACION  reduce using rule 10 (expresion -> relacionales .)
-    DIVISION        reduce using rule 10 (expresion -> relacionales .)
-    PARENTESISCIERRA reduce using rule 10 (expresion -> relacionales .)
+    IGUAL           shift and go to state 30
 
 
 state 15
 
-    (11) expresion -> logicas .
+    (10) select -> SELECT expresion . PUNTOYCOMA
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 11 (expresion -> logicas .)
-    MAYOR           reduce using rule 11 (expresion -> logicas .)
-    MENOR           reduce using rule 11 (expresion -> logicas .)
-    MAYORIGUAL      reduce using rule 11 (expresion -> logicas .)
-    MENORIGUAL      reduce using rule 11 (expresion -> logicas .)
-    IGUALLOGICO     reduce using rule 11 (expresion -> logicas .)
-    DIFERENTE       reduce using rule 11 (expresion -> logicas .)
-    AND             reduce using rule 11 (expresion -> logicas .)
-    OR              reduce using rule 11 (expresion -> logicas .)
-    SUMA            reduce using rule 11 (expresion -> logicas .)
-    RESTA           reduce using rule 11 (expresion -> logicas .)
-    MULTIPLICACION  reduce using rule 11 (expresion -> logicas .)
-    DIVISION        reduce using rule 11 (expresion -> logicas .)
-    PARENTESISCIERRA reduce using rule 11 (expresion -> logicas .)
+    PUNTOYCOMA      shift and go to state 31
+    MAYOR           shift and go to state 32
+    MENOR           shift and go to state 33
+    MAYORIGUAL      shift and go to state 34
+    MENORIGUAL      shift and go to state 35
+    IGUALLOGICO     shift and go to state 36
+    DIFERENTE       shift and go to state 37
+    AND             shift and go to state 38
+    OR              shift and go to state 39
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
 
 state 16
 
-    (12) expresion -> valoresfinales .
+    (13) expresion -> relacionales .
 
-    PUNTOYCOMA      reduce using rule 12 (expresion -> valoresfinales .)
-    MAYOR           reduce using rule 12 (expresion -> valoresfinales .)
-    MENOR           reduce using rule 12 (expresion -> valoresfinales .)
-    MAYORIGUAL      reduce using rule 12 (expresion -> valoresfinales .)
-    MENORIGUAL      reduce using rule 12 (expresion -> valoresfinales .)
-    IGUALLOGICO     reduce using rule 12 (expresion -> valoresfinales .)
-    DIFERENTE       reduce using rule 12 (expresion -> valoresfinales .)
-    AND             reduce using rule 12 (expresion -> valoresfinales .)
-    OR              reduce using rule 12 (expresion -> valoresfinales .)
-    SUMA            reduce using rule 12 (expresion -> valoresfinales .)
-    RESTA           reduce using rule 12 (expresion -> valoresfinales .)
-    MULTIPLICACION  reduce using rule 12 (expresion -> valoresfinales .)
-    DIVISION        reduce using rule 12 (expresion -> valoresfinales .)
-    PARENTESISCIERRA reduce using rule 12 (expresion -> valoresfinales .)
+    PUNTOYCOMA      reduce using rule 13 (expresion -> relacionales .)
+    MAYOR           reduce using rule 13 (expresion -> relacionales .)
+    MENOR           reduce using rule 13 (expresion -> relacionales .)
+    MAYORIGUAL      reduce using rule 13 (expresion -> relacionales .)
+    MENORIGUAL      reduce using rule 13 (expresion -> relacionales .)
+    IGUALLOGICO     reduce using rule 13 (expresion -> relacionales .)
+    DIFERENTE       reduce using rule 13 (expresion -> relacionales .)
+    AND             reduce using rule 13 (expresion -> relacionales .)
+    OR              reduce using rule 13 (expresion -> relacionales .)
+    SUMA            reduce using rule 13 (expresion -> relacionales .)
+    RESTA           reduce using rule 13 (expresion -> relacionales .)
+    MULTIPLICACION  reduce using rule 13 (expresion -> relacionales .)
+    DIVISION        reduce using rule 13 (expresion -> relacionales .)
+    PARENTESISCIERRA reduce using rule 13 (expresion -> relacionales .)
 
 
 state 17
 
-    (13) expresion -> aritmeticas .
+    (14) expresion -> logicas .
 
-    PUNTOYCOMA      reduce using rule 13 (expresion -> aritmeticas .)
-    MAYOR           reduce using rule 13 (expresion -> aritmeticas .)
-    MENOR           reduce using rule 13 (expresion -> aritmeticas .)
-    MAYORIGUAL      reduce using rule 13 (expresion -> aritmeticas .)
-    MENORIGUAL      reduce using rule 13 (expresion -> aritmeticas .)
-    IGUALLOGICO     reduce using rule 13 (expresion -> aritmeticas .)
-    DIFERENTE       reduce using rule 13 (expresion -> aritmeticas .)
-    AND             reduce using rule 13 (expresion -> aritmeticas .)
-    OR              reduce using rule 13 (expresion -> aritmeticas .)
-    SUMA            reduce using rule 13 (expresion -> aritmeticas .)
-    RESTA           reduce using rule 13 (expresion -> aritmeticas .)
-    MULTIPLICACION  reduce using rule 13 (expresion -> aritmeticas .)
-    DIVISION        reduce using rule 13 (expresion -> aritmeticas .)
-    PARENTESISCIERRA reduce using rule 13 (expresion -> aritmeticas .)
+    PUNTOYCOMA      reduce using rule 14 (expresion -> logicas .)
+    MAYOR           reduce using rule 14 (expresion -> logicas .)
+    MENOR           reduce using rule 14 (expresion -> logicas .)
+    MAYORIGUAL      reduce using rule 14 (expresion -> logicas .)
+    MENORIGUAL      reduce using rule 14 (expresion -> logicas .)
+    IGUALLOGICO     reduce using rule 14 (expresion -> logicas .)
+    DIFERENTE       reduce using rule 14 (expresion -> logicas .)
+    AND             reduce using rule 14 (expresion -> logicas .)
+    OR              reduce using rule 14 (expresion -> logicas .)
+    SUMA            reduce using rule 14 (expresion -> logicas .)
+    RESTA           reduce using rule 14 (expresion -> logicas .)
+    MULTIPLICACION  reduce using rule 14 (expresion -> logicas .)
+    DIVISION        reduce using rule 14 (expresion -> logicas .)
+    PARENTESISCIERRA reduce using rule 14 (expresion -> logicas .)
 
 
 state 18
 
-    (14) expresion -> PARENTESISABRE . expresion PARENTESISCIERRA
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (15) expresion -> valoresfinales .
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PUNTOYCOMA      reduce using rule 15 (expresion -> valoresfinales .)
+    MAYOR           reduce using rule 15 (expresion -> valoresfinales .)
+    MENOR           reduce using rule 15 (expresion -> valoresfinales .)
+    MAYORIGUAL      reduce using rule 15 (expresion -> valoresfinales .)
+    MENORIGUAL      reduce using rule 15 (expresion -> valoresfinales .)
+    IGUALLOGICO     reduce using rule 15 (expresion -> valoresfinales .)
+    DIFERENTE       reduce using rule 15 (expresion -> valoresfinales .)
+    AND             reduce using rule 15 (expresion -> valoresfinales .)
+    OR              reduce using rule 15 (expresion -> valoresfinales .)
+    SUMA            reduce using rule 15 (expresion -> valoresfinales .)
+    RESTA           reduce using rule 15 (expresion -> valoresfinales .)
+    MULTIPLICACION  reduce using rule 15 (expresion -> valoresfinales .)
+    DIVISION        reduce using rule 15 (expresion -> valoresfinales .)
+    PARENTESISCIERRA reduce using rule 15 (expresion -> valoresfinales .)
 
-    expresion                      shift and go to state 41
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
 
 state 19
 
-    (15) valoresfinales -> ENTERO .
+    (16) expresion -> aritmeticas .
 
-    PUNTOYCOMA      reduce using rule 15 (valoresfinales -> ENTERO .)
-    MAYOR           reduce using rule 15 (valoresfinales -> ENTERO .)
-    MENOR           reduce using rule 15 (valoresfinales -> ENTERO .)
-    MAYORIGUAL      reduce using rule 15 (valoresfinales -> ENTERO .)
-    MENORIGUAL      reduce using rule 15 (valoresfinales -> ENTERO .)
-    IGUALLOGICO     reduce using rule 15 (valoresfinales -> ENTERO .)
-    DIFERENTE       reduce using rule 15 (valoresfinales -> ENTERO .)
-    AND             reduce using rule 15 (valoresfinales -> ENTERO .)
-    OR              reduce using rule 15 (valoresfinales -> ENTERO .)
-    SUMA            reduce using rule 15 (valoresfinales -> ENTERO .)
-    RESTA           reduce using rule 15 (valoresfinales -> ENTERO .)
-    MULTIPLICACION  reduce using rule 15 (valoresfinales -> ENTERO .)
-    DIVISION        reduce using rule 15 (valoresfinales -> ENTERO .)
-    PARENTESISCIERRA reduce using rule 15 (valoresfinales -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 16 (expresion -> aritmeticas .)
+    MAYOR           reduce using rule 16 (expresion -> aritmeticas .)
+    MENOR           reduce using rule 16 (expresion -> aritmeticas .)
+    MAYORIGUAL      reduce using rule 16 (expresion -> aritmeticas .)
+    MENORIGUAL      reduce using rule 16 (expresion -> aritmeticas .)
+    IGUALLOGICO     reduce using rule 16 (expresion -> aritmeticas .)
+    DIFERENTE       reduce using rule 16 (expresion -> aritmeticas .)
+    AND             reduce using rule 16 (expresion -> aritmeticas .)
+    OR              reduce using rule 16 (expresion -> aritmeticas .)
+    SUMA            reduce using rule 16 (expresion -> aritmeticas .)
+    RESTA           reduce using rule 16 (expresion -> aritmeticas .)
+    MULTIPLICACION  reduce using rule 16 (expresion -> aritmeticas .)
+    DIVISION        reduce using rule 16 (expresion -> aritmeticas .)
+    PARENTESISCIERRA reduce using rule 16 (expresion -> aritmeticas .)
 
 
 state 20
 
-    (16) valoresfinales -> DECIMAL .
+    (17) expresion -> PARENTESISABRE . expresion PARENTESISCIERRA
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 16 (valoresfinales -> DECIMAL .)
-    MAYOR           reduce using rule 16 (valoresfinales -> DECIMAL .)
-    MENOR           reduce using rule 16 (valoresfinales -> DECIMAL .)
-    MAYORIGUAL      reduce using rule 16 (valoresfinales -> DECIMAL .)
-    MENORIGUAL      reduce using rule 16 (valoresfinales -> DECIMAL .)
-    IGUALLOGICO     reduce using rule 16 (valoresfinales -> DECIMAL .)
-    DIFERENTE       reduce using rule 16 (valoresfinales -> DECIMAL .)
-    AND             reduce using rule 16 (valoresfinales -> DECIMAL .)
-    OR              reduce using rule 16 (valoresfinales -> DECIMAL .)
-    SUMA            reduce using rule 16 (valoresfinales -> DECIMAL .)
-    RESTA           reduce using rule 16 (valoresfinales -> DECIMAL .)
-    MULTIPLICACION  reduce using rule 16 (valoresfinales -> DECIMAL .)
-    DIVISION        reduce using rule 16 (valoresfinales -> DECIMAL .)
-    PARENTESISCIERRA reduce using rule 16 (valoresfinales -> DECIMAL .)
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
+    expresion                      shift and go to state 44
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 21
 
-    (17) valoresfinales -> CADENA .
+    (18) valoresfinales -> ENTERO .
 
-    PUNTOYCOMA      reduce using rule 17 (valoresfinales -> CADENA .)
-    MAYOR           reduce using rule 17 (valoresfinales -> CADENA .)
-    MENOR           reduce using rule 17 (valoresfinales -> CADENA .)
-    MAYORIGUAL      reduce using rule 17 (valoresfinales -> CADENA .)
-    MENORIGUAL      reduce using rule 17 (valoresfinales -> CADENA .)
-    IGUALLOGICO     reduce using rule 17 (valoresfinales -> CADENA .)
-    DIFERENTE       reduce using rule 17 (valoresfinales -> CADENA .)
-    AND             reduce using rule 17 (valoresfinales -> CADENA .)
-    OR              reduce using rule 17 (valoresfinales -> CADENA .)
-    SUMA            reduce using rule 17 (valoresfinales -> CADENA .)
-    RESTA           reduce using rule 17 (valoresfinales -> CADENA .)
-    MULTIPLICACION  reduce using rule 17 (valoresfinales -> CADENA .)
-    DIVISION        reduce using rule 17 (valoresfinales -> CADENA .)
-    PARENTESISCIERRA reduce using rule 17 (valoresfinales -> CADENA .)
+    PUNTOYCOMA      reduce using rule 18 (valoresfinales -> ENTERO .)
+    MAYOR           reduce using rule 18 (valoresfinales -> ENTERO .)
+    MENOR           reduce using rule 18 (valoresfinales -> ENTERO .)
+    MAYORIGUAL      reduce using rule 18 (valoresfinales -> ENTERO .)
+    MENORIGUAL      reduce using rule 18 (valoresfinales -> ENTERO .)
+    IGUALLOGICO     reduce using rule 18 (valoresfinales -> ENTERO .)
+    DIFERENTE       reduce using rule 18 (valoresfinales -> ENTERO .)
+    AND             reduce using rule 18 (valoresfinales -> ENTERO .)
+    OR              reduce using rule 18 (valoresfinales -> ENTERO .)
+    SUMA            reduce using rule 18 (valoresfinales -> ENTERO .)
+    RESTA           reduce using rule 18 (valoresfinales -> ENTERO .)
+    MULTIPLICACION  reduce using rule 18 (valoresfinales -> ENTERO .)
+    DIVISION        reduce using rule 18 (valoresfinales -> ENTERO .)
+    PARENTESISCIERRA reduce using rule 18 (valoresfinales -> ENTERO .)
 
 
 state 22
 
-    (18) valoresfinales -> IDVARIABLE .
+    (19) valoresfinales -> DECIMAL .
 
-    PUNTOYCOMA      reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    MAYOR           reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    MENOR           reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    MAYORIGUAL      reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    MENORIGUAL      reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    IGUALLOGICO     reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    DIFERENTE       reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    AND             reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    OR              reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    SUMA            reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    RESTA           reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    MULTIPLICACION  reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    DIVISION        reduce using rule 18 (valoresfinales -> IDVARIABLE .)
-    PARENTESISCIERRA reduce using rule 18 (valoresfinales -> IDVARIABLE .)
+    PUNTOYCOMA      reduce using rule 19 (valoresfinales -> DECIMAL .)
+    MAYOR           reduce using rule 19 (valoresfinales -> DECIMAL .)
+    MENOR           reduce using rule 19 (valoresfinales -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 19 (valoresfinales -> DECIMAL .)
+    MENORIGUAL      reduce using rule 19 (valoresfinales -> DECIMAL .)
+    IGUALLOGICO     reduce using rule 19 (valoresfinales -> DECIMAL .)
+    DIFERENTE       reduce using rule 19 (valoresfinales -> DECIMAL .)
+    AND             reduce using rule 19 (valoresfinales -> DECIMAL .)
+    OR              reduce using rule 19 (valoresfinales -> DECIMAL .)
+    SUMA            reduce using rule 19 (valoresfinales -> DECIMAL .)
+    RESTA           reduce using rule 19 (valoresfinales -> DECIMAL .)
+    MULTIPLICACION  reduce using rule 19 (valoresfinales -> DECIMAL .)
+    DIVISION        reduce using rule 19 (valoresfinales -> DECIMAL .)
+    PARENTESISCIERRA reduce using rule 19 (valoresfinales -> DECIMAL .)
 
 
 state 23
 
-    (19) valoresfinales -> BOOL .
+    (20) valoresfinales -> CADENA .
 
-    PUNTOYCOMA      reduce using rule 19 (valoresfinales -> BOOL .)
-    MAYOR           reduce using rule 19 (valoresfinales -> BOOL .)
-    MENOR           reduce using rule 19 (valoresfinales -> BOOL .)
-    MAYORIGUAL      reduce using rule 19 (valoresfinales -> BOOL .)
-    MENORIGUAL      reduce using rule 19 (valoresfinales -> BOOL .)
-    IGUALLOGICO     reduce using rule 19 (valoresfinales -> BOOL .)
-    DIFERENTE       reduce using rule 19 (valoresfinales -> BOOL .)
-    AND             reduce using rule 19 (valoresfinales -> BOOL .)
-    OR              reduce using rule 19 (valoresfinales -> BOOL .)
-    SUMA            reduce using rule 19 (valoresfinales -> BOOL .)
-    RESTA           reduce using rule 19 (valoresfinales -> BOOL .)
-    MULTIPLICACION  reduce using rule 19 (valoresfinales -> BOOL .)
-    DIVISION        reduce using rule 19 (valoresfinales -> BOOL .)
-    PARENTESISCIERRA reduce using rule 19 (valoresfinales -> BOOL .)
+    PUNTOYCOMA      reduce using rule 20 (valoresfinales -> CADENA .)
+    MAYOR           reduce using rule 20 (valoresfinales -> CADENA .)
+    MENOR           reduce using rule 20 (valoresfinales -> CADENA .)
+    MAYORIGUAL      reduce using rule 20 (valoresfinales -> CADENA .)
+    MENORIGUAL      reduce using rule 20 (valoresfinales -> CADENA .)
+    IGUALLOGICO     reduce using rule 20 (valoresfinales -> CADENA .)
+    DIFERENTE       reduce using rule 20 (valoresfinales -> CADENA .)
+    AND             reduce using rule 20 (valoresfinales -> CADENA .)
+    OR              reduce using rule 20 (valoresfinales -> CADENA .)
+    SUMA            reduce using rule 20 (valoresfinales -> CADENA .)
+    RESTA           reduce using rule 20 (valoresfinales -> CADENA .)
+    MULTIPLICACION  reduce using rule 20 (valoresfinales -> CADENA .)
+    DIVISION        reduce using rule 20 (valoresfinales -> CADENA .)
+    PARENTESISCIERRA reduce using rule 20 (valoresfinales -> CADENA .)
 
 
 state 24
 
-    (20) valoresfinales -> NULL .
+    (21) valoresfinales -> IDVARIABLE .
 
-    PUNTOYCOMA      reduce using rule 20 (valoresfinales -> NULL .)
-    MAYOR           reduce using rule 20 (valoresfinales -> NULL .)
-    MENOR           reduce using rule 20 (valoresfinales -> NULL .)
-    MAYORIGUAL      reduce using rule 20 (valoresfinales -> NULL .)
-    MENORIGUAL      reduce using rule 20 (valoresfinales -> NULL .)
-    IGUALLOGICO     reduce using rule 20 (valoresfinales -> NULL .)
-    DIFERENTE       reduce using rule 20 (valoresfinales -> NULL .)
-    AND             reduce using rule 20 (valoresfinales -> NULL .)
-    OR              reduce using rule 20 (valoresfinales -> NULL .)
-    SUMA            reduce using rule 20 (valoresfinales -> NULL .)
-    RESTA           reduce using rule 20 (valoresfinales -> NULL .)
-    MULTIPLICACION  reduce using rule 20 (valoresfinales -> NULL .)
-    DIVISION        reduce using rule 20 (valoresfinales -> NULL .)
-    PARENTESISCIERRA reduce using rule 20 (valoresfinales -> NULL .)
+    PUNTOYCOMA      reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    MAYOR           reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    MENOR           reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    MAYORIGUAL      reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    MENORIGUAL      reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    IGUALLOGICO     reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    DIFERENTE       reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    AND             reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    OR              reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    SUMA            reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    RESTA           reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    MULTIPLICACION  reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    DIVISION        reduce using rule 21 (valoresfinales -> IDVARIABLE .)
+    PARENTESISCIERRA reduce using rule 21 (valoresfinales -> IDVARIABLE .)
 
 
 state 25
 
-    (29) aritmeticas -> RESTA . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (22) valoresfinales -> BOOL .
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PUNTOYCOMA      reduce using rule 22 (valoresfinales -> BOOL .)
+    MAYOR           reduce using rule 22 (valoresfinales -> BOOL .)
+    MENOR           reduce using rule 22 (valoresfinales -> BOOL .)
+    MAYORIGUAL      reduce using rule 22 (valoresfinales -> BOOL .)
+    MENORIGUAL      reduce using rule 22 (valoresfinales -> BOOL .)
+    IGUALLOGICO     reduce using rule 22 (valoresfinales -> BOOL .)
+    DIFERENTE       reduce using rule 22 (valoresfinales -> BOOL .)
+    AND             reduce using rule 22 (valoresfinales -> BOOL .)
+    OR              reduce using rule 22 (valoresfinales -> BOOL .)
+    SUMA            reduce using rule 22 (valoresfinales -> BOOL .)
+    RESTA           reduce using rule 22 (valoresfinales -> BOOL .)
+    MULTIPLICACION  reduce using rule 22 (valoresfinales -> BOOL .)
+    DIVISION        reduce using rule 22 (valoresfinales -> BOOL .)
+    PARENTESISCIERRA reduce using rule 22 (valoresfinales -> BOOL .)
 
-    expresion                      shift and go to state 42
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
 
 state 26
 
-    (7) declaracion -> DECLARE IDVARIABLE AS . TIPODATO PUNTOYCOMA
+    (23) valoresfinales -> NULL .
 
-    TIPODATO        shift and go to state 43
+    PUNTOYCOMA      reduce using rule 23 (valoresfinales -> NULL .)
+    MAYOR           reduce using rule 23 (valoresfinales -> NULL .)
+    MENOR           reduce using rule 23 (valoresfinales -> NULL .)
+    MAYORIGUAL      reduce using rule 23 (valoresfinales -> NULL .)
+    MENORIGUAL      reduce using rule 23 (valoresfinales -> NULL .)
+    IGUALLOGICO     reduce using rule 23 (valoresfinales -> NULL .)
+    DIFERENTE       reduce using rule 23 (valoresfinales -> NULL .)
+    AND             reduce using rule 23 (valoresfinales -> NULL .)
+    OR              reduce using rule 23 (valoresfinales -> NULL .)
+    SUMA            reduce using rule 23 (valoresfinales -> NULL .)
+    RESTA           reduce using rule 23 (valoresfinales -> NULL .)
+    MULTIPLICACION  reduce using rule 23 (valoresfinales -> NULL .)
+    DIVISION        reduce using rule 23 (valoresfinales -> NULL .)
+    PARENTESISCIERRA reduce using rule 23 (valoresfinales -> NULL .)
 
 
 state 27
 
-    (8) asignacion -> SET IDVARIABLE IGUAL . expresion PUNTOYCOMA
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (32) aritmeticas -> RESTA . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 44
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 45
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 28
 
-    (9) select -> SELECT expresion PUNTOYCOMA .
+    (11) condicion -> IF PARENTESISABRE . expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> IF PARENTESISABRE . expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    DECLARE         reduce using rule 9 (select -> SELECT expresion PUNTOYCOMA .)
-    SET             reduce using rule 9 (select -> SELECT expresion PUNTOYCOMA .)
-    SELECT          reduce using rule 9 (select -> SELECT expresion PUNTOYCOMA .)
-    $end            reduce using rule 9 (select -> SELECT expresion PUNTOYCOMA .)
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
+    expresion                      shift and go to state 46
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 29
 
-    (21) relacionales -> expresion MAYOR . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (8) declaracion -> DECLARE IDVARIABLE AS . TIPODATO PUNTOYCOMA
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    TIPODATO        shift and go to state 47
 
-    expresion                      shift and go to state 45
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
 
 state 30
 
-    (22) relacionales -> expresion MENOR . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (9) asignacion -> SET IDVARIABLE IGUAL . expresion PUNTOYCOMA
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 46
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 48
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 31
 
-    (23) relacionales -> expresion MAYORIGUAL . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (10) select -> SELECT expresion PUNTOYCOMA .
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    DECLARE         reduce using rule 10 (select -> SELECT expresion PUNTOYCOMA .)
+    SET             reduce using rule 10 (select -> SELECT expresion PUNTOYCOMA .)
+    SELECT          reduce using rule 10 (select -> SELECT expresion PUNTOYCOMA .)
+    IF              reduce using rule 10 (select -> SELECT expresion PUNTOYCOMA .)
+    $end            reduce using rule 10 (select -> SELECT expresion PUNTOYCOMA .)
+    END             reduce using rule 10 (select -> SELECT expresion PUNTOYCOMA .)
 
-    expresion                      shift and go to state 47
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
 
 state 32
 
-    (24) relacionales -> expresion MENORIGUAL . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (24) relacionales -> expresion MAYOR . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 48
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 49
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 33
 
-    (25) relacionales -> expresion IGUALLOGICO . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (25) relacionales -> expresion MENOR . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 49
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 50
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 34
 
-    (26) relacionales -> expresion DIFERENTE . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (26) relacionales -> expresion MAYORIGUAL . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 50
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 51
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 35
 
-    (27) logicas -> expresion AND . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (27) relacionales -> expresion MENORIGUAL . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 51
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 52
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 36
 
-    (28) logicas -> expresion OR . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (28) relacionales -> expresion IGUALLOGICO . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 52
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 53
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 37
 
-    (30) aritmeticas -> expresion SUMA . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (29) relacionales -> expresion DIFERENTE . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 53
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 54
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 38
 
-    (31) aritmeticas -> expresion RESTA . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (30) logicas -> expresion AND . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 54
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 55
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 39
 
-    (32) aritmeticas -> expresion MULTIPLICACION . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (31) logicas -> expresion OR . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 55
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 56
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 40
 
-    (33) aritmeticas -> expresion DIVISION . expresion
-    (10) expresion -> . relacionales
-    (11) expresion -> . logicas
-    (12) expresion -> . valoresfinales
-    (13) expresion -> . aritmeticas
-    (14) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
-    (21) relacionales -> . expresion MAYOR expresion
-    (22) relacionales -> . expresion MENOR expresion
-    (23) relacionales -> . expresion MAYORIGUAL expresion
-    (24) relacionales -> . expresion MENORIGUAL expresion
-    (25) relacionales -> . expresion IGUALLOGICO expresion
-    (26) relacionales -> . expresion DIFERENTE expresion
-    (27) logicas -> . expresion AND expresion
-    (28) logicas -> . expresion OR expresion
-    (15) valoresfinales -> . ENTERO
-    (16) valoresfinales -> . DECIMAL
-    (17) valoresfinales -> . CADENA
-    (18) valoresfinales -> . IDVARIABLE
-    (19) valoresfinales -> . BOOL
-    (20) valoresfinales -> . NULL
-    (29) aritmeticas -> . RESTA expresion
-    (30) aritmeticas -> . expresion SUMA expresion
-    (31) aritmeticas -> . expresion RESTA expresion
-    (32) aritmeticas -> . expresion MULTIPLICACION expresion
-    (33) aritmeticas -> . expresion DIVISION expresion
+    (33) aritmeticas -> expresion SUMA . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISABRE  shift and go to state 18
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    CADENA          shift and go to state 21
-    IDVARIABLE      shift and go to state 22
-    BOOL            shift and go to state 23
-    NULL            shift and go to state 24
-    RESTA           shift and go to state 25
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-    expresion                      shift and go to state 56
-    relacionales                   shift and go to state 14
-    logicas                        shift and go to state 15
-    valoresfinales                 shift and go to state 16
-    aritmeticas                    shift and go to state 17
+    expresion                      shift and go to state 57
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 41
 
-    (14) expresion -> PARENTESISABRE expresion . PARENTESISCIERRA
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (34) aritmeticas -> expresion RESTA . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PARENTESISCIERRA shift and go to state 57
-    MAYOR           shift and go to state 29
-    MENOR           shift and go to state 30
-    MAYORIGUAL      shift and go to state 31
-    MENORIGUAL      shift and go to state 32
-    IGUALLOGICO     shift and go to state 33
-    DIFERENTE       shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
+    expresion                      shift and go to state 58
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 42
 
-    (29) aritmeticas -> RESTA expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (35) aritmeticas -> expresion MULTIPLICACION . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    MAYOR           reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    MENOR           reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    MAYORIGUAL      reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    MENORIGUAL      reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    IGUALLOGICO     reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    DIFERENTE       reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    AND             reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    OR              reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    SUMA            reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    RESTA           reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    MULTIPLICACION  reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    DIVISION        reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    PARENTESISCIERRA reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
-  ! SUMA            [ shift and go to state 37 ]
-  ! RESTA           [ shift and go to state 38 ]
-  ! MULTIPLICACION  [ shift and go to state 39 ]
-  ! DIVISION        [ shift and go to state 40 ]
-
+    expresion                      shift and go to state 59
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 43
 
-    (7) declaracion -> DECLARE IDVARIABLE AS TIPODATO . PUNTOYCOMA
+    (36) aritmeticas -> expresion DIVISION . expresion
+    (13) expresion -> . relacionales
+    (14) expresion -> . logicas
+    (15) expresion -> . valoresfinales
+    (16) expresion -> . aritmeticas
+    (17) expresion -> . PARENTESISABRE expresion PARENTESISCIERRA
+    (24) relacionales -> . expresion MAYOR expresion
+    (25) relacionales -> . expresion MENOR expresion
+    (26) relacionales -> . expresion MAYORIGUAL expresion
+    (27) relacionales -> . expresion MENORIGUAL expresion
+    (28) relacionales -> . expresion IGUALLOGICO expresion
+    (29) relacionales -> . expresion DIFERENTE expresion
+    (30) logicas -> . expresion AND expresion
+    (31) logicas -> . expresion OR expresion
+    (18) valoresfinales -> . ENTERO
+    (19) valoresfinales -> . DECIMAL
+    (20) valoresfinales -> . CADENA
+    (21) valoresfinales -> . IDVARIABLE
+    (22) valoresfinales -> . BOOL
+    (23) valoresfinales -> . NULL
+    (32) aritmeticas -> . RESTA expresion
+    (33) aritmeticas -> . expresion SUMA expresion
+    (34) aritmeticas -> . expresion RESTA expresion
+    (35) aritmeticas -> . expresion MULTIPLICACION expresion
+    (36) aritmeticas -> . expresion DIVISION expresion
 
-    PUNTOYCOMA      shift and go to state 58
+    PARENTESISABRE  shift and go to state 20
+    ENTERO          shift and go to state 21
+    DECIMAL         shift and go to state 22
+    CADENA          shift and go to state 23
+    IDVARIABLE      shift and go to state 24
+    BOOL            shift and go to state 25
+    NULL            shift and go to state 26
+    RESTA           shift and go to state 27
 
+    expresion                      shift and go to state 60
+    relacionales                   shift and go to state 16
+    logicas                        shift and go to state 17
+    valoresfinales                 shift and go to state 18
+    aritmeticas                    shift and go to state 19
 
 state 44
 
-    (8) asignacion -> SET IDVARIABLE IGUAL expresion . PUNTOYCOMA
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (17) expresion -> PARENTESISABRE expresion . PARENTESISCIERRA
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      shift and go to state 59
-    MAYOR           shift and go to state 29
-    MENOR           shift and go to state 30
-    MAYORIGUAL      shift and go to state 31
-    MENORIGUAL      shift and go to state 32
-    IGUALLOGICO     shift and go to state 33
-    DIFERENTE       shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PARENTESISCIERRA shift and go to state 61
+    MAYOR           shift and go to state 32
+    MENOR           shift and go to state 33
+    MAYORIGUAL      shift and go to state 34
+    MENORIGUAL      shift and go to state 35
+    IGUALLOGICO     shift and go to state 36
+    DIFERENTE       shift and go to state 37
+    AND             shift and go to state 38
+    OR              shift and go to state 39
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
 
 state 45
 
-    (21) relacionales -> expresion MAYOR expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (32) aritmeticas -> RESTA expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    MAYOR           reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    MENOR           reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    MAYORIGUAL      reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    MENORIGUAL      reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    IGUALLOGICO     reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    DIFERENTE       reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    AND             reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    OR              reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    PARENTESISCIERRA reduce using rule 21 (relacionales -> expresion MAYOR expresion .)
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PUNTOYCOMA      reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    MAYOR           reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    MENOR           reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    MAYORIGUAL      reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    MENORIGUAL      reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    IGUALLOGICO     reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    DIFERENTE       reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    AND             reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    OR              reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    SUMA            reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    RESTA           reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    MULTIPLICACION  reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    DIVISION        reduce using rule 32 (aritmeticas -> RESTA expresion .)
+    PARENTESISCIERRA reduce using rule 32 (aritmeticas -> RESTA expresion .)
 
-  ! SUMA            [ reduce using rule 21 (relacionales -> expresion MAYOR expresion .) ]
-  ! RESTA           [ reduce using rule 21 (relacionales -> expresion MAYOR expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 21 (relacionales -> expresion MAYOR expresion .) ]
-  ! DIVISION        [ reduce using rule 21 (relacionales -> expresion MAYOR expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
+  ! SUMA            [ shift and go to state 40 ]
+  ! RESTA           [ shift and go to state 41 ]
+  ! MULTIPLICACION  [ shift and go to state 42 ]
+  ! DIVISION        [ shift and go to state 43 ]
 
 
 state 46
 
-    (22) relacionales -> expresion MENOR expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (11) condicion -> IF PARENTESISABRE expresion . PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> IF PARENTESISABRE expresion . PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    MAYOR           reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    MENOR           reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    MAYORIGUAL      reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    MENORIGUAL      reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    IGUALLOGICO     reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    DIFERENTE       reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    AND             reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    OR              reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    PARENTESISCIERRA reduce using rule 22 (relacionales -> expresion MENOR expresion .)
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
-
-  ! SUMA            [ reduce using rule 22 (relacionales -> expresion MENOR expresion .) ]
-  ! RESTA           [ reduce using rule 22 (relacionales -> expresion MENOR expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 22 (relacionales -> expresion MENOR expresion .) ]
-  ! DIVISION        [ reduce using rule 22 (relacionales -> expresion MENOR expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+    PARENTESISCIERRA shift and go to state 62
+    MAYOR           shift and go to state 32
+    MENOR           shift and go to state 33
+    MAYORIGUAL      shift and go to state 34
+    MENORIGUAL      shift and go to state 35
+    IGUALLOGICO     shift and go to state 36
+    DIFERENTE       shift and go to state 37
+    AND             shift and go to state 38
+    OR              shift and go to state 39
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
 
 state 47
 
-    (23) relacionales -> expresion MAYORIGUAL expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (8) declaracion -> DECLARE IDVARIABLE AS TIPODATO . PUNTOYCOMA
 
-    PUNTOYCOMA      reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    MAYOR           reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    MENOR           reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    MAYORIGUAL      reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    MENORIGUAL      reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    IGUALLOGICO     reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    DIFERENTE       reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    AND             reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    OR              reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    PARENTESISCIERRA reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .)
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
-
-  ! SUMA            [ reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .) ]
-  ! RESTA           [ reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .) ]
-  ! DIVISION        [ reduce using rule 23 (relacionales -> expresion MAYORIGUAL expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+    PUNTOYCOMA      shift and go to state 63
 
 
 state 48
 
-    (24) relacionales -> expresion MENORIGUAL expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (9) asignacion -> SET IDVARIABLE IGUAL expresion . PUNTOYCOMA
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    MAYOR           reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    MENOR           reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    MAYORIGUAL      reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    MENORIGUAL      reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    IGUALLOGICO     reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    DIFERENTE       reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    AND             reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    OR              reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    PARENTESISCIERRA reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .)
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
-
-  ! SUMA            [ reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .) ]
-  ! RESTA           [ reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .) ]
-  ! DIVISION        [ reduce using rule 24 (relacionales -> expresion MENORIGUAL expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+    PUNTOYCOMA      shift and go to state 64
+    MAYOR           shift and go to state 32
+    MENOR           shift and go to state 33
+    MAYORIGUAL      shift and go to state 34
+    MENORIGUAL      shift and go to state 35
+    IGUALLOGICO     shift and go to state 36
+    DIFERENTE       shift and go to state 37
+    AND             shift and go to state 38
+    OR              shift and go to state 39
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
 
 state 49
 
-    (25) relacionales -> expresion IGUALLOGICO expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (24) relacionales -> expresion MAYOR expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    MAYOR           reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    MENOR           reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    MAYORIGUAL      reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    MENORIGUAL      reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    IGUALLOGICO     reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    DIFERENTE       reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    AND             reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    OR              reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    PARENTESISCIERRA reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .)
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PUNTOYCOMA      reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    MAYOR           reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    MENOR           reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    MAYORIGUAL      reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    MENORIGUAL      reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    IGUALLOGICO     reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    DIFERENTE       reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    AND             reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    OR              reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    PARENTESISCIERRA reduce using rule 24 (relacionales -> expresion MAYOR expresion .)
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! SUMA            [ reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .) ]
-  ! RESTA           [ reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .) ]
-  ! DIVISION        [ reduce using rule 25 (relacionales -> expresion IGUALLOGICO expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! SUMA            [ reduce using rule 24 (relacionales -> expresion MAYOR expresion .) ]
+  ! RESTA           [ reduce using rule 24 (relacionales -> expresion MAYOR expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 24 (relacionales -> expresion MAYOR expresion .) ]
+  ! DIVISION        [ reduce using rule 24 (relacionales -> expresion MAYOR expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 50
 
-    (26) relacionales -> expresion DIFERENTE expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (25) relacionales -> expresion MENOR expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    MAYOR           reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    MENOR           reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    MAYORIGUAL      reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    MENORIGUAL      reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    IGUALLOGICO     reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    DIFERENTE       reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    AND             reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    OR              reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    PARENTESISCIERRA reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .)
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PUNTOYCOMA      reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    MAYOR           reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    MENOR           reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    MAYORIGUAL      reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    MENORIGUAL      reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    IGUALLOGICO     reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    DIFERENTE       reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    AND             reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    OR              reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    PARENTESISCIERRA reduce using rule 25 (relacionales -> expresion MENOR expresion .)
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! SUMA            [ reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .) ]
-  ! RESTA           [ reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .) ]
-  ! DIVISION        [ reduce using rule 26 (relacionales -> expresion DIFERENTE expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! SUMA            [ reduce using rule 25 (relacionales -> expresion MENOR expresion .) ]
+  ! RESTA           [ reduce using rule 25 (relacionales -> expresion MENOR expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 25 (relacionales -> expresion MENOR expresion .) ]
+  ! DIVISION        [ reduce using rule 25 (relacionales -> expresion MENOR expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 51
 
-    (27) logicas -> expresion AND expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (26) relacionales -> expresion MAYORIGUAL expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 27 (logicas -> expresion AND expresion .)
-    AND             reduce using rule 27 (logicas -> expresion AND expresion .)
-    OR              reduce using rule 27 (logicas -> expresion AND expresion .)
-    PARENTESISCIERRA reduce using rule 27 (logicas -> expresion AND expresion .)
-    MAYOR           shift and go to state 29
-    MENOR           shift and go to state 30
-    MAYORIGUAL      shift and go to state 31
-    MENORIGUAL      shift and go to state 32
-    IGUALLOGICO     shift and go to state 33
-    DIFERENTE       shift and go to state 34
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PUNTOYCOMA      reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    MAYOR           reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    MENOR           reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    MAYORIGUAL      reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    MENORIGUAL      reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    IGUALLOGICO     reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    DIFERENTE       reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    AND             reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    OR              reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    PARENTESISCIERRA reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .)
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! MAYOR           [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! MENOR           [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! MAYORIGUAL      [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! MENORIGUAL      [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! IGUALLOGICO     [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! DIFERENTE       [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! SUMA            [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! RESTA           [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! DIVISION        [ reduce using rule 27 (logicas -> expresion AND expresion .) ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! SUMA            [ reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .) ]
+  ! DIVISION        [ reduce using rule 26 (relacionales -> expresion MAYORIGUAL expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 52
 
-    (28) logicas -> expresion OR expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (27) relacionales -> expresion MENORIGUAL expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 28 (logicas -> expresion OR expresion .)
-    OR              reduce using rule 28 (logicas -> expresion OR expresion .)
-    PARENTESISCIERRA reduce using rule 28 (logicas -> expresion OR expresion .)
-    MAYOR           shift and go to state 29
-    MENOR           shift and go to state 30
-    MAYORIGUAL      shift and go to state 31
-    MENORIGUAL      shift and go to state 32
-    IGUALLOGICO     shift and go to state 33
-    DIFERENTE       shift and go to state 34
-    AND             shift and go to state 35
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PUNTOYCOMA      reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    MAYOR           reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    MENOR           reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    MAYORIGUAL      reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    MENORIGUAL      reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    IGUALLOGICO     reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    DIFERENTE       reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    AND             reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    OR              reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    PARENTESISCIERRA reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .)
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! MAYOR           [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! MENOR           [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! MAYORIGUAL      [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! MENORIGUAL      [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! IGUALLOGICO     [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! DIFERENTE       [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! AND             [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! SUMA            [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! RESTA           [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! DIVISION        [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! OR              [ shift and go to state 36 ]
+  ! SUMA            [ reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .) ]
+  ! DIVISION        [ reduce using rule 27 (relacionales -> expresion MENORIGUAL expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 53
 
-    (30) aritmeticas -> expresion SUMA expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (28) relacionales -> expresion IGUALLOGICO expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    MAYOR           reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    MENOR           reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    MAYORIGUAL      reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    MENORIGUAL      reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    IGUALLOGICO     reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    DIFERENTE       reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    AND             reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    OR              reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    SUMA            reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    RESTA           reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    PARENTESISCIERRA reduce using rule 30 (aritmeticas -> expresion SUMA expresion .)
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PUNTOYCOMA      reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    MAYOR           reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    MENOR           reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    MAYORIGUAL      reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    MENORIGUAL      reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    IGUALLOGICO     reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    DIFERENTE       reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    AND             reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    OR              reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    PARENTESISCIERRA reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .)
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! MULTIPLICACION  [ reduce using rule 30 (aritmeticas -> expresion SUMA expresion .) ]
-  ! DIVISION        [ reduce using rule 30 (aritmeticas -> expresion SUMA expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
-  ! SUMA            [ shift and go to state 37 ]
-  ! RESTA           [ shift and go to state 38 ]
+  ! SUMA            [ reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .) ]
+  ! RESTA           [ reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .) ]
+  ! DIVISION        [ reduce using rule 28 (relacionales -> expresion IGUALLOGICO expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 54
 
-    (31) aritmeticas -> expresion RESTA expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (29) relacionales -> expresion DIFERENTE expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    MAYOR           reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    MENOR           reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    MAYORIGUAL      reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    MENORIGUAL      reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    IGUALLOGICO     reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    DIFERENTE       reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    AND             reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    OR              reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    SUMA            reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    RESTA           reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    PARENTESISCIERRA reduce using rule 31 (aritmeticas -> expresion RESTA expresion .)
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
+    PUNTOYCOMA      reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    MAYOR           reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    MENOR           reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    MAYORIGUAL      reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    MENORIGUAL      reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    IGUALLOGICO     reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    DIFERENTE       reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    AND             reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    OR              reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    PARENTESISCIERRA reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .)
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! MULTIPLICACION  [ reduce using rule 31 (aritmeticas -> expresion RESTA expresion .) ]
-  ! DIVISION        [ reduce using rule 31 (aritmeticas -> expresion RESTA expresion .) ]
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
-  ! SUMA            [ shift and go to state 37 ]
-  ! RESTA           [ shift and go to state 38 ]
+  ! SUMA            [ reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .) ]
+  ! RESTA           [ reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .) ]
+  ! DIVISION        [ reduce using rule 29 (relacionales -> expresion DIFERENTE expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 55
 
-    (32) aritmeticas -> expresion MULTIPLICACION expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (30) logicas -> expresion AND expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    MAYOR           reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    MENOR           reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    MAYORIGUAL      reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    MENORIGUAL      reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    IGUALLOGICO     reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    DIFERENTE       reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    AND             reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    OR              reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    SUMA            reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    RESTA           reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    MULTIPLICACION  reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    DIVISION        reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
-    PARENTESISCIERRA reduce using rule 32 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    PUNTOYCOMA      reduce using rule 30 (logicas -> expresion AND expresion .)
+    AND             reduce using rule 30 (logicas -> expresion AND expresion .)
+    OR              reduce using rule 30 (logicas -> expresion AND expresion .)
+    PARENTESISCIERRA reduce using rule 30 (logicas -> expresion AND expresion .)
+    MAYOR           shift and go to state 32
+    MENOR           shift and go to state 33
+    MAYORIGUAL      shift and go to state 34
+    MENORIGUAL      shift and go to state 35
+    IGUALLOGICO     shift and go to state 36
+    DIFERENTE       shift and go to state 37
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
-  ! SUMA            [ shift and go to state 37 ]
-  ! RESTA           [ shift and go to state 38 ]
-  ! MULTIPLICACION  [ shift and go to state 39 ]
-  ! DIVISION        [ shift and go to state 40 ]
+  ! MAYOR           [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! MENOR           [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! IGUALLOGICO     [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! DIFERENTE       [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! SUMA            [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! RESTA           [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! DIVISION        [ reduce using rule 30 (logicas -> expresion AND expresion .) ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 56
 
-    (33) aritmeticas -> expresion DIVISION expresion .
-    (21) relacionales -> expresion . MAYOR expresion
-    (22) relacionales -> expresion . MENOR expresion
-    (23) relacionales -> expresion . MAYORIGUAL expresion
-    (24) relacionales -> expresion . MENORIGUAL expresion
-    (25) relacionales -> expresion . IGUALLOGICO expresion
-    (26) relacionales -> expresion . DIFERENTE expresion
-    (27) logicas -> expresion . AND expresion
-    (28) logicas -> expresion . OR expresion
-    (30) aritmeticas -> expresion . SUMA expresion
-    (31) aritmeticas -> expresion . RESTA expresion
-    (32) aritmeticas -> expresion . MULTIPLICACION expresion
-    (33) aritmeticas -> expresion . DIVISION expresion
+    (31) logicas -> expresion OR expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    MAYOR           reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    MENOR           reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    MAYORIGUAL      reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    MENORIGUAL      reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    IGUALLOGICO     reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    DIFERENTE       reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    AND             reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    OR              reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    SUMA            reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    RESTA           reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    MULTIPLICACION  reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    DIVISION        reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
-    PARENTESISCIERRA reduce using rule 33 (aritmeticas -> expresion DIVISION expresion .)
+    PUNTOYCOMA      reduce using rule 31 (logicas -> expresion OR expresion .)
+    OR              reduce using rule 31 (logicas -> expresion OR expresion .)
+    PARENTESISCIERRA reduce using rule 31 (logicas -> expresion OR expresion .)
+    MAYOR           shift and go to state 32
+    MENOR           shift and go to state 33
+    MAYORIGUAL      shift and go to state 34
+    MENORIGUAL      shift and go to state 35
+    IGUALLOGICO     shift and go to state 36
+    DIFERENTE       shift and go to state 37
+    AND             shift and go to state 38
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
 
-  ! MAYOR           [ shift and go to state 29 ]
-  ! MENOR           [ shift and go to state 30 ]
-  ! MAYORIGUAL      [ shift and go to state 31 ]
-  ! MENORIGUAL      [ shift and go to state 32 ]
-  ! IGUALLOGICO     [ shift and go to state 33 ]
-  ! DIFERENTE       [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
-  ! SUMA            [ shift and go to state 37 ]
-  ! RESTA           [ shift and go to state 38 ]
-  ! MULTIPLICACION  [ shift and go to state 39 ]
-  ! DIVISION        [ shift and go to state 40 ]
+  ! MAYOR           [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! MENOR           [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! IGUALLOGICO     [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! DIFERENTE       [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! AND             [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! SUMA            [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! RESTA           [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! DIVISION        [ reduce using rule 31 (logicas -> expresion OR expresion .) ]
+  ! OR              [ shift and go to state 39 ]
 
 
 state 57
 
-    (14) expresion -> PARENTESISABRE expresion PARENTESISCIERRA .
+    (33) aritmeticas -> expresion SUMA expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    PUNTOYCOMA      reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    MAYOR           reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    MENOR           reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    MAYORIGUAL      reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    MENORIGUAL      reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    IGUALLOGICO     reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    DIFERENTE       reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    AND             reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    OR              reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    SUMA            reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    RESTA           reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    MULTIPLICACION  reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    DIVISION        reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
-    PARENTESISCIERRA reduce using rule 14 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    PUNTOYCOMA      reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    MAYOR           reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    MENOR           reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    MAYORIGUAL      reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    MENORIGUAL      reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    IGUALLOGICO     reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    DIFERENTE       reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    AND             reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    OR              reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    SUMA            reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    RESTA           reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    PARENTESISCIERRA reduce using rule 33 (aritmeticas -> expresion SUMA expresion .)
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
+
+  ! MULTIPLICACION  [ reduce using rule 33 (aritmeticas -> expresion SUMA expresion .) ]
+  ! DIVISION        [ reduce using rule 33 (aritmeticas -> expresion SUMA expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
+  ! SUMA            [ shift and go to state 40 ]
+  ! RESTA           [ shift and go to state 41 ]
 
 
 state 58
 
-    (7) declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .
+    (34) aritmeticas -> expresion RESTA expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    DECLARE         reduce using rule 7 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
-    SET             reduce using rule 7 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
-    SELECT          reduce using rule 7 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
-    $end            reduce using rule 7 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
+    PUNTOYCOMA      reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    MAYOR           reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    MENOR           reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    MAYORIGUAL      reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    MENORIGUAL      reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    IGUALLOGICO     reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    DIFERENTE       reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    AND             reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    OR              reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    SUMA            reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    RESTA           reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    PARENTESISCIERRA reduce using rule 34 (aritmeticas -> expresion RESTA expresion .)
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
+
+  ! MULTIPLICACION  [ reduce using rule 34 (aritmeticas -> expresion RESTA expresion .) ]
+  ! DIVISION        [ reduce using rule 34 (aritmeticas -> expresion RESTA expresion .) ]
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
+  ! SUMA            [ shift and go to state 40 ]
+  ! RESTA           [ shift and go to state 41 ]
 
 
 state 59
 
-    (8) asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .
+    (35) aritmeticas -> expresion MULTIPLICACION expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
 
-    DECLARE         reduce using rule 8 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
-    SET             reduce using rule 8 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
-    SELECT          reduce using rule 8 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
-    $end            reduce using rule 8 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
+    PUNTOYCOMA      reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    MAYOR           reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    MENOR           reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    MAYORIGUAL      reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    MENORIGUAL      reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    IGUALLOGICO     reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    DIFERENTE       reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    AND             reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    OR              reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    SUMA            reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    RESTA           reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    MULTIPLICACION  reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    DIVISION        reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+    PARENTESISCIERRA reduce using rule 35 (aritmeticas -> expresion MULTIPLICACION expresion .)
+
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
+  ! SUMA            [ shift and go to state 40 ]
+  ! RESTA           [ shift and go to state 41 ]
+  ! MULTIPLICACION  [ shift and go to state 42 ]
+  ! DIVISION        [ shift and go to state 43 ]
+
+
+state 60
+
+    (36) aritmeticas -> expresion DIVISION expresion .
+    (24) relacionales -> expresion . MAYOR expresion
+    (25) relacionales -> expresion . MENOR expresion
+    (26) relacionales -> expresion . MAYORIGUAL expresion
+    (27) relacionales -> expresion . MENORIGUAL expresion
+    (28) relacionales -> expresion . IGUALLOGICO expresion
+    (29) relacionales -> expresion . DIFERENTE expresion
+    (30) logicas -> expresion . AND expresion
+    (31) logicas -> expresion . OR expresion
+    (33) aritmeticas -> expresion . SUMA expresion
+    (34) aritmeticas -> expresion . RESTA expresion
+    (35) aritmeticas -> expresion . MULTIPLICACION expresion
+    (36) aritmeticas -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    MAYOR           reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    MENOR           reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    MAYORIGUAL      reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    MENORIGUAL      reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    IGUALLOGICO     reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    DIFERENTE       reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    AND             reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    OR              reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    SUMA            reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    RESTA           reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    MULTIPLICACION  reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    DIVISION        reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+    PARENTESISCIERRA reduce using rule 36 (aritmeticas -> expresion DIVISION expresion .)
+
+  ! MAYOR           [ shift and go to state 32 ]
+  ! MENOR           [ shift and go to state 33 ]
+  ! MAYORIGUAL      [ shift and go to state 34 ]
+  ! MENORIGUAL      [ shift and go to state 35 ]
+  ! IGUALLOGICO     [ shift and go to state 36 ]
+  ! DIFERENTE       [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 39 ]
+  ! SUMA            [ shift and go to state 40 ]
+  ! RESTA           [ shift and go to state 41 ]
+  ! MULTIPLICACION  [ shift and go to state 42 ]
+  ! DIVISION        [ shift and go to state 43 ]
+
+
+state 61
+
+    (17) expresion -> PARENTESISABRE expresion PARENTESISCIERRA .
+
+    PUNTOYCOMA      reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    MAYOR           reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    MENOR           reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    MAYORIGUAL      reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    MENORIGUAL      reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    IGUALLOGICO     reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    DIFERENTE       reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    AND             reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    OR              reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    SUMA            reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    RESTA           reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    MULTIPLICACION  reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    DIVISION        reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+    PARENTESISCIERRA reduce using rule 17 (expresion -> PARENTESISABRE expresion PARENTESISCIERRA .)
+
+
+state 62
+
+    (11) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA . BEGIN statements END
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA . BEGIN statements END ELSE BEGIN statements END
+
+    BEGIN           shift and go to state 65
+
+
+state 63
+
+    (8) declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .
+
+    DECLARE         reduce using rule 8 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
+    SET             reduce using rule 8 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
+    SELECT          reduce using rule 8 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
+    IF              reduce using rule 8 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
+    $end            reduce using rule 8 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
+    END             reduce using rule 8 (declaracion -> DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA .)
+
+
+state 64
+
+    (9) asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .
+
+    DECLARE         reduce using rule 9 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
+    SET             reduce using rule 9 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
+    SELECT          reduce using rule 9 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
+    IF              reduce using rule 9 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
+    $end            reduce using rule 9 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
+    END             reduce using rule 9 (asignacion -> SET IDVARIABLE IGUAL expresion PUNTOYCOMA .)
+
+
+state 65
+
+    (11) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN . statements END
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN . statements END ELSE BEGIN statements END
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . declaracion
+    (5) statement -> . asignacion
+    (6) statement -> . select
+    (7) statement -> . condicion
+    (8) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
+    (9) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
+    (10) select -> . SELECT expresion PUNTOYCOMA
+    (11) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+
+    DECLARE         shift and go to state 8
+    SET             shift and go to state 9
+    SELECT          shift and go to state 10
+    IF              shift and go to state 11
+
+    statements                     shift and go to state 66
+    statement                      shift and go to state 3
+    declaracion                    shift and go to state 4
+    asignacion                     shift and go to state 5
+    select                         shift and go to state 6
+    condicion                      shift and go to state 7
+
+state 66
+
+    (11) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements . END
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements . END ELSE BEGIN statements END
+    (2) statements -> statements . statement
+    (4) statement -> . declaracion
+    (5) statement -> . asignacion
+    (6) statement -> . select
+    (7) statement -> . condicion
+    (8) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
+    (9) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
+    (10) select -> . SELECT expresion PUNTOYCOMA
+    (11) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+
+    END             shift and go to state 67
+    DECLARE         shift and go to state 8
+    SET             shift and go to state 9
+    SELECT          shift and go to state 10
+    IF              shift and go to state 11
+
+    statement                      shift and go to state 12
+    declaracion                    shift and go to state 4
+    asignacion                     shift and go to state 5
+    select                         shift and go to state 6
+    condicion                      shift and go to state 7
+
+state 67
+
+    (11) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END .
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END . ELSE BEGIN statements END
+
+    DECLARE         reduce using rule 11 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END .)
+    SET             reduce using rule 11 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END .)
+    SELECT          reduce using rule 11 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END .)
+    IF              reduce using rule 11 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END .)
+    $end            reduce using rule 11 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END .)
+    END             reduce using rule 11 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END .)
+    ELSE            shift and go to state 68
+
+
+state 68
+
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE . BEGIN statements END
+
+    BEGIN           shift and go to state 69
+
+
+state 69
+
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN . statements END
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . declaracion
+    (5) statement -> . asignacion
+    (6) statement -> . select
+    (7) statement -> . condicion
+    (8) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
+    (9) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
+    (10) select -> . SELECT expresion PUNTOYCOMA
+    (11) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+
+    DECLARE         shift and go to state 8
+    SET             shift and go to state 9
+    SELECT          shift and go to state 10
+    IF              shift and go to state 11
+
+    statements                     shift and go to state 70
+    statement                      shift and go to state 3
+    declaracion                    shift and go to state 4
+    asignacion                     shift and go to state 5
+    select                         shift and go to state 6
+    condicion                      shift and go to state 7
+
+state 70
+
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements . END
+    (2) statements -> statements . statement
+    (4) statement -> . declaracion
+    (5) statement -> . asignacion
+    (6) statement -> . select
+    (7) statement -> . condicion
+    (8) declaracion -> . DECLARE IDVARIABLE AS TIPODATO PUNTOYCOMA
+    (9) asignacion -> . SET IDVARIABLE IGUAL expresion PUNTOYCOMA
+    (10) select -> . SELECT expresion PUNTOYCOMA
+    (11) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    (12) condicion -> . IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+
+    END             shift and go to state 71
+    DECLARE         shift and go to state 8
+    SET             shift and go to state 9
+    SELECT          shift and go to state 10
+    IF              shift and go to state 11
+
+    statement                      shift and go to state 12
+    declaracion                    shift and go to state 4
+    asignacion                     shift and go to state 5
+    select                         shift and go to state 6
+    condicion                      shift and go to state 7
+
+state 71
+
+    (12) condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END .
+
+    DECLARE         reduce using rule 12 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END .)
+    SET             reduce using rule 12 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END .)
+    SELECT          reduce using rule 12 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END .)
+    IF              reduce using rule 12 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END .)
+    $end            reduce using rule 12 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END .)
+    END             reduce using rule 12 (condicion -> IF PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END .)
 

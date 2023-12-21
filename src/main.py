@@ -9,58 +9,41 @@ def main():
     textoAnalizar: str = """
 
 DECLARE @diasmora AS INT;
-SET @diasmora = 76;
+SET @diasmora = 45;
 
-DECLARE @a AS BIT;
-SET @a = (@diasmora > 0 && @diasmora < 30) || (@diasmora >= 40 && @diasmora <= 50);
+	DECLARE @alturamora AS INT;		
+    IF (@diasmora > 0 && @diasmora < 30) 
+    BEGIN
+        SET @alturamora = 0;
+    END
 
-DECLARE @b AS BIT;
-SET @b = (@diasmora >= 30 && @diasmora < 60) && (@diasmora != 45);
+    IF (@diasmora >= 30 && @diasmora < 60) 
+    BEGIN 
+        SET @alturamora = 1;	
+    END
 
-DECLARE @c AS BIT;
-SET @c = (@diasmora >= 60 && @diasmora < 90) || (@diasmora == 76);
+    IF (@diasmora >= 30 && @diasmora < 60) 
+    BEGIN 
+        SET @alturamora = 2;				
+    END
 
-DECLARE @d AS BIT;
-SET @d = (@diasmora >= 90 && @diasmora < 120) || (@diasmora > 100 && @diasmora < 110);
+    IF (@diasmora >= 60 && @diasmora < 90) 
+    BEGIN 
+        SET @alturamora = 3;		
+    END
 
-DECLARE @e AS BIT;
-SET @e = (@diasmora < 20 || @diasmora > 80) && (@diasmora < 95);
+    IF (@diasmora >= 90 && @diasmora < 120) 
+    BEGIN 
+        SET @alturamora = 4;				
+    END
 
-SELECT @a;
-SELECT @b;
-SELECT @c;
-SELECT @d;
-SELECT @e;
+SELECT @alturamora;
 
 
     """
 
     old_textoAnalizar: str = """
-	DECLARE @alturamora int;		
-    IF (@diasmora > 0 && @diasmora < 30) 
-    BEGIN
-        SET @alturamora = 0;
-    END;
 
-    IF (@diasmora >= 30 && @diasmora < 60) 
-    BEGIN 
-        SET @alturamora = 1;	
-    END;
-
-    IF (@diasmora >= 30 && @diasmora < 60) 
-    BEGIN 
-        SET @alturamora = 2;				
-    END;
-
-    IF (@diasmora >= 60 && @diasmora < 90) 
-    BEGIN 
-        SET @alturamora = 3;		
-    END;
-
-    IF (@diasmora >= 90 && @diasmora < 120) 
-    BEGIN 
-        SET @alturamora = 4;				
-    END;
 """
 
     textoAnalizar_old: str = """

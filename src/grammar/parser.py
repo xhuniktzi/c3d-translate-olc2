@@ -16,6 +16,7 @@ from compiler.expr.relationals.notequals import NotEquals
 from compiler.helpers.str_to_datatype import fnStrToDatatype
 from compiler.statements.assign import Assign
 from compiler.statements.declare import Declare
+from compiler.statements.if_statement import IfStatement
 from compiler.statements.select import Select
 import ply.yacc as yacc
 from grammar.lexer import tokens
@@ -60,8 +61,8 @@ def p_statement(p):
     """statement : declaracion
     | asignacion
     | select
+    | condicion
     """
-    # | condicion
     # | ciclo
     # | procedure
     # | llamada_procedure
@@ -85,10 +86,14 @@ def p_select(p):
     p[0] = Select(p[2])
 
 
-# def p_condicion(p):
-#     """condicion : IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
-#     | IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
-#     """
+def p_condicion(p):
+    """condicion : IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
+    | IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+    """
+    if len(p) == 8:
+        p[0] = IfStatement(p[3], p[6])
+    else:
+        p[0] = IfStatement(p[3], p[6], p[10])
 
 
 # def p_ciclo(p):
