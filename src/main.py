@@ -7,10 +7,7 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar: str = """
-    DECLARE @a AS BIT;
-    
-    SET @a = false || false && true;
-    SELECT @a;
+    SELECT (false || true) && (false || (true && (false || true))) || ((true && false) || (false && true));
 
     """
 

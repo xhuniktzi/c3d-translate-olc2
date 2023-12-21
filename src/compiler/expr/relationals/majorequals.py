@@ -1,3 +1,4 @@
+from compiler.abstract.c3d_symbol import C3DSymbol
 from compiler.abstract.c3d_value import C3DValue
 from compiler.abstract.environment import Environment
 from compiler.abstract.expression import Expression
@@ -22,4 +23,29 @@ class MajorEquals(Expression):
         )
         self.generator.register_goto(false_label)
 
-        return C3DValue(None, False, DataTypes.BOOLEAN, true_label, false_label)
+        temp_var: str = self.generator.mk_temp()
+        self.generator.register_label(true_label)
+        self.generator.simple_assign(temp_var, "1")
+
+        exit_label: str = self.generator.mk_label()
+        self.generator.register_goto(exit_label)
+
+        self.generator.register_label(false_label)
+        self.generator.simple_assign(temp_var, "0")
+        self.generator.register_label(exit_label)
+
+        return C3DValue(temp_var, False, DataTypes.BOOLEAN, true_label, false_label)
+
+    def handle_variable(self, eval_var: C3DValue, env: Environment) -> C3DValue:
+        if eval_var.datatype != DataTypes.IDVARIABLE:
+            return eval_var
+        else:
+            symbol: C3DSymbol = env.get_variable(eval_var.value)
+            if symbol is not None:
+                temp_var: str = self.generator.mk_temp()
+                stack_var: str = self.generator.mk_temp()
+
+                self.generator.access_stack(stack_var, symbol.position)
+                self.generator.register_read_stack(temp_var, stack_var)
+
+                return C3DValue(temp_var, True, symbol.datatype)
