@@ -81,7 +81,7 @@ double h = 0;
         self.code.append(f'printf("{print_control}", {expr});\n')
 
     def register_C_newline(self) -> None:
-        self.code.append('printf("\\n");\n')
+        self.code.append(f'printf("%c", 10);\n')
 
     def register_next_heap(self) -> None:
         self.code.append("h = h + 1;\n")

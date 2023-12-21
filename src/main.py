@@ -7,7 +7,31 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar: str = """
-    SELECT (false || true) && (false || (true && (false || true))) || ((true && false) || (false && true));
+
+DECLARE @diasmora AS INT;
+SET @diasmora = 76;
+
+DECLARE @a AS BIT;
+SET @a = (@diasmora > 0 && @diasmora < 30) || (@diasmora >= 40 && @diasmora <= 50);
+
+DECLARE @b AS BIT;
+SET @b = (@diasmora >= 30 && @diasmora < 60) && (@diasmora != 45);
+
+DECLARE @c AS BIT;
+SET @c = (@diasmora >= 60 && @diasmora < 90) || (@diasmora == 76);
+
+DECLARE @d AS BIT;
+SET @d = (@diasmora >= 90 && @diasmora < 120) || (@diasmora > 100 && @diasmora < 110);
+
+DECLARE @e AS BIT;
+SET @e = (@diasmora < 20 || @diasmora > 80) && (@diasmora < 95);
+
+SELECT @a;
+SELECT @b;
+SELECT @c;
+SELECT @d;
+SELECT @e;
+
 
     """
 

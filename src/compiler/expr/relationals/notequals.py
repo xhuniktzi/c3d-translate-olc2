@@ -18,6 +18,9 @@ class NotEquals(Expression):
         left_value: C3DValue = self.left.translate_to_c3d(env)
         right_value: C3DValue = self.right.translate_to_c3d(env)
 
+        left_value = self.handle_variable(left_value, env)
+        right_value = self.handle_variable(right_value, env)
+
         self.generator.register_if_goto(
             left_value.value, "!=", right_value.value, true_label
         )
