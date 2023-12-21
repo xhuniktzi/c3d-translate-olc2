@@ -7,30 +7,39 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar: str = """
-    DECLARE @a AS DECIMAL;
-    DECLARE @b AS INT;
-    DECLARE @c AS NVARCHAR;
-    DECLARE @d AS NVARCHAR;
-
-    SET @a = 5*4-3+10-11/3*21/13;
-    SET @b = 13-4*43/2+1;
-    SET @c = "Hola mundo soy yo";
-    SET @d = "Hola mundo soy yo y quiero probar algo";
+    DECLARE @a AS BIT;
     
+    SET @a = 30 == 10 || 20 == 10;
     SELECT @a;
-    SELECT @b;
 
-    SELECT "Hola mundo";
-    SELECT @c;
-    SELECT @d;
-    SELECT "Debo probar todos los casos";
-    
-    SELECT 123.456;
-    SELECT 123;
+    """
 
-    SELECT @a + @b;
-    SELECT 70 + @b;
-    SELECT @b + 70;
+    old_textoAnalizar: str = """
+	DECLARE @alturamora int;		
+    IF (@diasmora > 0 && @diasmora < 30) 
+    BEGIN
+        SET @alturamora = 0;
+    END;
+
+    IF (@diasmora >= 30 && @diasmora < 60) 
+    BEGIN 
+        SET @alturamora = 1;	
+    END;
+
+    IF (@diasmora >= 30 && @diasmora < 60) 
+    BEGIN 
+        SET @alturamora = 2;				
+    END;
+
+    IF (@diasmora >= 60 && @diasmora < 90) 
+    BEGIN 
+        SET @alturamora = 3;		
+    END;
+
+    IF (@diasmora >= 90 && @diasmora < 120) 
+    BEGIN 
+        SET @alturamora = 4;				
+    END;
 """
 
     textoAnalizar_old: str = """

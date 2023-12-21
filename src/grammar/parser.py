@@ -22,12 +22,21 @@ from grammar.lexer import tokens
 
 
 precedence = (
-    ("left", "OR", "AND"),
-    ("right", "NUMERONEGATIVO"),
-    ("left", "IGUALLOGICO", "DIFERENTE", "MENOR", "MENORIGUAL", "MAYOR", "MAYORIGUAL"),
+    ("left", "OR"),
+    ("left", "AND"),
+    (
+        "nonassoc",
+        "IGUALLOGICO",
+        "DIFERENTE",
+        "MENOR",
+        "MENORIGUAL",
+        "MAYOR",
+        "MAYORIGUAL",
+    ),
     ("left", "SUMA", "RESTA"),
     ("left", "MULTIPLICACION", "DIVISION"),
-    ("left", "PARENTESISABRE", "PARENTESISCIERRA"),
+    ("nonassoc", "PARENTESISABRE", "PARENTESISCIERRA"),
+    ("nonassoc", "NUMERONEGATIVO"),
 )
 
 

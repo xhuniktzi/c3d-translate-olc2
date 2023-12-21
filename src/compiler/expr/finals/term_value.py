@@ -32,4 +32,7 @@ class TermValue(Expression):
             return C3DValue(temp_var, True, self.datatype)
 
         elif self.datatype == DataTypes.BOOLEAN:
-            pass
+            if self.value:
+                return C3DValue("1", False, self.datatype)
+            else:
+                return C3DValue("0", False, self.datatype)

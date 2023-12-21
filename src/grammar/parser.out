@@ -1220,32 +1220,32 @@ state 42
     (33) aritmeticas -> expresion . DIVISION expresion
 
     PUNTOYCOMA      reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    MAYOR           reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    MENOR           reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    MAYORIGUAL      reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    MENORIGUAL      reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    IGUALLOGICO     reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    DIFERENTE       reduce using rule 29 (aritmeticas -> RESTA expresion .)
     AND             reduce using rule 29 (aritmeticas -> RESTA expresion .)
     OR              reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    SUMA            reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    RESTA           reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    MULTIPLICACION  reduce using rule 29 (aritmeticas -> RESTA expresion .)
+    DIVISION        reduce using rule 29 (aritmeticas -> RESTA expresion .)
     PARENTESISCIERRA reduce using rule 29 (aritmeticas -> RESTA expresion .)
-    MAYOR           shift and go to state 29
-    MENOR           shift and go to state 30
-    MAYORIGUAL      shift and go to state 31
-    MENORIGUAL      shift and go to state 32
-    IGUALLOGICO     shift and go to state 33
-    DIFERENTE       shift and go to state 34
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
 
-  ! MAYOR           [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! MENOR           [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! MAYORIGUAL      [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! MENORIGUAL      [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! IGUALLOGICO     [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! DIFERENTE       [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! SUMA            [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! RESTA           [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! MULTIPLICACION  [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
-  ! DIVISION        [ reduce using rule 29 (aritmeticas -> RESTA expresion .) ]
+  ! MAYOR           [ shift and go to state 29 ]
+  ! MENOR           [ shift and go to state 30 ]
+  ! MAYORIGUAL      [ shift and go to state 31 ]
+  ! MENORIGUAL      [ shift and go to state 32 ]
+  ! IGUALLOGICO     [ shift and go to state 33 ]
+  ! DIFERENTE       [ shift and go to state 34 ]
   ! AND             [ shift and go to state 35 ]
   ! OR              [ shift and go to state 36 ]
+  ! SUMA            [ shift and go to state 37 ]
+  ! RESTA           [ shift and go to state 38 ]
+  ! MULTIPLICACION  [ shift and go to state 39 ]
+  ! DIVISION        [ shift and go to state 40 ]
 
 
 state 43
@@ -1618,7 +1618,6 @@ state 52
     (33) aritmeticas -> expresion . DIVISION expresion
 
     PUNTOYCOMA      reduce using rule 28 (logicas -> expresion OR expresion .)
-    AND             reduce using rule 28 (logicas -> expresion OR expresion .)
     OR              reduce using rule 28 (logicas -> expresion OR expresion .)
     PARENTESISCIERRA reduce using rule 28 (logicas -> expresion OR expresion .)
     MAYOR           shift and go to state 29
@@ -1627,6 +1626,7 @@ state 52
     MENORIGUAL      shift and go to state 32
     IGUALLOGICO     shift and go to state 33
     DIFERENTE       shift and go to state 34
+    AND             shift and go to state 35
     SUMA            shift and go to state 37
     RESTA           shift and go to state 38
     MULTIPLICACION  shift and go to state 39
@@ -1638,11 +1638,11 @@ state 52
   ! MENORIGUAL      [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
   ! IGUALLOGICO     [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
   ! DIFERENTE       [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
+  ! AND             [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
   ! SUMA            [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
   ! RESTA           [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
   ! MULTIPLICACION  [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
   ! DIVISION        [ reduce using rule 28 (logicas -> expresion OR expresion .) ]
-  ! AND             [ shift and go to state 35 ]
   ! OR              [ shift and go to state 36 ]
 
 
