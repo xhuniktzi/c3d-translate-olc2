@@ -19,11 +19,6 @@ class Assign(Statement):
         if symbol is None:
             return
 
-        if symbol.datatype == DataTypes.BOOLEAN:
-            temp_var: str = self.generator.mk_temp()
-            self.generator.access_stack(temp_var, symbol.position)
-            self.generator.register_write_stack(temp_var, variable_eval.value)
-        else:
-            temp_var: str = self.generator.mk_temp()
-            self.generator.access_stack(temp_var, symbol.position)
-            self.generator.register_write_stack(temp_var, variable_eval.value)
+        temp_var: str = self.generator.mk_temp()
+        self.generator.access_stack(temp_var, symbol.position)
+        self.generator.register_write_stack(temp_var, variable_eval.value)

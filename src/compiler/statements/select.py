@@ -41,6 +41,24 @@ class Select(Statement):
             self.generator.register_label(continue_label)
             self.generator.register_C_newline()
 
+        elif variable_eval.datatype == DataTypes.BOOLEAN:
+            true_label: str = self.generator.mk_label()
+            false_label: str = self.generator.mk_label()
+            exit_label: str = self.generator.mk_label()
+
+            self.generator.register_if_goto(variable_eval.value, "==", "1", true_label)
+            self.generator.register_goto(false_label)
+
+            self.generator.register_label(true_label)
+            self.generator.register_C_printf("%c", "84")
+            self.generator.register_goto(exit_label)
+
+            self.generator.register_label(false_label)
+            self.generator.register_C_printf("%c", "70")
+
+            self.generator.register_label(exit_label)
+            self.generator.register_C_newline()
+
         elif variable_eval.datatype == DataTypes.IDVARIABLE:
             symbol = env.get_variable(variable_eval.value)
             if symbol is None:
