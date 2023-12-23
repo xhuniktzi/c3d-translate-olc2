@@ -5,6 +5,7 @@ import ply.lex as lex
 reserved = {
     "create": "CREATE",
     "procedure": "PROCEDURE",
+    "function": "FUNCTION",
     "as": "AS",
     "begin": "BEGIN",
     "declare": "DECLARE",
@@ -20,6 +21,7 @@ reserved = {
     "nvarchar": "TIPODATO",
     "bit": "TIPODATO",  # bit is a boolean
     "exec": "EXEC",
+    "return": "RETURN",
 }
 
 # tokens

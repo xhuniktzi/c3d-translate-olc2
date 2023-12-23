@@ -3,6 +3,7 @@ from compiler.expr.aritmetic.multiply import Multiply
 from compiler.expr.aritmetic.add import Add
 from compiler.expr.aritmetic.negative import Negative
 from compiler.expr.aritmetic.sub import Sub
+from compiler.expr.finals.call_function import CallFunction
 from compiler.expr.finals.enum_datatypes import DataTypes
 from compiler.expr.finals.term_value import TermValue
 from compiler.expr.logical.and_expr import AndExpr
@@ -19,8 +20,10 @@ from compiler.helpers.str_to_datatype import fnStrToDatatype
 from compiler.statements.assign import Assign
 from compiler.statements.call_procedure import CallProcedure
 from compiler.statements.declare import Declare
+from compiler.statements.define_function import DefineFunction
 from compiler.statements.define_procedure import DefineProcedure
 from compiler.statements.if_statement import IfStatement
+from compiler.statements.return_statement import ReturnStatement
 from compiler.statements.select import Select
 import ply.yacc as yacc
 from grammar.lexer import tokens
@@ -68,6 +71,8 @@ def p_statement(p):
     | condicion
     | procedure
     | llamada
+    | function
+    | return
     """
     p[0] = p[1]
 
@@ -97,6 +102,16 @@ def p_condicion(p):
         p[0] = IfStatement(p[3], p[6], p[10])
 
 
+def p_return(p):
+    """return : RETURN expresion PUNTOYCOMA
+    | RETURN PUNTOYCOMA"""
+
+    if len(p) == 4:
+        p[0] = ReturnStatement(p[2])
+    else:
+        p[0] = ReturnStatement(None)
+
+
 # def p_ciclo(p):
 #     """ciclo : WHILE PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END"""
 
@@ -109,6 +124,17 @@ def p_procedure(p):
         p[0] = DefineProcedure(p[3], p[5], p[9])
     else:
         p[0] = DefineProcedure(p[3], [], p[7])
+
+
+def p_function(p):
+    """
+    function : CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END
+    | CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END
+    """
+    if len(p) == 13:
+        p[0] = DefineFunction(p[3], p[5], p[11], fnStrToDatatype(p[8]))
+    else:
+        p[0] = DefineFunction(p[3], [], p[9], fnStrToDatatype(p[6]))
 
 
 def p_llamada(p):
@@ -165,6 +191,11 @@ def p_expresion_aritmeticas(p):
 def p_expresion_parentesis(p):
     """expresion : PARENTESISABRE expresion PARENTESISCIERRA"""
     p[0] = p[2]
+
+
+def p_expresion_funcion(p):
+    """expresion : IDENTIFICADORGLOBAL PARENTESISABRE params_list PARENTESISCIERRA"""
+    p[0] = CallFunction(p[1], p[3])
 
 
 def p_valoresfinales_numero(p):

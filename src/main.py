@@ -7,46 +7,48 @@ from grammar.parser import parser
 
 
 def main():
+    _textoAnalizar: str = """
+    CREATE FUNCTION SUM(@A INT, @B INT)
+    RETURN INT
+    AS
+    BEGIN
+        RETURN @A + @B;
+    END
+
+    SELECT SUM(@A = 1, @B = 2);
+
+    """
+
     textoAnalizar: str = """
-
-CREATE PROCEDURE sp_actualizaalturamora (@credito int,@diasmora int)
-AS
-BEGIN
-	DECLARE @alturamora AS int;	
-		IF (@diasmora > 0 && @diasmora < 30) 
+	CREATE FUNCTION ackermann (@M INT, @N INT)
+    RETURN INT
+    AS
+	BEGIN
+		IF (@M == 0)
 		BEGIN
-			SET @alturamora = 0;
-		END
-	
-		IF (@diasmora >= 30 && @diasmora < 60) 
-		BEGIN 
-			SET @alturamora = 1;	
-		END
-	
-		IF (@diasmora >= 30 && @diasmora < 60) 
-		BEGIN 
-			SET @alturamora = 2;				
+			RETURN @N + 1;
 		END
 
-		IF (@diasmora >= 60 && @diasmora < 90) 
-		BEGIN 
-			SET @alturamora = 3;		
-		END
-	
-		IF (@diasmora >= 90 && @diasmora < 120) 
-		BEGIN 
-			SET @alturamora = 4;				
-		END
+        IF (@M > 0 && @N == 0)
+        BEGIN
+            RETURN ackermann(@M = @M - 1, @N = 1);
+        END
 
-        SELECT @alturamora;
-END
+        IF (@M > 0 && @N > 0)
+        BEGIN
+            DECLARE @TEMP AS INT;
+            SET @TEMP = ackermann(@M = @M, @N = @N - 1);
 
-DECLARE @credito AS int;
-SET @credito = 1;
-EXEC sp_actualizaalturamora (@credito = @credito, @diasmora = 2);
-EXEC sp_actualizaalturamora (@credito = @credito, @diasmora = 30);
-EXEC sp_actualizaalturamora (@credito =@credito, @diasmora = 60);
-EXEC sp_actualizaalturamora (@credito =@credito, @diasmora = 90);
+            RETURN ackermann(@M = @M - 1, @N = @TEMP);
+        END
+    END
+    
+    SELECT ackermann(@M = 0,@N = 0);
+    SELECT ackermann(@M = 1,@N = 1);
+    SELECT ackermann(@M = 2,@N = 2);
+    SELECT ackermann(@M = 3,@N = 3);
+    SELECT ackermann(@M = 4,@N = 0);
+    SELECT ackermann(@M = 4,@N = 1);
     """
 
     lexer.input(textoAnalizar)

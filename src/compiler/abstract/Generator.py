@@ -1,3 +1,6 @@
+from compiler.expr.finals.enum_datatypes import DataTypes
+
+
 class Generator:
     _instance = None
 
@@ -17,6 +20,7 @@ class Generator:
         self.temporal_variables: list[str] = []
 
         self.functions: dict[str, list[str]] = {}
+        self.return_functions: dict[str, DataTypes] = {}
 
         self.current_function: str = None  # main function
 
@@ -73,8 +77,11 @@ double h = 0;
         self.label += 1
         return label
 
-    def register_function(self, function_name: str) -> None:
+    def register_function(
+        self, function_name: str, return_type: DataTypes = None
+    ) -> None:
         self.functions[function_name] = []
+        self.return_functions[function_name] = return_type
 
     def change_function(self, function_name: str) -> None:
         if function_name == "main":
@@ -217,6 +224,14 @@ double h = 0;
 
     def simple_if(self, expr0: str, label: str) -> None:
         code: str = f"if ({expr0}) goto {label};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
+
+    def register_return(self) -> None:
+        code: str = "return;\n"
+
         if self.current_function is not None:
             self.functions[self.current_function].append(code)
         else:
