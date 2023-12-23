@@ -16,6 +16,10 @@ class Generator:
         self.code: list[str] = []
         self.temporal_variables: list[str] = []
 
+        self.functions: dict[str, list[str]] = {}
+
+        self.current_function: str = None  # main function
+
     def get_temporal_variables(self) -> str:
         return ",".join(self.temporal_variables)
 
@@ -60,61 +64,151 @@ double h = 0;
         self.label += 1
         return label
 
+    def register_function(self, function_name: str) -> None:
+        self.functions[function_name] = []
+
+    def change_function(self, function_name: str) -> None:
+        if function_name == "main":
+            self.current_function = None
+        else:
+            self.current_function = function_name
+
     def register_call_function(self, function_name: str) -> None:
-        self.code.append(f"{function_name}();\n")
+        code: str = f"{function_name}();\n"
+
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_label(self, label: str) -> None:
-        self.code.append(f"{label}:\n")
+        code: str = f"{label}:\n"
+
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_c3d_expression(
         self, expr0: str, expr1: str, op: str, expr2: str
     ) -> None:
-        self.code.append(f"{expr0} = {expr1} {op} {expr2};\n")
+        code: str = f"{expr0} = {expr1} {op} {expr2};\n"
+
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_if_goto(self, expr0: str, op: str, expr1: str, label: str) -> None:
-        self.code.append(f"if ({expr0} {op} {expr1}) goto {label};\n")
+        code: str = f"if ({expr0} {op} {expr1}) goto {label};\n"
+
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_goto(self, label: str) -> None:
-        self.code.append(f"goto {label};\n")
+        code: str = f"goto {label};\n"
+
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_C_printf(self, print_control: str, expr: str) -> None:
-        self.code.append(f'printf("{print_control}", {expr});\n')
+        code: str = f'printf("{print_control}", {expr});\n'
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_C_newline(self) -> None:
-        self.code.append(f'printf("%c", 10);\n')
+        code: str = 'printf("%c", 10);\n'
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_next_heap(self) -> None:
-        self.code.append("h = h + 1;\n")
+        code: str = "h = h + 1;\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_next_stack(self) -> None:
-        self.code.append("p = p + 1;\n")
+        code: str = "p = p + 1;\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_back_stack(self) -> None:
-        self.code.append("p = p - 1;\n")
+        code: str = "p = p - 1;\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_read_heap(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"{expr0} = heap[(int){expr1}];\n")
+        code: str = f"{expr0} = heap[(int){expr1}];\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_write_heap(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"heap[(int){expr0}] = {expr1};\n")
+        code: str = f"heap[(int){expr0}] = {expr1};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_read_stack(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"{expr0} = stack[(int){expr1}];\n")
+        code: str = f"{expr0} = stack[(int){expr1}];\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def register_write_stack(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"stack[(int){expr0}] = {expr1};\n")
+        code: str = f"stack[(int){expr0}] = {expr1};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def into_scope(self, offset: int) -> None:
-        self.code.append(f"p = p + {offset};\n")
+        code: str = f"p = p + {offset};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def out_scope(self, offset: int) -> None:
-        self.code.append(f"p = p - {offset};\n")
+        code: str = f"p = p - {offset};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def access_stack(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"{expr0} = p + {expr1};\n")
+        code: str = f"{expr0} = p + {expr1};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def simple_assign(self, expr0: str, expr1: str) -> None:
-        self.code.append(f"{expr0} = {expr1};\n")
+        code: str = f"{expr0} = {expr1};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)
 
     def simple_if(self, expr0: str, label: str) -> None:
-        self.code.append(f"if ({expr0}) goto {label};\n")
+        code: str = f"if ({expr0}) goto {label};\n"
+        if self.current_function is not None:
+            self.functions[self.current_function].append(code)
+        else:
+            self.code.append(code)

@@ -13,9 +13,13 @@ from compiler.expr.relationals.majorequals import MajorEquals
 from compiler.expr.relationals.minor import Minor
 from compiler.expr.relationals.minorequals import MinorEquals
 from compiler.expr.relationals.notequals import NotEquals
+from compiler.expr.transport.args import Args
+from compiler.expr.transport.param import Param
 from compiler.helpers.str_to_datatype import fnStrToDatatype
 from compiler.statements.assign import Assign
+from compiler.statements.call_procedure import CallProcedure
 from compiler.statements.declare import Declare
+from compiler.statements.define_procedure import DefineProcedure
 from compiler.statements.if_statement import IfStatement
 from compiler.statements.select import Select
 import ply.yacc as yacc
@@ -62,11 +66,8 @@ def p_statement(p):
     | asignacion
     | select
     | condicion
+    | procedure
     """
-    # | ciclo
-    # | procedure
-    # | llamada_procedure
-    # """
     p[0] = p[1]
 
 
@@ -82,7 +83,6 @@ def p_asignacion(p):
 
 def p_select(p):
     """select : SELECT expresion PUNTOYCOMA"""
-
     p[0] = Select(p[2])
 
 
@@ -100,22 +100,45 @@ def p_condicion(p):
 #     """ciclo : WHILE PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END"""
 
 
-# def p_procedure(p):
-#     """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA BEGIN statements END"""
+def p_procedure(p):
+    """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA BEGIN statements END
+    | CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA BEGIN statements END
+    """
+    if len(p) == 11:
+        p[0] = DefineProcedure(p[3], p[5], p[8])
+    else:
+        p[0] = DefineProcedure(p[3], [], p[6])
 
 
-# def p_llamada(p):
-#     """llamada : EXEC IDENTIFICADORGLOBAL PARENTESISABRE params_list PARENTESISCIERRA PUNTOYCOMA"""
+def p_llamada(p):
+    """llamada : EXEC IDENTIFICADORGLOBAL PARENTESISABRE params_list PARENTESISCIERRA PUNTOYCOMA
+    | EXEC IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA PUNTOYCOMA"""
+    if len(p) == 7:
+        p[0] = CallProcedure(p[2], p[4])
+    else:
+        p[0] = CallProcedure(p[2], [])
 
 
-# def p_args_list(p):
-#     """args_list : args_list COMA IDVARIABLE TIPODATO
-#     | IDVARIABLE TIPODATO"""
+def p_args_list(p):
+    """args_list : args_list COMA IDVARIABLE TIPODATO
+    | IDVARIABLE TIPODATO"""
+    if len(p) == 5:
+        p[0] = p[1]
+        p[0].append(Args(p[3], fnStrToDatatype(p[4])))
+    else:
+        p[0] = []
+        p[0].append(Args(p[1], fnStrToDatatype([2])))
 
 
-# def p_params_list(p):
-#     """params_list : params_list COMA IDVARIABLE IGUAL expresion
-#     | IDVARIABLE IGUAL expresion"""
+def p_params_list(p):
+    """params_list : params_list COMA IDVARIABLE IGUAL expresion
+    | IDVARIABLE IGUAL expresion"""
+    if len(p) == 6:
+        p[0] = p[1]
+        p[0].append(Param(p[3], p[5]))
+    else:
+        p[0] = []
+        p[0].append(Param(p[1], p[3]))
 
 
 def p_expresion_relacionales(p):

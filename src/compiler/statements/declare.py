@@ -11,7 +11,4 @@ class Declare(Statement):
         self.datatype: DataTypes = datatype
 
     def translate_to_c3d(self, env: Environment):
-        # symbol: C3DSymbol =
         env.add_variable(self.identifier, self.datatype)
-
-        # self.generator.register_write_stack(symbol.position, "0")

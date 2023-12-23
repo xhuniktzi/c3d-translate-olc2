@@ -1,6 +1,7 @@
 from compiler.abstract.Generator import Generator
 from compiler.abstract.environment import Environment
 from compiler.abstract.statement import Statement
+from compiler.statements.define_procedure import DefineProcedure
 from grammar.lexer import lexer
 from grammar.parser import parser
 
@@ -8,8 +9,8 @@ from grammar.parser import parser
 def main():
     textoAnalizar: str = """
 
-DECLARE @diasmora AS INT;
-SET @diasmora = 45;
+    DECLARE @diasmora AS INT;
+    SET @diasmora = 45;
 
 	DECLARE @alturamora AS INT;		
     IF (@diasmora > 0 && @diasmora < 30) 
@@ -61,8 +62,12 @@ SELECT @alturamora;
     generator: Generator = Generator()
     ast: list[Statement] = parser.parse(textoAnalizar)
     global_env: Environment = Environment()
+
     for statement in ast:
-        statement.translate_to_c3d(global_env)
+        if isinstance(statement, DefineProcedure):
+            pass
+        else:
+            statement.translate_to_c3d(global_env)
 
     print(generator.generate_code())
 
