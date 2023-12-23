@@ -44,7 +44,7 @@ double h = 0;
         code_define_procedure: str = ""
         for function_name, function_code in self.functions.items():
             code_define_procedure += f"void {function_name}() {{\n"
-            code_define_procedure += "\n".join(function_code)
+            code_define_procedure += "".join(function_code)
             code_define_procedure += "}\n"
 
         return code_define_procedure

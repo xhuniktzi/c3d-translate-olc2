@@ -28,7 +28,7 @@ class CallProcedure(Statement):
             self.generator.simple_assign(temp_var, param_eval.value)
 
         # change scope
-        self.generator.into_scope(env.size + 1)
+        self.generator.into_scope(env.size)
         for i in range(len(self.params)):
             temp_var: str = self.generator.mk_temp()
             self.generator.access_stack(temp_var, i)
@@ -38,7 +38,7 @@ class CallProcedure(Statement):
         self.generator.register_call_function(self.proc_id)
 
         # return to scope
-        self.generator.out_scope(env.size + 1)
+        self.generator.out_scope(env.size)
 
     def handle_variable(self, eval_var: C3DValue, env: Environment) -> C3DValue:
         if eval_var.datatype != DataTypes.IDVARIABLE:

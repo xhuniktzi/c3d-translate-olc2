@@ -9,30 +9,45 @@ from grammar.parser import parser
 def main():
     textoAnalizar: str = """
 
-CREATE PROCEDURE prueba (@valor INT)
+CREATE PROCEDURE sp_actualizaalturamora (@credito int,@diasmora int)
 AS
 BEGIN
-	SELECT @valor;
+	DECLARE @alturamora AS int;	
+		IF (@diasmora > 0 && @diasmora < 30) 
+		BEGIN
+			SET @alturamora = 0;
+		END
+	
+		IF (@diasmora >= 30 && @diasmora < 60) 
+		BEGIN 
+			SET @alturamora = 1;	
+		END
+	
+		IF (@diasmora >= 30 && @diasmora < 60) 
+		BEGIN 
+			SET @alturamora = 2;				
+		END
+
+		IF (@diasmora >= 60 && @diasmora < 90) 
+		BEGIN 
+			SET @alturamora = 3;		
+		END
+	
+		IF (@diasmora >= 90 && @diasmora < 120) 
+		BEGIN 
+			SET @alturamora = 4;				
+		END
+
+        SELECT @alturamora;
 END
-    DECLARE @data1 AS INT;
-    SET @data1 = 5;
 
-    EXEC prueba ( @valor = @data1);
-    SET @data1 = 10;
-    EXEC prueba ( @valor = @data1);
-    DECLARE @data2 AS INT;
-    SET @data2 = 15;
-    EXEC prueba ( @valor = @data2);
+DECLARE @credito AS int;
+SET @credito = 1;
+EXEC sp_actualizaalturamora (@credito = @credito, @diasmora = 2);
+EXEC sp_actualizaalturamora (@credito = @credito, @diasmora = 30);
+EXEC sp_actualizaalturamora (@credito =@credito, @diasmora = 60);
+EXEC sp_actualizaalturamora (@credito =@credito, @diasmora = 90);
     """
-
-    old_textoAnalizar: str = """
-
-"""
-
-    textoAnalizar_old: str = """
-
-
-        """
 
     lexer.input(textoAnalizar)
     while True:
