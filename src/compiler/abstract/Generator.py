@@ -40,10 +40,19 @@ double h = 0;
 
         return code_header
 
+    def generate_define_procedure(self) -> str:
+        code_define_procedure: str = ""
+        for function_name, function_code in self.functions.items():
+            code_define_procedure += f"void {function_name}() {{\n"
+            code_define_procedure += "\n".join(function_code)
+            code_define_procedure += "}\n"
+
+        return code_define_procedure
+
     def generate_code(self) -> str:
         code_executable: str = ""
         code_executable += self.generate_header()
-
+        code_executable += self.generate_define_procedure()
         code_executable += "int main() {\n"
         code_executable += "".join(self.code)
         code_executable += "\n"

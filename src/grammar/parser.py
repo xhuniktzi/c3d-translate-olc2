@@ -67,6 +67,7 @@ def p_statement(p):
     | select
     | condicion
     | procedure
+    | llamada
     """
     p[0] = p[1]
 
@@ -101,13 +102,13 @@ def p_condicion(p):
 
 
 def p_procedure(p):
-    """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA BEGIN statements END
-    | CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA BEGIN statements END
+    """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA AS BEGIN statements END
+    | CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA AS BEGIN statements END
     """
     if len(p) == 11:
-        p[0] = DefineProcedure(p[3], p[5], p[8])
+        p[0] = DefineProcedure(p[3], p[5], p[9])
     else:
-        p[0] = DefineProcedure(p[3], [], p[6])
+        p[0] = DefineProcedure(p[3], [], p[7])
 
 
 def p_llamada(p):
@@ -127,7 +128,7 @@ def p_args_list(p):
         p[0].append(Args(p[3], fnStrToDatatype(p[4])))
     else:
         p[0] = []
-        p[0].append(Args(p[1], fnStrToDatatype([2])))
+        p[0].append(Args(p[1], fnStrToDatatype(p[2])))
 
 
 def p_params_list(p):

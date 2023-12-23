@@ -9,38 +9,20 @@ from grammar.parser import parser
 def main():
     textoAnalizar: str = """
 
-    DECLARE @diasmora AS INT;
-    SET @diasmora = 45;
+CREATE PROCEDURE prueba (@valor INT)
+AS
+BEGIN
+	SELECT @valor;
+END
+    DECLARE @data1 AS INT;
+    SET @data1 = 5;
 
-	DECLARE @alturamora AS INT;		
-    IF (@diasmora > 0 && @diasmora < 30) 
-    BEGIN
-        SET @alturamora = 0;
-    END
-
-    IF (@diasmora >= 30 && @diasmora < 60) 
-    BEGIN 
-        SET @alturamora = 1;	
-    END
-
-    IF (@diasmora >= 30 && @diasmora < 60) 
-    BEGIN 
-        SET @alturamora = 2;				
-    END
-
-    IF (@diasmora >= 60 && @diasmora < 90) 
-    BEGIN 
-        SET @alturamora = 3;		
-    END
-
-    IF (@diasmora >= 90 && @diasmora < 120) 
-    BEGIN 
-        SET @alturamora = 4;				
-    END
-
-SELECT @alturamora;
-
-
+    EXEC prueba ( @valor = @data1);
+    SET @data1 = 10;
+    EXEC prueba ( @valor = @data1);
+    DECLARE @data2 AS INT;
+    SET @data2 = 15;
+    EXEC prueba ( @valor = @data2);
     """
 
     old_textoAnalizar: str = """
@@ -64,10 +46,10 @@ SELECT @alturamora;
     global_env: Environment = Environment()
 
     for statement in ast:
-        if isinstance(statement, DefineProcedure):
-            pass
-        else:
-            statement.translate_to_c3d(global_env)
+        # if isinstance(statement, DefineProcedure):
+        #     statement.translate_to_c3d(global_env)
+        # else:
+        statement.translate_to_c3d(global_env)
 
     print(generator.generate_code())
 
