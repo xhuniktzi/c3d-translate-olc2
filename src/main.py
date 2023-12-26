@@ -35,7 +35,9 @@ def main():
 
         IF (@M > 0 && @N > 0)
         BEGIN
-            RETURN ackermann(@M = @M - 1, @N =  ackermann(@M = @M, @N = @N - 1));
+            DECLARE @TEMP AS INT;
+            SET @TEMP = ackermann(@M = @M, @N = @N - 1);
+            RETURN ackermann(@M = @M - 1, @N = @TEMP);
         END
     END
     
