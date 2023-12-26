@@ -1,7 +1,6 @@
 from compiler.abstract.Generator import Generator
 from compiler.abstract.environment import Environment
 from compiler.abstract.statement import Statement
-from compiler.statements.define_procedure import DefineProcedure
 from grammar.lexer import lexer
 from grammar.parser import parser
 
@@ -36,10 +35,7 @@ def main():
 
         IF (@M > 0 && @N > 0)
         BEGIN
-            DECLARE @TEMP AS INT;
-            SET @TEMP = ackermann(@M = @M, @N = @N - 1);
-
-            RETURN ackermann(@M = @M - 1, @N = @TEMP);
+            RETURN ackermann(@M = @M - 1, @N =  ackermann(@M = @M, @N = @N - 1));
         END
     END
     
@@ -63,12 +59,10 @@ def main():
     global_env: Environment = Environment()
 
     for statement in ast:
-        # if isinstance(statement, DefineProcedure):
-        #     statement.translate_to_c3d(global_env)
-        # else:
         statement.translate_to_c3d(global_env)
 
-    print(generator.generate_code())
+    with open("src/main.c", "w") as file:
+        file.write(generator.generate_code())
 
 
 if __name__ == "__main__":
