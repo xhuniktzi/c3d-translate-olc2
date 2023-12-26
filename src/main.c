@@ -7,240 +7,1116 @@ double stack[524288];
 
 double p = 0;
 double h = 0;
-double t0,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t33,t34,t35,t36,t37,t38,t39,t40,t41,t42,t43,t44,t45,t46,t47,t48,t49,t50,t51,t52,t53,t54,t55,t56,t57,t58,t59,t60,t61,t62,t63,t64,t65,t66,t67,t68,t69,t70,t71,t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83,t84,t85,t86,t87,t88,t89,t90,t91,t92,t93,t94,t95,t96,t97,t98,t99;
-void ackermann() {
-t1 = p + 1;
-t0 = stack[(int)t1];
-if (t0 == 0.0) goto L0;
-goto L1;
-L0:
-t2 = 1;
-goto L2;
-L1:
-t2 = 0;
-L2:
-if (t2 == 1) goto L3;
-goto L4;
+double t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42, t43, t44, t45, t46, t47, t48, t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, t66, t67, t68, t69, t70, t71, t72, t73, t74, t75, t76, t77, t78, t79, t80, t81, t82, t83, t84, t85, t86, t87, t88, t89, t90, t91, t92, t93, t94, t95, t96, t97, t98, t99, t100, t101, t102, t103, t104, t105, t106, t107, t108, t109, t110, t111, t112, t113, t114, t115, t116, t117, t118, t119, t120, t121, t122, t123, t124, t125, t126, t127, t128, t129, t130, t131, t132, t133, t134, t135, t136, t137, t138, t139, t140, t141, t142, t143, t144, t145, t146, t147, t148, t149, t150, t151, t152, t153, t154, t155, t156, t157, t158, t159, t160, t161, t162, t163, t164, t165, t166, t167, t168, t169, t170, t171, t172, t173, t174, t175, t176, t177, t178, t179, t180, t181, t182, t183, t184, t185, t186, t187, t188, t189, t190, t191, t192, t193, t194, t195, t196, t197, t198, t199, t200, t201, t202, t203, t204, t205, t206, t207, t208, t209, t210, t211, t212, t213, t214, t215, t216, t217, t218, t219, t220, t221, t222, t223, t224, t225, t226, t227, t228, t229, t230, t231, t232, t233, t234, t235, t236, t237, t238, t239, t240, t241, t242, t243, t244, t245, t246, t247, t248, t249, t250, t251, t252, t253, t254, t255, t256, t257, t258, t259, t260, t261, t262, t263, t264, t265, t266, t267, t268, t269;
+void fn_retornaalturamora()
+{
+    t1 = p + 1;
+    t0 = stack[(int)t1];
+    if (t0 > 0.0)
+        goto L3;
+    goto L4;
 L3:
-t6 = p + 2;
-t5 = stack[(int)t6];
-t4 = t5 + 1.0;
-t3 = t4;
-t7 = p + 0;
-stack[(int)t7] = t3;
-return;
+    t2 = 1;
+    goto L5;
 L4:
-t9 = p + 1;
-t8 = stack[(int)t9];
-if (t8 > 0.0) goto L8;
-goto L9;
-L8:
-t10 = 1;
-goto L10;
-L9:
-t10 = 0;
-L10:
-t12 = p + 2;
-t11 = stack[(int)t12];
-if (t11 == 0.0) goto L11;
-goto L12;
-L11:
-t13 = 1;
-goto L13;
-L12:
-t13 = 0;
-L13:
-if (t10 == 1) goto L7;
-goto L6;
-L7:
-if (t13 == 1) goto L5;
-goto L6;
+    t2 = 0;
 L5:
-t14 = 1;
-goto L14;
+    t4 = p + 1;
+    t3 = stack[(int)t4];
+    if (t3 < 30.0)
+        goto L6;
+    goto L7;
 L6:
-t14 = 0;
-L14:
-if (t14 == 1) goto L15;
-goto L16;
+    t5 = 1;
+    goto L8;
+L7:
+    t5 = 0;
+L8:
+    if (t2 == 1)
+        goto L2;
+    goto L1;
+L2:
+    if (t5 == 1)
+        goto L0;
+    goto L1;
+L0:
+    t6 = 1;
+    goto L9;
+L1:
+    t6 = 0;
+L9:
+    if (t6 == 1)
+        goto L10;
+    goto L11;
+L10:
+    t7 = h;
+    heap[(int)h] = 65;
+    h = h + 1;
+    heap[(int)h] = 108;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 100;
+    h = h + 1;
+    heap[(int)h] = 105;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = -1;
+    h = h + 1;
+    t8 = p + 2;
+    stack[(int)t8] = t7;
+L11:
+    t10 = p + 1;
+    t9 = stack[(int)t10];
+    if (t9 >= 30.0)
+        goto L15;
+    goto L16;
 L15:
-t16 = 3;
-t20 = p + 1;
-t19 = stack[(int)t20];
-t18 = t19 - 1.0;
-t17 = t18;
-t21 = 1.0;
-p = p + 3;
-t22 = p + 1;
-stack[(int)t22] = t17;
-t23 = p + 2;
-stack[(int)t23] = t21;
-ackermann();
-t25 = p + 0;
-t24 = stack[(int)t25];
-p = p - 3;
-t15 = t24;
-t26 = p + 0;
-stack[(int)t26] = t15;
-return;
+    t11 = 1;
+    goto L17;
 L16:
-t28 = p + 1;
-t27 = stack[(int)t28];
-if (t27 > 0.0) goto L20;
-goto L21;
-L20:
-t29 = 1;
-goto L22;
-L21:
-t29 = 0;
-L22:
-t31 = p + 2;
-t30 = stack[(int)t31];
-if (t30 > 0.0) goto L23;
-goto L24;
-L23:
-t32 = 1;
-goto L25;
-L24:
-t32 = 0;
-L25:
-if (t29 == 1) goto L19;
-goto L18;
-L19:
-if (t32 == 1) goto L17;
-goto L18;
+    t11 = 0;
 L17:
-t33 = 1;
-goto L26;
+    t13 = p + 1;
+    t12 = stack[(int)t13];
+    if (t12 < 60.0)
+        goto L18;
+    goto L19;
 L18:
-t33 = 0;
-L26:
-if (t33 == 1) goto L27;
-goto L28;
+    t14 = 1;
+    goto L20;
+L19:
+    t14 = 0;
+L20:
+    if (t11 == 1)
+        goto L14;
+    goto L13;
+L14:
+    if (t14 == 1)
+        goto L12;
+    goto L13;
+L12:
+    t15 = 1;
+    goto L21;
+L13:
+    t15 = 0;
+L21:
+    if (t15 == 1)
+        goto L22;
+    goto L23;
+L22:
+    t16 = h;
+    heap[(int)h] = 65;
+    h = h + 1;
+    heap[(int)h] = 108;
+    h = h + 1;
+    heap[(int)h] = 116;
+    h = h + 1;
+    heap[(int)h] = 117;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 77;
+    h = h + 1;
+    heap[(int)h] = 111;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 50;
+    h = h + 1;
+    heap[(int)h] = -1;
+    h = h + 1;
+    t17 = p + 2;
+    stack[(int)t17] = t16;
+L23:
+    t19 = p + 1;
+    t18 = stack[(int)t19];
+    if (t18 >= 30.0)
+        goto L27;
+    goto L28;
 L27:
-t35 = 3;
-t39 = p + 1;
-t38 = stack[(int)t39];
-t37 = t38 - 1.0;
-t36 = t37;
-t41 = 3;
-t44 = p + 1;
-t43 = stack[(int)t44];
-t42 = t43;
-t48 = p + 2;
-t47 = stack[(int)t48];
-t46 = t47 - 1.0;
-t45 = t46;
-p = p + 3;
-t49 = p + 1;
-stack[(int)t49] = t42;
-t50 = p + 2;
-stack[(int)t50] = t45;
-ackermann();
-t52 = p + 0;
-t51 = stack[(int)t52];
-p = p - 3;
-t40 = t51;
-p = p + 3;
-t53 = p + 1;
-stack[(int)t53] = t36;
-t54 = p + 2;
-stack[(int)t54] = t40;
-ackermann();
-t56 = p + 0;
-t55 = stack[(int)t56];
-p = p - 3;
-t34 = t55;
-t57 = p + 0;
-stack[(int)t57] = t34;
-return;
+    t20 = 1;
+    goto L29;
 L28:
+    t20 = 0;
+L29:
+    t22 = p + 1;
+    t21 = stack[(int)t22];
+    if (t21 < 60.0)
+        goto L30;
+    goto L31;
+L30:
+    t23 = 1;
+    goto L32;
+L31:
+    t23 = 0;
+L32:
+    if (t20 == 1)
+        goto L26;
+    goto L25;
+L26:
+    if (t23 == 1)
+        goto L24;
+    goto L25;
+L24:
+    t24 = 1;
+    goto L33;
+L25:
+    t24 = 0;
+L33:
+    if (t24 == 1)
+        goto L34;
+    goto L35;
+L34:
+    t25 = h;
+    heap[(int)h] = 65;
+    h = h + 1;
+    heap[(int)h] = 108;
+    h = h + 1;
+    heap[(int)h] = 116;
+    h = h + 1;
+    heap[(int)h] = 117;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 77;
+    h = h + 1;
+    heap[(int)h] = 111;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 51;
+    h = h + 1;
+    heap[(int)h] = -1;
+    h = h + 1;
+    t26 = p + 2;
+    stack[(int)t26] = t25;
+L35:
+    t28 = p + 1;
+    t27 = stack[(int)t28];
+    if (t27 >= 60.0)
+        goto L39;
+    goto L40;
+L39:
+    t29 = 1;
+    goto L41;
+L40:
+    t29 = 0;
+L41:
+    t31 = p + 1;
+    t30 = stack[(int)t31];
+    if (t30 < 90.0)
+        goto L42;
+    goto L43;
+L42:
+    t32 = 1;
+    goto L44;
+L43:
+    t32 = 0;
+L44:
+    if (t29 == 1)
+        goto L38;
+    goto L37;
+L38:
+    if (t32 == 1)
+        goto L36;
+    goto L37;
+L36:
+    t33 = 1;
+    goto L45;
+L37:
+    t33 = 0;
+L45:
+    if (t33 == 1)
+        goto L46;
+    goto L47;
+L46:
+    t34 = h;
+    heap[(int)h] = 65;
+    h = h + 1;
+    heap[(int)h] = 108;
+    h = h + 1;
+    heap[(int)h] = 116;
+    h = h + 1;
+    heap[(int)h] = 117;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 77;
+    h = h + 1;
+    heap[(int)h] = 111;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 52;
+    h = h + 1;
+    heap[(int)h] = -1;
+    h = h + 1;
+    t35 = p + 2;
+    stack[(int)t35] = t34;
+L47:
+    t37 = p + 1;
+    t36 = stack[(int)t37];
+    if (t36 >= 90.0)
+        goto L51;
+    goto L52;
+L51:
+    t38 = 1;
+    goto L53;
+L52:
+    t38 = 0;
+L53:
+    t40 = p + 1;
+    t39 = stack[(int)t40];
+    if (t39 < 120.0)
+        goto L54;
+    goto L55;
+L54:
+    t41 = 1;
+    goto L56;
+L55:
+    t41 = 0;
+L56:
+    if (t38 == 1)
+        goto L50;
+    goto L49;
+L50:
+    if (t41 == 1)
+        goto L48;
+    goto L49;
+L48:
+    t42 = 1;
+    goto L57;
+L49:
+    t42 = 0;
+L57:
+    if (t42 == 1)
+        goto L58;
+    goto L59;
+L58:
+    t43 = h;
+    heap[(int)h] = 65;
+    h = h + 1;
+    heap[(int)h] = 108;
+    h = h + 1;
+    heap[(int)h] = 116;
+    h = h + 1;
+    heap[(int)h] = 117;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 77;
+    h = h + 1;
+    heap[(int)h] = 111;
+    h = h + 1;
+    heap[(int)h] = 114;
+    h = h + 1;
+    heap[(int)h] = 97;
+    h = h + 1;
+    heap[(int)h] = 32;
+    h = h + 1;
+    heap[(int)h] = 53;
+    h = h + 1;
+    heap[(int)h] = -1;
+    h = h + 1;
+    t44 = p + 2;
+    stack[(int)t44] = t43;
+L59:
+    t47 = p + 2;
+    t46 = stack[(int)t47];
+    t45 = t46;
+    t48 = p + 0;
+    stack[(int)t48] = t45;
+    return;
 }
-int main() {
-t58 = 0;
-t59 = 0.0;
-t60 = 0.0;
-p = p + 0;
-t61 = p + 1;
-stack[(int)t61] = t59;
-t62 = p + 2;
-stack[(int)t62] = t60;
-ackermann();
-t64 = p + 0;
-t63 = stack[(int)t64];
-p = p - 0;
-printf("%d", (int)t63);
-printf("%c", 10);
-t65 = 0;
-t66 = 1.0;
-t67 = 1.0;
-p = p + 0;
-t68 = p + 1;
-stack[(int)t68] = t66;
-t69 = p + 2;
-stack[(int)t69] = t67;
-ackermann();
-t71 = p + 0;
-t70 = stack[(int)t71];
-p = p - 0;
-printf("%d", (int)t70);
-printf("%c", 10);
-t72 = 0;
-t73 = 2.0;
-t74 = 2.0;
-p = p + 0;
-t75 = p + 1;
-stack[(int)t75] = t73;
-t76 = p + 2;
-stack[(int)t76] = t74;
-ackermann();
-t78 = p + 0;
-t77 = stack[(int)t78];
-p = p - 0;
-printf("%d", (int)t77);
-printf("%c", 10);
-t79 = 0;
-t80 = 3.0;
-t81 = 3.0;
-p = p + 0;
-t82 = p + 1;
-stack[(int)t82] = t80;
-t83 = p + 2;
-stack[(int)t83] = t81;
-ackermann();
-t85 = p + 0;
-t84 = stack[(int)t85];
-p = p - 0;
-printf("%d", (int)t84);
-printf("%c", 10);
-t86 = 0;
-t87 = 4.0;
-t88 = 0.0;
-p = p + 0;
-t89 = p + 1;
-stack[(int)t89] = t87;
-t90 = p + 2;
-stack[(int)t90] = t88;
-ackermann();
-t92 = p + 0;
-t91 = stack[(int)t92];
-p = p - 0;
-printf("%d", (int)t91);
-printf("%c", 10);
-t93 = 0;
-t94 = 4.0;
-t95 = 1.0;
-p = p + 0;
-t96 = p + 1;
-stack[(int)t96] = t94;
-t97 = p + 2;
-stack[(int)t97] = t95;
-ackermann();
-t99 = p + 0;
-t98 = stack[(int)t99];
-p = p - 0;
-printf("%d", (int)t98);
-printf("%c", 10);
+void sp_actualizaalturamora()
+{
+    t50 = p + 1;
+    t49 = stack[(int)t50];
+    if (t49 > 0.0)
+        goto L63;
+    goto L64;
+L63:
+    t51 = 1;
+    goto L65;
+L64:
+    t51 = 0;
+L65:
+    t53 = p + 1;
+    t52 = stack[(int)t53];
+    if (t52 < 30.0)
+        goto L66;
+    goto L67;
+L66:
+    t54 = 1;
+    goto L68;
+L67:
+    t54 = 0;
+L68:
+    if (t51 == 1)
+        goto L62;
+    goto L61;
+L62:
+    if (t54 == 1)
+        goto L60;
+    goto L61;
+L60:
+    t55 = 1;
+    goto L69;
+L61:
+    t55 = 0;
+L69:
+    if (t55 == 1)
+        goto L70;
+    goto L71;
+L70:
+    t56 = p + 2;
+    stack[(int)t56] = 0.0;
+L71:
+    t58 = p + 1;
+    t57 = stack[(int)t58];
+    if (t57 >= 30.0)
+        goto L75;
+    goto L76;
+L75:
+    t59 = 1;
+    goto L77;
+L76:
+    t59 = 0;
+L77:
+    t61 = p + 1;
+    t60 = stack[(int)t61];
+    if (t60 < 60.0)
+        goto L78;
+    goto L79;
+L78:
+    t62 = 1;
+    goto L80;
+L79:
+    t62 = 0;
+L80:
+    if (t59 == 1)
+        goto L74;
+    goto L73;
+L74:
+    if (t62 == 1)
+        goto L72;
+    goto L73;
+L72:
+    t63 = 1;
+    goto L81;
+L73:
+    t63 = 0;
+L81:
+    if (t63 == 1)
+        goto L82;
+    goto L83;
+L82:
+    t64 = p + 2;
+    stack[(int)t64] = 1.0;
+L83:
+    t66 = p + 1;
+    t65 = stack[(int)t66];
+    if (t65 >= 30.0)
+        goto L87;
+    goto L88;
+L87:
+    t67 = 1;
+    goto L89;
+L88:
+    t67 = 0;
+L89:
+    t69 = p + 1;
+    t68 = stack[(int)t69];
+    if (t68 < 60.0)
+        goto L90;
+    goto L91;
+L90:
+    t70 = 1;
+    goto L92;
+L91:
+    t70 = 0;
+L92:
+    if (t67 == 1)
+        goto L86;
+    goto L85;
+L86:
+    if (t70 == 1)
+        goto L84;
+    goto L85;
+L84:
+    t71 = 1;
+    goto L93;
+L85:
+    t71 = 0;
+L93:
+    if (t71 == 1)
+        goto L94;
+    goto L95;
+L94:
+    t72 = p + 2;
+    stack[(int)t72] = 2.0;
+L95:
+    t74 = p + 1;
+    t73 = stack[(int)t74];
+    if (t73 >= 60.0)
+        goto L99;
+    goto L100;
+L99:
+    t75 = 1;
+    goto L101;
+L100:
+    t75 = 0;
+L101:
+    t77 = p + 1;
+    t76 = stack[(int)t77];
+    if (t76 < 90.0)
+        goto L102;
+    goto L103;
+L102:
+    t78 = 1;
+    goto L104;
+L103:
+    t78 = 0;
+L104:
+    if (t75 == 1)
+        goto L98;
+    goto L97;
+L98:
+    if (t78 == 1)
+        goto L96;
+    goto L97;
+L96:
+    t79 = 1;
+    goto L105;
+L97:
+    t79 = 0;
+L105:
+    if (t79 == 1)
+        goto L106;
+    goto L107;
+L106:
+    t80 = p + 2;
+    stack[(int)t80] = 3.0;
+L107:
+    t82 = p + 1;
+    t81 = stack[(int)t82];
+    if (t81 >= 90.0)
+        goto L111;
+    goto L112;
+L111:
+    t83 = 1;
+    goto L113;
+L112:
+    t83 = 0;
+L113:
+    t85 = p + 1;
+    t84 = stack[(int)t85];
+    if (t84 < 120.0)
+        goto L114;
+    goto L115;
+L114:
+    t86 = 1;
+    goto L116;
+L115:
+    t86 = 0;
+L116:
+    if (t83 == 1)
+        goto L110;
+    goto L109;
+L110:
+    if (t86 == 1)
+        goto L108;
+    goto L109;
+L108:
+    t87 = 1;
+    goto L117;
+L109:
+    t87 = 0;
+L117:
+    if (t87 == 1)
+        goto L118;
+    goto L119;
+L118:
+    t88 = p + 2;
+    stack[(int)t88] = 4.0;
+L119:
+    t90 = p + 2;
+    t89 = stack[(int)t90];
+    printf("%d", (int)t89);
+    printf("%c", 10);
+}
+void sp_calculacuota()
+{
+    t92 = p + 1;
+    t91 = stack[(int)t92];
+    if (t91 > 5000.0)
+        goto L123;
+    goto L124;
+L123:
+    t93 = 1;
+    goto L125;
+L124:
+    t93 = 0;
+L125:
+    t95 = p + 3;
+    t94 = stack[(int)t95];
+    if (t94 > 30.0)
+        goto L126;
+    goto L127;
+L126:
+    t96 = 1;
+    goto L128;
+L127:
+    t96 = 0;
+L128:
+    if (t93 == 1)
+        goto L122;
+    goto L121;
+L122:
+    if (t96 == 1)
+        goto L120;
+    goto L121;
+L120:
+    t97 = 1;
+    goto L129;
+L121:
+    t97 = 0;
+L129:
+    if (t97 == 1)
+        goto L130;
+    goto L131;
+L130:
+    t101 = p + 1;
+    t100 = stack[(int)t101];
+    t103 = p + 2;
+    t102 = stack[(int)t103];
+    t99 = t100 / t102;
+    t98 = t99 * 0.45;
+    t104 = p + 4;
+    stack[(int)t104] = t98;
+L131:
+    t106 = p + 1;
+    t105 = stack[(int)t106];
+    if (t105 > 15000.0)
+        goto L135;
+    goto L136;
+L135:
+    t107 = 1;
+    goto L137;
+L136:
+    t107 = 0;
+L137:
+    t109 = p + 3;
+    t108 = stack[(int)t109];
+    if (t108 > 30.0)
+        goto L138;
+    goto L139;
+L138:
+    t110 = 1;
+    goto L140;
+L139:
+    t110 = 0;
+L140:
+    if (t107 == 1)
+        goto L134;
+    goto L133;
+L134:
+    if (t110 == 1)
+        goto L132;
+    goto L133;
+L132:
+    t111 = 1;
+    goto L141;
+L133:
+    t111 = 0;
+L141:
+    if (t111 == 1)
+        goto L142;
+    goto L143;
+L142:
+    t115 = p + 1;
+    t114 = stack[(int)t115];
+    t117 = p + 2;
+    t116 = stack[(int)t117];
+    t113 = t114 / t116;
+    t112 = t113 * 0.65;
+    t118 = p + 4;
+    stack[(int)t118] = t112;
+L143:
+    t120 = p + 1;
+    t119 = stack[(int)t120];
+    if (t119 > 25000.0)
+        goto L147;
+    goto L148;
+L147:
+    t121 = 1;
+    goto L149;
+L148:
+    t121 = 0;
+L149:
+    t123 = p + 3;
+    t122 = stack[(int)t123];
+    if (t122 > 60.0)
+        goto L150;
+    goto L151;
+L150:
+    t124 = 1;
+    goto L152;
+L151:
+    t124 = 0;
+L152:
+    if (t121 == 1)
+        goto L146;
+    goto L145;
+L146:
+    if (t124 == 1)
+        goto L144;
+    goto L145;
+L144:
+    t125 = 1;
+    goto L153;
+L145:
+    t125 = 0;
+L153:
+    if (t125 == 1)
+        goto L154;
+    goto L155;
+L154:
+    t129 = p + 1;
+    t128 = stack[(int)t129];
+    t131 = p + 2;
+    t130 = stack[(int)t131];
+    t127 = t128 / t130;
+    t126 = t127 * 0.7;
+    t132 = p + 4;
+    stack[(int)t132] = t126;
+L155:
+    t134 = p + 1;
+    t133 = stack[(int)t134];
+    if (t133 < 15000.0)
+        goto L159;
+    goto L160;
+L159:
+    t135 = 1;
+    goto L161;
+L160:
+    t135 = 0;
+L161:
+    t137 = p + 3;
+    t136 = stack[(int)t137];
+    if (t136 < 30.0)
+        goto L162;
+    goto L163;
+L162:
+    t138 = 1;
+    goto L164;
+L163:
+    t138 = 0;
+L164:
+    if (t135 == 1)
+        goto L158;
+    goto L157;
+L158:
+    if (t138 == 1)
+        goto L156;
+    goto L157;
+L156:
+    t139 = 1;
+    goto L165;
+L157:
+    t139 = 0;
+L165:
+    if (t139 == 1)
+        goto L166;
+    goto L167;
+L166:
+    t143 = p + 1;
+    t142 = stack[(int)t143];
+    t145 = p + 2;
+    t144 = stack[(int)t145];
+    t141 = t142 / t144;
+    t140 = t141 * 0.15;
+    t146 = p + 4;
+    stack[(int)t146] = t140;
+L167:
+    t148 = p + 4;
+    t147 = stack[(int)t148];
+    if (t147 > 1000.0)
+        goto L171;
+    goto L172;
+L171:
+    t149 = 1;
+    goto L173;
+L172:
+    t149 = 0;
+L173:
+    t151 = p + 4;
+    t150 = stack[(int)t151];
+    if (t150 < 1500.0)
+        goto L174;
+    goto L175;
+L174:
+    t152 = 1;
+    goto L176;
+L175:
+    t152 = 0;
+L176:
+    if (t149 == 1)
+        goto L170;
+    goto L169;
+L170:
+    if (t152 == 1)
+        goto L168;
+    goto L169;
+L168:
+    t153 = 1;
+    goto L177;
+L169:
+    t153 = 0;
+L177:
+    if (t153 == 1)
+        goto L178;
+    goto L179;
+L178:
+    t154 = p + 5;
+    stack[(int)t154] = 75.0;
+L179:
+    t156 = p + 4;
+    t155 = stack[(int)t156];
+    if (t155 >= 1500.0)
+        goto L183;
+    goto L184;
+L183:
+    t157 = 1;
+    goto L185;
+L184:
+    t157 = 0;
+L185:
+    t159 = p + 4;
+    t158 = stack[(int)t159];
+    if (t158 < 2000.0)
+        goto L186;
+    goto L187;
+L186:
+    t160 = 1;
+    goto L188;
+L187:
+    t160 = 0;
+L188:
+    if (t157 == 1)
+        goto L182;
+    goto L181;
+L182:
+    if (t160 == 1)
+        goto L180;
+    goto L181;
+L180:
+    t161 = 1;
+    goto L189;
+L181:
+    t161 = 0;
+L189:
+    if (t161 == 1)
+        goto L190;
+    goto L191;
+L190:
+    t162 = p + 5;
+    stack[(int)t162] = 125.0;
+L191:
+    t164 = p + 4;
+    t163 = stack[(int)t164];
+    if (t163 > 0.0)
+        goto L195;
+    goto L196;
+L195:
+    t165 = 1;
+    goto L197;
+L196:
+    t165 = 0;
+L197:
+    t167 = p + 4;
+    t166 = stack[(int)t167];
+    if (t166 < 1000.0)
+        goto L198;
+    goto L199;
+L198:
+    t168 = 1;
+    goto L200;
+L199:
+    t168 = 0;
+L200:
+    if (t165 == 1)
+        goto L194;
+    goto L193;
+L194:
+    if (t168 == 1)
+        goto L192;
+    goto L193;
+L192:
+    t169 = 1;
+    goto L201;
+L193:
+    t169 = 0;
+L201:
+    if (t169 == 1)
+        goto L202;
+    goto L203;
+L202:
+    t170 = p + 5;
+    stack[(int)t170] = 25.0;
+L203:
+    t172 = p + 4;
+    t171 = stack[(int)t172];
+    if (t171 >= 2000.0)
+        goto L204;
+    goto L205;
+L204:
+    t173 = 1;
+    goto L206;
+L205:
+    t173 = 0;
+L206:
+    if (t173 == 1)
+        goto L207;
+    goto L208;
+L207:
+    t174 = p + 5;
+    stack[(int)t174] = 150.0;
+    goto L209;
+L208:
+    t175 = p + 5;
+    stack[(int)t175] = 0.0;
+L209:
+    t178 = p + 4;
+    t177 = stack[(int)t178];
+    t180 = p + 5;
+    t179 = stack[(int)t180];
+    t176 = t177 - t179;
+    t181 = p + 4;
+    stack[(int)t181] = t176;
+    t184 = p + 4;
+    t183 = stack[(int)t184];
+    t182 = t183;
+    t185 = p + 0;
+    stack[(int)t185] = t182;
+    return;
+}
+int main()
+{
+    t186 = 0;
+    t187 = 10.0;
+    p = p + 0;
+    t188 = p + 1;
+    stack[(int)t188] = t187;
+    fn_retornaalturamora();
+    t190 = p + 0;
+    t189 = stack[(int)t190];
+    p = p - 0;
+    t191 = t189;
+L210:
+    t192 = heap[(int)t191];
+    if (t192 == -1)
+        goto L211;
+    printf("%c", (int)t192);
+    t191 = t191 + 1;
+    goto L210;
+L211:
+    printf("%c", 10);
+    t193 = 0;
+    t194 = 40.0;
+    p = p + 0;
+    t195 = p + 1;
+    stack[(int)t195] = t194;
+    fn_retornaalturamora();
+    t197 = p + 0;
+    t196 = stack[(int)t197];
+    p = p - 0;
+    t198 = t196;
+L212:
+    t199 = heap[(int)t198];
+    if (t199 == -1)
+        goto L213;
+    printf("%c", (int)t199);
+    t198 = t198 + 1;
+    goto L212;
+L213:
+    printf("%c", 10);
+    t200 = 0;
+    t201 = 70.0;
+    p = p + 0;
+    t202 = p + 1;
+    stack[(int)t202] = t201;
+    fn_retornaalturamora();
+    t204 = p + 0;
+    t203 = stack[(int)t204];
+    p = p - 0;
+    t205 = t203;
+L214:
+    t206 = heap[(int)t205];
+    if (t206 == -1)
+        goto L215;
+    printf("%c", (int)t206);
+    t205 = t205 + 1;
+    goto L214;
+L215:
+    printf("%c", 10);
+    t207 = 0;
+    t208 = 100.0;
+    p = p + 0;
+    t209 = p + 1;
+    stack[(int)t209] = t208;
+    fn_retornaalturamora();
+    t211 = p + 0;
+    t210 = stack[(int)t211];
+    p = p - 0;
+    t212 = t210;
+L216:
+    t213 = heap[(int)t212];
+    if (t213 == -1)
+        goto L217;
+    printf("%c", (int)t213);
+    t212 = t212 + 1;
+    goto L216;
+L217:
+    printf("%c", 10);
+    t214 = 0;
+    t215 = 1.0;
+    t216 = 10.0;
+    p = p + 0;
+    t217 = p + 0;
+    stack[(int)t217] = t215;
+    t218 = p + 1;
+    stack[(int)t218] = t216;
+    sp_actualizaalturamora();
+    p = p - 0;
+    t219 = 0;
+    t220 = 2.0;
+    t221 = 40.0;
+    p = p + 0;
+    t222 = p + 0;
+    stack[(int)t222] = t220;
+    t223 = p + 1;
+    stack[(int)t223] = t221;
+    sp_actualizaalturamora();
+    p = p - 0;
+    t224 = 0;
+    t225 = 3.0;
+    t226 = 70.0;
+    p = p + 0;
+    t227 = p + 0;
+    stack[(int)t227] = t225;
+    t228 = p + 1;
+    stack[(int)t228] = t226;
+    sp_actualizaalturamora();
+    p = p - 0;
+    t229 = 0;
+    t230 = 4.0;
+    t231 = 100.0;
+    p = p + 0;
+    t232 = p + 0;
+    stack[(int)t232] = t230;
+    t233 = p + 1;
+    stack[(int)t233] = t231;
+    sp_actualizaalturamora();
+    p = p - 0;
+    t234 = 0;
+    t235 = 10000.0;
+    t236 = 12.0;
+    t237 = 10.0;
+    p = p + 0;
+    t238 = p + 1;
+    stack[(int)t238] = t235;
+    t239 = p + 2;
+    stack[(int)t239] = t236;
+    t240 = p + 3;
+    stack[(int)t240] = t237;
+    sp_calculacuota();
+    t242 = p + 0;
+    t241 = stack[(int)t242];
+    p = p - 0;
+    printf("%f", (double)t241);
+    printf("%c", 10);
+    t243 = 0;
+    t244 = 20000.0;
+    t245 = 12.0;
+    t246 = 40.0;
+    p = p + 0;
+    t247 = p + 1;
+    stack[(int)t247] = t244;
+    t248 = p + 2;
+    stack[(int)t248] = t245;
+    t249 = p + 3;
+    stack[(int)t249] = t246;
+    sp_calculacuota();
+    t251 = p + 0;
+    t250 = stack[(int)t251];
+    p = p - 0;
+    printf("%f", (double)t250);
+    printf("%c", 10);
+    t252 = 0;
+    t253 = 30000.0;
+    t254 = 12.0;
+    t255 = 70.0;
+    p = p + 0;
+    t256 = p + 1;
+    stack[(int)t256] = t253;
+    t257 = p + 2;
+    stack[(int)t257] = t254;
+    t258 = p + 3;
+    stack[(int)t258] = t255;
+    sp_calculacuota();
+    t260 = p + 0;
+    t259 = stack[(int)t260];
+    p = p - 0;
+    printf("%f", (double)t259);
+    printf("%c", 10);
+    t261 = 0;
+    t262 = 40000.0;
+    t263 = 12.0;
+    t264 = 100.0;
+    p = p + 0;
+    t265 = p + 1;
+    stack[(int)t265] = t262;
+    t266 = p + 2;
+    stack[(int)t266] = t263;
+    t267 = p + 3;
+    stack[(int)t267] = t264;
+    sp_calculacuota();
+    t269 = p + 0;
+    t268 = stack[(int)t269];
+    p = p - 0;
+    printf("%f", (double)t268);
+    printf("%c", 10);
 
-return 0;
+    return 0;
 }
