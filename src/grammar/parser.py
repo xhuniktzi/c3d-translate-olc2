@@ -25,6 +25,7 @@ from compiler.statements.define_procedure import DefineProcedure
 from compiler.statements.if_statement import IfStatement
 from compiler.statements.return_statement import ReturnStatement
 from compiler.statements.select import Select
+from compiler.statements.while_statement import WhileStatement
 import ply.yacc as yacc
 from grammar.lexer import tokens
 
@@ -73,6 +74,7 @@ def p_statement(p):
     | llamada
     | function
     | return
+    | ciclo
     """
     p[0] = p[1]
 
@@ -112,8 +114,9 @@ def p_return(p):
         p[0] = ReturnStatement(None)
 
 
-# def p_ciclo(p):
-#     """ciclo : WHILE PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END"""
+def p_ciclo(p):
+    """ciclo : WHILE PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END"""
+    p[0] = WhileStatement(p[3], p[6])
 
 
 def p_procedure(p):
@@ -298,7 +301,8 @@ def p_aritmeticas_division(p):
 
 
 def p_error(t):
-    print("Error sintáctico en '%s'" % t.value)
+    # print("Error sintáctico en '%s'" % t.value)
+    raise Exception("Error sintáctico en '%s'" % t.value)
 
 
 parser = yacc.yacc()

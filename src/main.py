@@ -7,6 +7,17 @@ from grammar.parser import parser
 
 def main():
     textoAnalizar: str = """
+    DECLARE @loop_var AS INT;
+    SET @loop_var = 0;
+
+    WHILE (@loop_var < 10)
+    BEGIN
+        SELECT @loop_var;
+        SET @loop_var = @loop_var + 1;
+    END
+	"""
+
+    _textoAnalizar: str = """
 CREATE FUNCTION fn_retornaalturamora (@diasmora INT)
 RETURN NVARCHAR
 AS
