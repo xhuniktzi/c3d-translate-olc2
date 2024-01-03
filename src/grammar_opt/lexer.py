@@ -92,6 +92,7 @@ def t_NUMBER(t):
 
 def t_STRING(t):
     r"\".*?\" "
+    t.value = t.value[1:-1]  # Remover las comillas
     return t
 
 
