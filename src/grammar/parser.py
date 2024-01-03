@@ -95,10 +95,10 @@ def p_select(p):
 
 
 def p_condicion(p):
-    """condicion : IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
-    | IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
+    """condicion : IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END PUNTOYCOMA
+    | IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END PUNTOYCOMA
     """
-    if len(p) == 8:
+    if len(p) == 9:
         p[0] = IfStatement(p[3], p[6])
     else:
         p[0] = IfStatement(p[3], p[6], p[10])
@@ -120,10 +120,10 @@ def p_ciclo(p):
 
 
 def p_procedure(p):
-    """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA AS BEGIN statements END
-    | CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA AS BEGIN statements END
+    """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA AS BEGIN statements END PUNTOYCOMA
+    | CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA AS BEGIN statements END PUNTOYCOMA
     """
-    if len(p) == 11:
+    if len(p) == 12:
         p[0] = DefineProcedure(p[3], p[5], p[9])
     else:
         p[0] = DefineProcedure(p[3], [], p[7])
@@ -131,10 +131,10 @@ def p_procedure(p):
 
 def p_function(p):
     """
-    function : CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END
-    | CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END
+    function : CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END PUNTOYCOMA
+    | CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END PUNTOYCOMA
     """
-    if len(p) == 13:
+    if len(p) == 14:
         p[0] = DefineFunction(p[3], p[5], p[11], fnStrToDatatype(p[8]))
     else:
         p[0] = DefineFunction(p[3], [], p[9], fnStrToDatatype(p[6]))
