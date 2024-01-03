@@ -11,6 +11,14 @@
             "program": "./src/main.py",
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "Python: Current File (OPT)",
+            "type": "python",
+            "request": "launch",
+            "program": "./src/main_opt.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
         }
     ]
 }
