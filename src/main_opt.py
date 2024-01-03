@@ -6,7 +6,8 @@ from optimizer.program import Program
 def main():
     with open("src/main.c", "r") as f:
         ast: Program = parser.parse(f.read())
-        print(ast)
+
+    ast.reduce_c3d()
 
 
 if __name__ == "__main__":
