@@ -1,6 +1,6 @@
 import abc
-from compiler.abstract.Generator import Generator
-from compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.Generator import Generator
+from c3d.src.compiler.abstract.environment import Environment
 
 
 class Statement(abc.ABC):

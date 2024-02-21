@@ -1,4 +1,4 @@
-from compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
 
 
 def fnStrToDatatype(str_datatype: str) -> DataTypes:

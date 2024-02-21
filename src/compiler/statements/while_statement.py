@@ -1,7 +1,7 @@
-from compiler.abstract.c3d_value import C3DValue
-from compiler.abstract.environment import Environment
-from compiler.abstract.expression import Expression
-from compiler.abstract.statement import Statement
+from c3d.src.compiler.abstract.c3d_value import C3DValue
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.expression import Expression
+from c3d.src.compiler.abstract.statement import Statement
 
 
 class WhileStatement(Statement):

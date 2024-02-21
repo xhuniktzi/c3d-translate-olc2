@@ -1,6 +1,6 @@
-from compiler.abstract.environment import Environment
-from compiler.abstract.statement import Statement
-from compiler.expr.transport.args import Args
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.statement import Statement
+from c3d.src.compiler.expr.transport.args import Args
 
 
 class DefineProcedure(Statement):

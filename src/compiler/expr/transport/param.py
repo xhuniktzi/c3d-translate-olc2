@@ -1,4 +1,4 @@
-from compiler.abstract.expression import Expression
+from c3d.src.compiler.abstract.expression import Expression
 
 
 class Param:

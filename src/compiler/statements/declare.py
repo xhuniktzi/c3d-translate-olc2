@@ -1,7 +1,7 @@
-from compiler.abstract.c3d_symbol import C3DSymbol
-from compiler.abstract.environment import Environment
-from compiler.abstract.statement import Statement
-from compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.abstract.c3d_symbol import C3DSymbol
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.statement import Statement
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Declare(Statement):

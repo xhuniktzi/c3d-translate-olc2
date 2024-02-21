@@ -1,8 +1,8 @@
-from compiler.abstract.environment import Environment
-from compiler.abstract.expression import Expression
-from compiler.abstract.statement import Statement
-from compiler.expr.finals.enum_datatypes import DataTypes
-from compiler.expr.transport.args import Args
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.expression import Expression
+from c3d.src.compiler.abstract.statement import Statement
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.expr.transport.args import Args
 
 
 class DefineFunction(Statement):

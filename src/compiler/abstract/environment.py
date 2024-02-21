@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from compiler.abstract.c3d_symbol import C3DSymbol
-from compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.abstract.c3d_symbol import C3DSymbol
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Environment:
