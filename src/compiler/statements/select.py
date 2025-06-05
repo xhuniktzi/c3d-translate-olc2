@@ -1,8 +1,8 @@
-from compiler.abstract.c3d_value import C3DValue
-from compiler.abstract.environment import Environment
-from compiler.abstract.expression import Expression
-from compiler.abstract.statement import Statement
-from compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.abstract.c3d_value import C3DValue
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.expression import Expression
+from c3d.src.compiler.abstract.statement import Statement
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Select(Statement):
@@ -39,6 +39,24 @@ class Select(Statement):
             )
             self.generator.register_goto(init_label)
             self.generator.register_label(continue_label)
+            self.generator.register_C_newline()
+
+        elif variable_eval.datatype == DataTypes.BOOLEAN:
+            true_label: str = self.generator.mk_label()
+            false_label: str = self.generator.mk_label()
+            exit_label: str = self.generator.mk_label()
+
+            self.generator.register_if_goto(variable_eval.value, "==", "1", true_label)
+            self.generator.register_goto(false_label)
+
+            self.generator.register_label(true_label)
+            self.generator.register_C_printf("%c", "84")
+            self.generator.register_goto(exit_label)
+
+            self.generator.register_label(false_label)
+            self.generator.register_C_printf("%c", "70")
+
+            self.generator.register_label(exit_label)
             self.generator.register_C_newline()
 
         elif variable_eval.datatype == DataTypes.IDVARIABLE:
@@ -89,4 +107,28 @@ class Select(Statement):
                 )
                 self.generator.register_goto(init_label)
                 self.generator.register_label(continue_label)
+                self.generator.register_C_newline()
+
+            elif symbol.datatype == DataTypes.BOOLEAN:
+                temp_variable: str = self.generator.mk_temp()
+                stack_variable: str = self.generator.mk_temp()
+
+                self.generator.access_stack(stack_variable, symbol.position)
+                self.generator.register_read_stack(temp_variable, stack_variable)
+
+                true_label: str = self.generator.mk_label()
+                false_label: str = self.generator.mk_label()
+                exit_label: str = self.generator.mk_label()
+
+                self.generator.register_if_goto(temp_variable, "==", "1", true_label)
+                self.generator.register_goto(false_label)
+
+                self.generator.register_label(true_label)
+                self.generator.register_C_printf("%c", "84")
+                self.generator.register_goto(exit_label)
+
+                self.generator.register_label(false_label)
+                self.generator.register_C_printf("%c", "70")
+
+                self.generator.register_label(exit_label)
                 self.generator.register_C_newline()

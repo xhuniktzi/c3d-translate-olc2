@@ -1,33 +1,51 @@
-from compiler.expr.aritmetic.div import Div
-from compiler.expr.aritmetic.multiply import Multiply
-from compiler.expr.aritmetic.add import Add
-from compiler.expr.aritmetic.negative import Negative
-from compiler.expr.aritmetic.sub import Sub
-from compiler.expr.finals.enum_datatypes import DataTypes
-from compiler.expr.finals.term_value import TermValue
-from compiler.expr.logical.and_expr import AndExpr
-from compiler.expr.logical.or_expr import OrExpr
-from compiler.expr.relationals.equals import Equals
-from compiler.expr.relationals.major import Major
-from compiler.expr.relationals.majorequals import MajorEquals
-from compiler.expr.relationals.minor import Minor
-from compiler.expr.relationals.minorequals import MinorEquals
-from compiler.expr.relationals.notequals import NotEquals
-from compiler.helpers.str_to_datatype import fnStrToDatatype
-from compiler.statements.assign import Assign
-from compiler.statements.declare import Declare
-from compiler.statements.select import Select
+from c3d.src.compiler.expr.aritmetic.div import Div
+from c3d.src.compiler.expr.aritmetic.multiply import Multiply
+from c3d.src.compiler.expr.aritmetic.add import Add
+from c3d.src.compiler.expr.aritmetic.negative import Negative
+from c3d.src.compiler.expr.aritmetic.sub import Sub
+from c3d.src.compiler.expr.finals.call_function import CallFunction
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.expr.finals.term_value import TermValue
+from c3d.src.compiler.expr.logical.and_expr import AndExpr
+from c3d.src.compiler.expr.logical.or_expr import OrExpr
+from c3d.src.compiler.expr.relationals.equals import Equals
+from c3d.src.compiler.expr.relationals.major import Major
+from c3d.src.compiler.expr.relationals.majorequals import MajorEquals
+from c3d.src.compiler.expr.relationals.minor import Minor
+from c3d.src.compiler.expr.relationals.minorequals import MinorEquals
+from c3d.src.compiler.expr.relationals.notequals import NotEquals
+from c3d.src.compiler.expr.transport.args import Args
+from c3d.src.compiler.expr.transport.param import Param
+from c3d.src.compiler.helpers.str_to_datatype import fnStrToDatatype
+from c3d.src.compiler.statements.assign import Assign
+from c3d.src.compiler.statements.call_procedure import CallProcedure
+from c3d.src.compiler.statements.declare import Declare
+from c3d.src.compiler.statements.define_function import DefineFunction
+from c3d.src.compiler.statements.define_procedure import DefineProcedure
+from c3d.src.compiler.statements.if_statement import IfStatement
+from c3d.src.compiler.statements.return_statement import ReturnStatement
+from c3d.src.compiler.statements.select import Select
+from c3d.src.compiler.statements.while_statement import WhileStatement
 import ply.yacc as yacc
-from grammar.lexer import tokens
+from c3d.src.grammar.lexer import tokens
 
 
 precedence = (
-    ("left", "OR", "AND"),
-    ("right", "NUMERONEGATIVO"),
-    ("left", "IGUALLOGICO", "DIFERENTE", "MENOR", "MENORIGUAL", "MAYOR", "MAYORIGUAL"),
+    ("left", "OR"),
+    ("left", "AND"),
+    (
+        "nonassoc",
+        "IGUALLOGICO",
+        "DIFERENTE",
+        "MENOR",
+        "MENORIGUAL",
+        "MAYOR",
+        "MAYORIGUAL",
+    ),
     ("left", "SUMA", "RESTA"),
     ("left", "MULTIPLICACION", "DIVISION"),
-    ("left", "PARENTESISABRE", "PARENTESISCIERRA"),
+    ("nonassoc", "PARENTESISABRE", "PARENTESISCIERRA"),
+    ("nonassoc", "NUMERONEGATIVO"),
 )
 
 
@@ -51,12 +69,13 @@ def p_statement(p):
     """statement : declaracion
     | asignacion
     | select
+    | condicion
+    | procedure
+    | llamada
+    | function
+    | return
+    | ciclo
     """
-    # | condicion
-    # | ciclo
-    # | procedure
-    # | llamada_procedure
-    # """
     p[0] = p[1]
 
 
@@ -72,36 +91,84 @@ def p_asignacion(p):
 
 def p_select(p):
     """select : SELECT expresion PUNTOYCOMA"""
-
     p[0] = Select(p[2])
 
 
-# def p_condicion(p):
-#     """condicion : IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END
-#     | IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END
-#     """
+def p_condicion(p):
+    """condicion : IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END PUNTOYCOMA
+    | IF  PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END ELSE BEGIN statements END PUNTOYCOMA
+    """
+    if len(p) == 9:
+        p[0] = IfStatement(p[3], p[6])
+    else:
+        p[0] = IfStatement(p[3], p[6], p[10])
 
 
-# def p_ciclo(p):
-#     """ciclo : WHILE PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END"""
+def p_return(p):
+    """return : RETURN expresion PUNTOYCOMA
+    | RETURN PUNTOYCOMA"""
+
+    if len(p) == 4:
+        p[0] = ReturnStatement(p[2])
+    else:
+        p[0] = ReturnStatement(None)
 
 
-# def p_procedure(p):
-#     """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA BEGIN statements END"""
+def p_ciclo(p):
+    """ciclo : WHILE PARENTESISABRE expresion PARENTESISCIERRA BEGIN statements END"""
+    p[0] = WhileStatement(p[3], p[6])
 
 
-# def p_llamada(p):
-#     """llamada : EXEC IDENTIFICADORGLOBAL PARENTESISABRE params_list PARENTESISCIERRA PUNTOYCOMA"""
+def p_procedure(p):
+    """procedure : CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA AS BEGIN statements END PUNTOYCOMA
+    | CREATE PROCEDURE IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA AS BEGIN statements END PUNTOYCOMA
+    """
+    if len(p) == 12:
+        p[0] = DefineProcedure(p[3], p[5], p[9])
+    else:
+        p[0] = DefineProcedure(p[3], [], p[7])
 
 
-# def p_args_list(p):
-#     """args_list : args_list COMA IDVARIABLE TIPODATO
-#     | IDVARIABLE TIPODATO"""
+def p_function(p):
+    """
+    function : CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE args_list PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END PUNTOYCOMA
+    | CREATE FUNCTION IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA RETURN TIPODATO AS BEGIN statements END PUNTOYCOMA
+    """
+    if len(p) == 14:
+        p[0] = DefineFunction(p[3], p[5], p[11], fnStrToDatatype(p[8]))
+    else:
+        p[0] = DefineFunction(p[3], [], p[9], fnStrToDatatype(p[6]))
 
 
-# def p_params_list(p):
-#     """params_list : params_list COMA IDVARIABLE IGUAL expresion
-#     | IDVARIABLE IGUAL expresion"""
+def p_llamada(p):
+    """llamada : EXEC IDENTIFICADORGLOBAL PARENTESISABRE params_list PARENTESISCIERRA PUNTOYCOMA
+    | EXEC IDENTIFICADORGLOBAL PARENTESISABRE PARENTESISCIERRA PUNTOYCOMA"""
+    if len(p) == 7:
+        p[0] = CallProcedure(p[2], p[4])
+    else:
+        p[0] = CallProcedure(p[2], [])
+
+
+def p_args_list(p):
+    """args_list : args_list COMA IDVARIABLE TIPODATO
+    | IDVARIABLE TIPODATO"""
+    if len(p) == 5:
+        p[0] = p[1]
+        p[0].append(Args(p[3], fnStrToDatatype(p[4])))
+    else:
+        p[0] = []
+        p[0].append(Args(p[1], fnStrToDatatype(p[2])))
+
+
+def p_params_list(p):
+    """params_list : params_list COMA IDVARIABLE IGUAL expresion
+    | IDVARIABLE IGUAL expresion"""
+    if len(p) == 6:
+        p[0] = p[1]
+        p[0].append(Param(p[3], p[5]))
+    else:
+        p[0] = []
+        p[0].append(Param(p[1], p[3]))
 
 
 def p_expresion_relacionales(p):
@@ -127,6 +194,11 @@ def p_expresion_aritmeticas(p):
 def p_expresion_parentesis(p):
     """expresion : PARENTESISABRE expresion PARENTESISCIERRA"""
     p[0] = p[2]
+
+
+def p_expresion_funcion(p):
+    """expresion : IDENTIFICADORGLOBAL PARENTESISABRE params_list PARENTESISCIERRA"""
+    p[0] = CallFunction(p[1], p[3])
 
 
 def p_valoresfinales_numero(p):
@@ -229,7 +301,8 @@ def p_aritmeticas_division(p):
 
 
 def p_error(t):
-    print("Error sintáctico en '%s'" % t.value)
+    # print("Error sintáctico en '%s'" % t.value)
+    raise Exception("Error sintáctico en '%s'" % t.value)
 
 
 parser = yacc.yacc()

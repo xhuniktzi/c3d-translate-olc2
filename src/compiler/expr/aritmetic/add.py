@@ -1,8 +1,8 @@
-from compiler.abstract.expression import Expression
-from compiler.environment.Generator import Generator
-from compiler.environment.c3d_value import C3DValue
-from compiler.environment.environment import Environment
-from compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.abstract.c3d_symbol import C3DSymbol
+from c3d.src.compiler.abstract.c3d_value import C3DValue
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.expression import Expression
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Add(Expression):

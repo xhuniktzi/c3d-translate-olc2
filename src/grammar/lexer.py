@@ -5,6 +5,7 @@ import ply.lex as lex
 reserved = {
     "create": "CREATE",
     "procedure": "PROCEDURE",
+    "function": "FUNCTION",
     "as": "AS",
     "begin": "BEGIN",
     "declare": "DECLARE",
@@ -20,6 +21,7 @@ reserved = {
     "nvarchar": "TIPODATO",
     "bit": "TIPODATO",  # bit is a boolean
     "exec": "EXEC",
+    "return": "RETURN",
 }
 
 # tokens
@@ -107,7 +109,10 @@ def t_ENTERO(t):
 def t_BOOL(t):
     r"true|false"
     try:
-        t.value = bool(t.value)
+        if t.value == "true":
+            t.value = True
+        else:
+            t.value = False
     except ValueError:
         print("Error en el Bool Esperado %d", t.value)
         t.value = False
@@ -116,7 +121,7 @@ def t_BOOL(t):
 
 ## CADENA
 def t_CADENA(t):
-    r"\".*?\" "
+    r"(\"|\').*?(\"|\')"
     t.value = t.value[1:-1]  # remuevo las comillas
     return t
 

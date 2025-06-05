@@ -1,5 +1,7 @@
 import abc
-from compiler.environment.c3d_value import C3DValue
+from c3d.src.compiler.abstract.Generator import Generator
+from c3d.src.compiler.abstract.c3d_value import C3DValue
+from c3d.src.compiler.abstract.environment import Environment
 
 
 from compiler.environment.environment import Environment

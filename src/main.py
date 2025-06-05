@@ -19,10 +19,12 @@ def main():
     generator: Generator = Generator()
     ast: list[Statement] = parser.parse(textoAnalizar)
     global_env: Environment = Environment()
+
     for statement in ast:
         statement.translate_to_c3d(global_env)
 
-    print(generator.generate_code())
+    with open("src/main.c", "w") as file:
+        file.write(generator.generate_code())
 
 
 if __name__ == "__main__":

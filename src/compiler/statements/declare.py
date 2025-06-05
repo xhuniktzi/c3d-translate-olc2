@@ -1,7 +1,7 @@
-from compiler.abstract.c3d_symbol import C3DSymbol
-from compiler.abstract.environment import Environment
-from compiler.abstract.statement import Statement
-from compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.abstract.c3d_symbol import C3DSymbol
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.statement import Statement
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class Declare(Statement):
@@ -11,4 +11,4 @@ class Declare(Statement):
         self.datatype: DataTypes = datatype
 
     def translate_to_c3d(self, env: Environment):
-        pass
+        env.add_variable(self.identifier, self.datatype)

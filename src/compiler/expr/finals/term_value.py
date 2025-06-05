@@ -1,7 +1,7 @@
-from compiler.abstract.c3d_value import C3DValue
-from compiler.abstract.environment import Environment
-from compiler.abstract.expression import Expression
-from compiler.expr.finals.enum_datatypes import DataTypes
+from c3d.src.compiler.abstract.c3d_value import C3DValue
+from c3d.src.compiler.abstract.environment import Environment
+from c3d.src.compiler.abstract.expression import Expression
+from c3d.src.compiler.expr.finals.enum_datatypes import DataTypes
 
 
 class TermValue(Expression):
@@ -31,9 +31,11 @@ class TermValue(Expression):
 
             return C3DValue(temp_var, True, self.datatype)
 
-        # elif self.datatype == DataTypes.CADENA:
-        #     temp_var: str = self.generator.mk_temp()
-        #     self.generator.register_c3d_expression(temp_var, "h", "", "")
+        elif self.datatype == DataTypes.BOOLEAN:
+            if self.value:
+                return C3DValue("1", False, self.datatype)
+            else:
+                return C3DValue("0", False, self.datatype)
 
         #     for char in self.value:
         #         self.generator.register_write_heap("h", f"{ord(char)}")

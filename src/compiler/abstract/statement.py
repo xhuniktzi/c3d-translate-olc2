@@ -1,4 +1,6 @@
 import abc
+from c3d.src.compiler.abstract.Generator import Generator
+from c3d.src.compiler.abstract.environment import Environment
 
 from compiler.environment.c3d_return import C3DReturn
 from compiler.environment.environment import Environment
