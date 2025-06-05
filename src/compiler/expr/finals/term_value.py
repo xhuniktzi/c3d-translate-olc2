@@ -36,9 +36,3 @@ class TermValue(Expression):
                 return C3DValue("1", False, self.datatype)
             else:
                 return C3DValue("0", False, self.datatype)
-
-        #     for char in self.value:
-        #         self.generator.register_write_heap("h", f"{ord(char)}")
-        #         self.generator.register_next_heap()
-
-        #     return C3DValue(temp_var, True, self.datatype)
